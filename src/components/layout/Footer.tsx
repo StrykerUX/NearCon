@@ -29,7 +29,7 @@ export function Footer() {
   }
 
   return (
-    <footer className="bg-nearcon-cream text-black pt-16 pb-8 px-6 md:px-12 relative overflow-hidden">
+    <footer className="bg-nearcon-cream text-black pt-16 pb-8 px-[50px] relative overflow-hidden">
       <motion.div
         className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 mb-16 relative z-10"
         initial={{ opacity: 0, y: 24 }}

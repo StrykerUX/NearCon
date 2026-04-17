@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { FrameCorners } from '../ui/FrameCorners'
 
@@ -78,75 +79,36 @@ export function Countdown() {
 
   return (
     <motion.section
-      className="relative overflow-hidden border-b border-text-primary py-20 px-6 md:px-12 flex justify-center bg-nearcon-cream"
+      className="relative overflow-hidden py-20 px-[50px] flex justify-center items-center bg-nearcon-cream min-h-[750px] mt-4 md:mt-12"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: '-100px' }}
       variants={containerVariants}
     >
-      {/* SVG Matrix Background */}
-      <svg className="absolute inset-0 w-full h-full text-black pointer-events-none opacity-80" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <pattern id="slash-bg" width="320" height="160" patternUnits="userSpaceOnUse">
-            <text x="0" y="0" fontFamily="monospace" fontSize="14" fill="currentColor" style={{ letterSpacing: '0.15em' }}>
-              <tspan x="0" dy="16">
-                \\\\\\\\\\\\\\\\A\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-              </tspan>
-              <tspan x="0" dy="16">
-                \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\B\\\\\\\\\\\\\\
-              </tspan>
-              <tspan x="0" dy="16">
-                \\\\\\\\E\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-              </tspan>
-              <tspan x="0" dy="16">
-                \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\C
-              </tspan>
-              <tspan x="0" dy="16">
-                \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-              </tspan>
-              <tspan x="0" dy="16">
-                \\\\H\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-              </tspan>
-              <tspan x="0" dy="16">
-                \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\G\\\\\\\\\\\\\\
-              </tspan>
-              <tspan x="0" dy="16">
-                \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-              </tspan>
-              <tspan x="0" dy="16">
-                \\\\\\\\\\\\1\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-              </tspan>
-              <tspan x="0" dy="16">
-                \\\\\\\\\\\\\\\\\\\\\\\\\\\\2\\\\\\\\3\\\\\\\\\\\\
-              </tspan>
-            </text>
-          </pattern>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#slash-bg)" />
-      </svg>
+      {/* Background Image */}
+      <Image
+        src="/img/Mask-group.png"
+        alt="Background"
+        fill
+        className="absolute inset-0 object-cover pointer-events-none"
+        sizes="100vw"
+      />
 
       {/* Grid Items */}
-      <motion.div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 max-w-5xl w-full relative z-10" variants={containerVariants}>
+      <motion.div className="grid grid-cols-2 md:grid-cols-4 gap-[4em] max-w-[1580px] w-full relative z-10 mx-auto px-[50px]" variants={containerVariants}>
         {items.map((item, idx) => (
           <motion.div
             key={idx}
-            className="bg-nearcon-cream p-6 md:p-8 flex flex-col items-center justify-center relative border border-text-primary"
+            className="flex flex-col items-center gap-[25px] relative"
             variants={itemVariants}
           >
-            <FrameCorners color="border-text-primary" size="w-3 h-3" />
-
             {/* Number Display */}
-            <div className="flex-1 flex items-center justify-center py-6 md:py-10">
-              <span className="text-6xl md:text-8xl font-helvetica tracking-tighter">{item.value}</span>
-            </div>
-
-            {/* Separator Line */}
-            <div className="w-full overflow-hidden text-black font-mono text-[10px] tracking-[0.3em] mb-3 whitespace-nowrap opacity-80">
-              \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+            <div className="flex items-center justify-center bg-nearcon-cream w-full">
+              <span className="text-[178px] font-light text-black" style={{ fontFamily: 'Roboto Mono' }}>{item.value}</span>
             </div>
 
             {/* Label */}
-            <span className="text-xs md:text-sm font-bold tracking-widest w-full text-left">{item.label}</span>
+            <span className="bg-nearcon-cream font-helvetica text-[29px] font-bold text-black w-full text-left pl-[20px]">{item.label}</span>
           </motion.div>
         ))}
       </motion.div>

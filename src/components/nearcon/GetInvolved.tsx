@@ -6,7 +6,7 @@ import { sendGAEvent } from '@next/third-parties/google'
 export function GetInvolved() {
   return (
     <section className="border-b border-text-primary bg-nearcon-cream pb-8 md:pb-16">
-      <div className="bg-black py-5 px-6 md:px-12 w-full mb-8">
+      <div className="bg-black py-5 px-[50px] w-full mb-8">
         <h2 className="font-helvetica text-2xl md:text-3xl text-nearcon-cream">Other Ways to Get Involved</h2>
       </div>
 

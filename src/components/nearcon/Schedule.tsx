@@ -47,7 +47,7 @@ export function Schedule() {
   const filtered = SCHEDULE_EVENTS.filter((e) => e.day === activeDay)
 
   return (
-    <section className="px-6 py-16 md:px-12 border-b border-text-primary" id="schedule">
+    <section className="px-[50px] py-16 border-b border-text-primary" id="schedule">
       <motion.h2
         className="font-helvetica text-3xl mb-8"
         initial={{ opacity: 0, y: 16 }}
