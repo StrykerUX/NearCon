@@ -25,7 +25,7 @@ const listItemVariants = {
 export function WhatToExpect() {
   return (
     <section className="bg-black text-nearcon-cream border-b border-text-primary" id="about">
-      <div className="max-w-[1500px] mx-auto px-6 py-24 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-12">
+      <div className="max-w-[1580px] mx-auto px-[50px] py-24 grid grid-cols-1 lg:grid-cols-12 gap-12">
         {/* Binary decoration column */}
         <motion.div
           className="hidden lg:block lg:col-span-4 font-mono text-xs leading-none text-gray-500 overflow-hidden relative"

@@ -23,7 +23,7 @@ export function PreviousNearcons() {
         {RUNNING_NUMBERS}
       </div>
 
-      <div className="max-w-[1500px] mx-auto px-6 md:px-12">
+      <div className="max-w-[1580px] mx-auto px-[50px]">
         <motion.h2
           className="font-helvetica text-xl text-nearcon-cream mb-12 relative z-10"
           initial={{ opacity: 0, x: -16 }}

@@ -10,15 +10,16 @@ export function Navbar() {
 
   return (
     <nav className="sticky top-0 z-50 bg-nearcon-cream border-b border-text-primary font-helvetica text-[17px] font-[400]">
-      <div className="max-w-[1550px] mx-auto h-16 flex items-center justify-between px-6 lg:px-12">
+      <div className="max-w-[1580px] mx-auto h-16 flex items-center justify-between px-6 lg:px-12">
         {/* Logo */}
         <div className="flex items-center h-16">
           <div className="flex items-center">
             <Image
               src="/img/logo-near.png"
               alt="Near Logo"
-              width={25}
-              height={25}
+              width={200}
+              height={200}
+              sizes="25px"
               className="h-[25px] w-auto"
             />
           </div>
@@ -27,8 +28,9 @@ export function Navbar() {
             <Image
               src="/img/logo-near-name.png"
               alt="Near Name Logo"
-              width={37}
-              height={15}
+              width={600}
+              height={240}
+              sizes="37px"
               className="h-[15px] w-auto"
             />
           </div>
@@ -51,12 +53,15 @@ export function Navbar() {
             </a>
           </div>
 
-          <button
-            onClick={handleCTAClick}
-            className="bg-black text-nearcon-cream px-4 py-3 text-[16px] font-[700] tracking-widest hover:bg-gray-800 transition-colors"
+          <a
+            href="https://luma.com/NearconSF"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => handleCTAClick()}
+            className="bg-black text-nearcon-cream px-4 py-3 text-[16px] font-[700] tracking-widest border border-black hover:bg-nearcon-cream hover:text-black transition-colors inline-block"
           >
             APPLY TO ATTEND
-          </button>
+          </a>
         </div>
       </div>
     </nav>

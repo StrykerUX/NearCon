@@ -19,7 +19,7 @@ const cardVariants = {
 
 export function Speakers() {
   return (
-    <section className="px-6 py-20 md:px-12 border-b border-text-primary relative overflow-hidden" id="speakers">
+    <section className="px-[50px] py-20 border-b border-text-primary relative overflow-hidden" id="speakers">
       {/* Running numbers background */}
       <div className="absolute top-10 left-0 w-full overflow-hidden text-xs font-mono text-gray-500 opacity-50 whitespace-nowrap pointer-events-none select-none">
         {RUNNING_NUMBERS}

@@ -31,19 +31,20 @@ export function Hero() {
 
   return (
     <motion.section
-      className="p-4 md:p-12"
+      className="px-[50px] py-4 md:py-12"
       initial="hidden"
       animate="visible"
       variants={containerVariants}
     >
-      <div className="relative w-full h-[60vh] md:h-[80vh] bg-black overflow-hidden flex items-center justify-center border border-text-primary">
+      <div className="relative w-full overflow-hidden flex items-center justify-center border border-text-primary">
         {/* Background Image */}
-        <div className="absolute inset-0 w-full h-full">
+        <div className="relative w-full h-auto">
           <Image
             src="/img/nearcon-img-hero.png"
             alt="NearCon Hero Background"
-            fill
-            className="object-cover"
+            width={1550}
+            height={600}
+            className="w-full h-auto object-contain"
             priority
           />
         </div>

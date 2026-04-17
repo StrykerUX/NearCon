@@ -72,10 +72,10 @@ export function Partners() {
     <>
       {/* Community Partners */}
       <section className="border-b border-text-primary pb-12">
-        <div className="bg-black py-4 px-6 md:px-12 w-full mb-12">
+        <div className="bg-black py-4 px-[50px] w-full mb-12">
           <h2 className="font-helvetica text-2xl text-nearcon-cream">Community Partners</h2>
         </div>
-        <div className="px-6 md:px-12 max-w-6xl mx-auto mb-16">
+        <div className="px-[50px] max-w-6xl mx-auto mb-16">
           <motion.div
             className="grid grid-cols-2 md:grid-cols-4 gap-0 text-black"
             initial="hidden"
@@ -97,10 +97,10 @@ export function Partners() {
         </div>
 
         {/* Media Partners */}
-        <div className="bg-black py-4 px-6 md:px-12 w-full mb-12">
+        <div className="bg-black py-4 px-[50px] w-full mb-12">
           <h2 className="font-helvetica text-2xl text-nearcon-cream">Media Partners</h2>
         </div>
-        <div className="px-6 md:px-12 max-w-4xl mx-auto">
+        <div className="px-[50px] max-w-4xl mx-auto">
           <motion.div
             className="grid grid-cols-1 md:grid-cols-2 gap-0 text-black"
             initial="hidden"
