@@ -1,0 +1,49 @@
+import { Navbar } from '@/components/layout/Navbar'
+import { Hero } from '@/components/nearcon/Hero'
+import { Countdown } from '@/components/nearcon/Countdown'
+import { IntroText } from '@/components/nearcon/IntroText'
+import { WhatToExpect } from '@/components/nearcon/WhatToExpect'
+import { Speakers } from '@/components/nearcon/Speakers'
+import { Schedule } from '@/components/nearcon/Schedule'
+import { GetInvolved } from '@/components/nearcon/GetInvolved'
+import { Sponsors } from '@/components/nearcon/Sponsors'
+import { Partners } from '@/components/nearcon/Partners'
+import { PreviousNearcons } from '@/components/nearcon/PreviousNearcons'
+import { Footer } from '@/components/layout/Footer'
+
+export default function Home() {
+  return (
+    <div className="min-h-screen bg-nearcon-cream text-text-primary selection:bg-nearcon-green selection:text-text-primary">
+      {/* Full-width sticky navbar */}
+      <Navbar />
+
+      {/* Sections before black section — constrained to 1500px */}
+      <div className="max-w-[1500px] mx-auto">
+        <Hero />
+        <IntroText />
+        <Countdown />
+      </div>
+
+      {/* Full-width black section */}
+      <WhatToExpect />
+
+      {/* Sections between black sections — constrained to 1580px */}
+      <div className="max-w-[1500px] mx-auto">
+        <div className="h-12 w-full pattern-diagonal border-b border-text-primary opacity-50" />
+        <Speakers />
+        <Schedule />
+        <GetInvolved />
+        <Sponsors />
+        <Partners />
+      </div>
+
+      {/* Full-width black section */}
+      <PreviousNearcons />
+
+      {/* Footer — constrained to 1580px */}
+      <div className="max-w-[1500px] mx-auto">
+        <Footer />
+      </div>
+    </div>
+  )
+}

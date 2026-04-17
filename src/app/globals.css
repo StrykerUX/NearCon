@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+@theme {
+  --color-nearcon-cream: #EBE3D3;
+  --color-nearcon-green: #65D56E;
+  --color-nearcon-blue: #59C2E8;
+  --color-nearcon-coral: #F98372;
+  --color-nearcon-amber: #F1B139;
+  --color-nearcon-cyan: #00c8ff;
+
+  --color-text-primary: #000000;
+  --color-text-secondary: #666666;
+  --color-border: #000000;
+}
+
+@layer base {
+  body {
+    @apply bg-nearcon-cream text-text-primary;
+    font-family: 'Poppins', system-ui, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 700;
+  }
+
+  .font-helvetica {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 700;
+  }
+
+  p, span, div {
+    font-family: 'Poppins', system-ui, sans-serif;
+  }
+}
+
+@layer utilities {
+  .pattern-diagonal {
+    background-image: repeating-linear-gradient(-45deg, transparent, transparent 4px, #000000 4px, #000000 5px);
+  }
+}
