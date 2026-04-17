@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { sendGAEvent } from '@next/third-parties/google'
 
 export function Navbar() {
@@ -9,13 +10,28 @@ export function Navbar() {
 
   return (
     <nav className="sticky top-0 z-50 bg-nearcon-cream border-b border-text-primary font-helvetica text-[17px] font-[400]">
-      <div className="max-w-[1500px] mx-auto h-16 flex items-center justify-between px-6 lg:px-12">
+      <div className="max-w-[1550px] mx-auto h-16 flex items-center justify-between px-6 lg:px-12">
         {/* Logo */}
-        <div className="flex items-center gap-2 font-helvetica text-2xl tracking-tighter">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-black">
-            <path d="M4 4v16l16-16v16" />
-          </svg>
-          near
+        <div className="flex items-center h-16">
+          <div className="flex items-center">
+            <Image
+              src="/img/logo-near.png"
+              alt="Near Logo"
+              width={25}
+              height={25}
+              className="h-[25px] w-auto"
+            />
+          </div>
+          <div className="h-full border-l border-text-primary mx-5" />
+          <div className="flex items-center">
+            <Image
+              src="/img/logo-near-name.png"
+              alt="Near Name Logo"
+              width={37}
+              height={15}
+              className="h-[15px] w-auto"
+            />
+          </div>
         </div>
 
         {/* Nav Links + CTA Button — grouped on the right */}
