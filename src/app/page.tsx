@@ -40,9 +40,11 @@ export default function Home() {
       {/* Scroller banner — full width */}
       <ScrollerBanner />
 
+      {/* Live Schedule section — full width */}
+      <Schedule />
+
       {/* Sections between black sections — constrained to 1550px */}
       <div className="max-w-[1580px] mx-auto">
-        <Schedule />
         <GetInvolved />
         <Sponsors />
         <Partners />
