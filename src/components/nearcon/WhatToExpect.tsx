@@ -3,13 +3,14 @@
 import { motion } from 'framer-motion'
 import { sendGAEvent } from '@next/third-parties/google'
 import { FrameCorners } from '../ui/FrameCorners'
+import styles from './WhatToExpect.module.css'
 
 const items = [
-  { color: 'text-nearcon-blue', highlight: 'Visionary keynotes', rest: ' from global AI and open technology pioneers.' },
-  { color: 'text-nearcon-coral', highlight: 'Live agent', rest: ' demos and hands-on workshops.' },
-  { color: 'text-nearcon-amber', highlight: 'the key', prefix: 'Deep dives on why privacy is ', suffix: ' to user-owned AI at scale.' },
-  { color: 'text-nearcon-green', highlight: 'industry leaders', prefix: 'Debates between ', suffix: ' on adoption, ethics, and billion-dollar use cases.' },
-  { color: 'text-nearcon-blue', highlight: 'dedicated builders', prefix: 'Partner activations and a ', suffix: ' lounge.' },
+  { color: '#87CEEB', highlight: 'Visionary keynotes', rest: ' from global AI and open technology pioneers.' },
+  { color: '#FF1493', highlight: 'Live agent', rest: ' demos and hands-on workshops.' },
+  { color: '#FFD700', highlight: 'the key', prefix: 'Deep dives on why privacy is ', suffix: ' to user-owned AI at scale.' },
+  { color: '#90EE90', highlight: 'industry leaders', prefix: 'Debates between ', suffix: ' on adoption, ethics, and billion-dollar use cases.' },
+  { color: '#87CEEB', highlight: 'dedicated builders', prefix: 'Partner activations and a ', suffix: ' lounge.' },
 ]
 
 const containerVariants = {
@@ -24,45 +25,33 @@ const listItemVariants = {
 
 export function WhatToExpect() {
   return (
-    <section className="bg-black text-nearcon-cream border-b border-text-primary" id="about">
-      <div className="max-w-[1580px] mx-auto px-[50px] py-24 grid grid-cols-1 lg:grid-cols-12 gap-12">
+    <section className="bg-black text-nearcon-cream border-b border-text-primary px-[50px] py-[100px]" id="about">
+      <div className="max-w-[1580px] mx-auto px-[50px] py-[50px] flex flex-col lg:flex-row gap-12 overflow-hidden relative mb-[50px]">
+        <FrameCorners color="border-nearcon-cream" size="w-[70px] h-[70px]" />
         {/* Binary decoration column */}
         <motion.div
-          className="hidden lg:block lg:col-span-4 font-mono text-xs leading-none text-gray-500 overflow-hidden relative"
+          className="hidden lg:flex lg:w-[35%] items-center justify-center"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <FrameCorners color="border-nearcon-cream" />
-          <div className="p-4 whitespace-pre">
-{`0...1.1.1.1.0..1  AURTWMVGL
-1..1...1...0..1.  AI SKXKDHF
-0..1.0..1..1..0.  C \\ BPUIJRX
-1..0..1...1.1.1.  KX \\ TDRK \\\\
-.0.1.0...1..0.1.  IVI RTXGLY
-1...1.0.1.1..0..  T \\ DOZTRDP
-..0...1...1.1...  OM \\\\ POVXG
-1...1.0.1.0..0..  GMTBFHE\\S
-.1.0..1...0..1..  AOAMRZQSV
-...1.0...1..1.0.  OXTXOWGVT
-0..1.0.1.0.0.1.0  XCMZTS\\LL
-..1..1...1...1..  V\\XKGXTI\\
-0.1.0..1..0..1..  PXLT\\IYD\\
-.1...1..1...0.1.  FTZ\\\\\\\\\\\\
-1.0.0...1..1..1.  TOT\\\\\\\\\\
-...1...1.0...1..  LH\\\\\\\\IG\\
-0..0..1..1.0..1.  XG\\\\\\\\\\\\
-...1.0.1...1...0  V\\\\A\\\\\\\\\\
-..1..0..1.0...1.  Z\\\\\\\\\\\\\\
-1.0..1...0..1..1  A\\\\\\\\D\\\\\\`}
-          </div>
+          <video
+            className="w-full h-full object-cover -mb-[50px]"
+            autoPlay
+            muted
+            loop
+            src="/img/CODE.mp4"
+          />
         </motion.div>
 
+        {/* Divider image */}
+        <img src="/img/path806.png" alt="divider" className="hidden lg:block -mr-[56px]" />
+
         {/* Content column */}
-        <div className="lg:col-span-8 flex flex-col justify-center">
+        <div className="lg:w-[65%] flex flex-col justify-center">
           <motion.h2
-            className="font-helvetica text-4xl md:text-5xl mb-12"
+            className="font-helvetica text-4xl md:text-5xl mb-12 ml-[50px]"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -72,7 +61,8 @@ export function WhatToExpect() {
           </motion.h2>
 
           <motion.ul
-            className="space-y-6 text-lg md:text-xl font-light"
+            className="space-y-[15px]"
+            style={{ fontFamily: 'Poppins', fontSize: '24px', fontWeight: 300 }}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-60px' }}
@@ -80,40 +70,32 @@ export function WhatToExpect() {
           >
             {items.map((item, idx) => (
               <motion.li key={idx} className="flex items-start gap-4" variants={listItemVariants}>
-                <span className="mt-2 w-2 h-2 rounded-full bg-gray-500 shrink-0" />
+                <span className="mt-2 w-[14px] h-[14px] rounded-full shrink-0" style={{ backgroundColor: '#EBE3D3' }} />
                 <p>
                   {item.prefix && item.prefix}
-                  <span className={item.color}>{item.highlight}</span>
+                  <span style={{ color: item.color }}>{item.highlight}</span>
                   {item.rest || item.suffix}
                 </p>
               </motion.li>
             ))}
           </motion.ul>
+          <img src="/img/text787-2.png" alt="text decoration" className="mt-12 ml-[50px] w-[70px]" />
         </div>
       </div>
 
       {/* CTA Banner */}
-      <button
-        className="w-full bg-gradient-to-r from-nearcon-green to-nearcon-blue p-4 text-center hover:opacity-90 transition-opacity border-t border-b border-black"
-        onClick={() => sendGAEvent('event', 'cta_click', { cta_name: 'apply_to_attend_what_to_expect' })}
-      >
-        <span className="text-black font-bold tracking-widest text-sm">APPLY TO ATTEND</span>
-      </button>
+      <div className="max-w-[1580px] mx-auto w-full mb-[50px]">
+        <button
+          className={styles.largeButton}
+          onClick={() => sendGAEvent('event', 'cta_click', { cta_name: 'apply_to_attend_what_to_expect' })}
+        >
+          <span className={styles.largeButtonInner}>APPLY TO ATTEND</span>
+        </button>
+      </div>
 
       {/* Bottom row */}
-      <div className="flex items-center justify-between p-6 border-b border-black">
-        <div className="w-8 h-8 rounded-full border border-gray-500 relative">
-          <div className="absolute inset-0 rounded-full border border-gray-600 scale-110" />
-          <div className="absolute inset-0 rounded-full border border-gray-700 scale-125" />
-        </div>
-        <div className="flex items-center gap-1 font-helvetica text-xl text-nearcon-cream">
-          Near
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <path d="M4 4v16l16-16v16" />
-          </svg>
-          Con
-          <span className="text-xs align-top ml-1 opacity-50">2026</span>
-        </div>
+      <div className="max-w-[1580px] mx-auto w-full">
+        <img src="/img/Group-41.png" alt="NearCon decoration" className="w-full h-auto border-b border-black" />
       </div>
     </section>
   )
