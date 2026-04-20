@@ -7,6 +7,7 @@ import { sendGAEvent } from '@next/third-parties/google'
 import { FrameCorners } from '../ui/FrameCorners'
 import { SCHEDULE_EVENTS } from '@/lib/data'
 import type { Speaker } from '@/lib/types'
+import styles from './WhatToExpect.module.css'
 
 function SpeakerAvatar({ speaker, size = 'md' }: { speaker: Speaker; size?: 'sm' | 'md' }) {
   const dim = size === 'sm' ? 'w-10 h-10' : 'w-12 h-12'
@@ -47,26 +48,29 @@ export function Schedule() {
   const filtered = SCHEDULE_EVENTS.filter((e) => e.day === activeDay)
 
   return (
-    <section className="px-[50px] py-16 border-b border-text-primary" id="schedule">
-      <motion.h2
-        className="font-helvetica text-3xl mb-8"
-        initial={{ opacity: 0, y: 16 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.45 }}
-      >
-        Live Schedule
-      </motion.h2>
+    <section className="py-[100px]" id="schedule">
+      <div className="max-w-[1580px] mx-auto px-[50px]">
+        <motion.h2
+          className="font-helvetica mb-8"
+          style={{ fontSize: '36px', fontWeight: 700 }}
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.45 }}
+        >
+          Live Schedule
+        </motion.h2>
 
-      {/* Day tabs */}
-      <div className="flex gap-4 mb-8">
+        {/* Day tabs */}
+        <div className="flex gap-4 mb-8">
         {([1, 2] as const).map((day) => (
           <button
             key={day}
             onClick={() => setActiveDay(day)}
-            className={`px-6 py-2 text-sm font-bold border border-black transition-colors ${
+            className={`px-6 py-2 font-bold border border-black transition-colors ${
               activeDay === day ? 'bg-black text-nearcon-cream' : 'bg-transparent text-black hover:bg-gray-200'
             }`}
+            style={{ fontFamily: 'Helvetica', fontSize: '20px', fontWeight: 700 }}
           >
             {day === 1 ? 'February 23, 2026' : 'February 24, 2026'}
           </button>
@@ -90,28 +94,30 @@ export function Schedule() {
             filtered.map((event) => (
               <motion.div
                 key={event.id}
-                className="bg-black text-nearcon-cream p-6 relative flex flex-col md:flex-row gap-8"
+                className="bg-black text-nearcon-cream relative p-[30px]"
                 variants={eventVariants}
               >
-                <FrameCorners color="border-gray-600" size="w-6 h-6" />
+                <div className="relative p-[30px]">
+                  <FrameCorners color="border-[#EBE3D3]" size="w-[40px] h-[40px]" />
 
-                {/* Left — event info */}
-                <div className="flex-1 md:pr-8">
-                  <div className="flex items-center gap-4 text-sm font-mono text-gray-300 mb-4">
+                  <div className="flex flex-col md:flex-row gap-8">
+                    {/* Left — event info */}
+                    <div className="flex-1 md:pr-8">
+                  <div className="flex items-center gap-4 mb-4" style={{ fontFamily: 'Poppins', fontSize: '20px', fontWeight: 300, color: '#EBE3D3' }}>
                     <span>{event.startTime}</span>
-                    <div className="h-px bg-gray-600 flex-1" />
+                    <div className="h-px flex-[0.3]" style={{ backgroundColor: '#EBE3D3' }} />
                     <span>{event.endTime}</span>
                   </div>
-                  <p className="text-sm font-light text-gray-300 mb-2">Location: {event.location}</p>
-                  <h3 className="font-helvetica text-2xl md:text-3xl mb-3">{event.title}</h3>
+                  <p className="mb-2" style={{ fontFamily: 'Helvetica', fontSize: '26px', fontWeight: 400, color: '#EBE3D3' }}>Location: {event.location}</p>
+                  <h3 className="mb-3" style={{ fontFamily: 'Helvetica', fontSize: '36px', fontWeight: 700, color: '#EBE3D3' }}>{event.title}</h3>
                   {event.description && (
-                    <p className="text-sm font-light text-gray-400 leading-relaxed max-w-3xl">{event.description}</p>
+                    <p className="leading-relaxed max-w-3xl" style={{ fontFamily: 'Poppins', fontSize: '18px', fontWeight: 300, color: '#EBE3D3' }}>{event.description}</p>
                   )}
                 </div>
 
                 {/* Right — speakers */}
-                <div className="md:w-[300px] md:border-l md:border-dotted md:border-gray-600 md:pl-8 flex flex-col justify-center">
-                  <span className="text-xl font-helvetica mb-4">Speakers</span>
+                <div className="md:w-[300px] md:border-l md:border-dashed md:border-[#EBE3D3] md:pl-8 flex flex-col justify-start">
+                  <span className="mb-4" style={{ fontFamily: 'Helvetica', fontSize: '26px', fontWeight: 400, color: '#EBE3D3' }}>Speakers</span>
                   <div className="space-y-4">
                     {event.speakers.map((s, i) => (
                       <div
@@ -125,10 +131,12 @@ export function Schedule() {
 
                   {event.moderator && (
                     <>
-                      <span className="text-xl font-helvetica mt-6 mb-4">Moderator</span>
+                      <span className="mt-6 mb-4" style={{ fontFamily: 'Helvetica', fontSize: '26px', fontWeight: 400, color: '#EBE3D3' }}>Moderator</span>
                       <SpeakerAvatar speaker={event.moderator} size="sm" />
                     </>
                   )}
+                    </div>
+                  </div>
                 </div>
               </motion.div>
             ))
@@ -136,17 +144,18 @@ export function Schedule() {
         </motion.div>
       </AnimatePresence>
 
-      {/* See all sessions CTA */}
-      <motion.button
-        className="w-full bg-gradient-to-r from-nearcon-green to-nearcon-blue p-4 text-center hover:opacity-90 transition-opacity mt-8"
-        onClick={() => sendGAEvent('event', 'cta_click', { cta_name: 'see_all_sessions' })}
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.4, delay: 0.2 }}
-      >
-        <span className="text-black font-bold tracking-widest text-sm uppercase">See All Sessions</span>
-      </motion.button>
+        {/* See all sessions CTA */}
+        <motion.button
+          className={`${styles.largeButton} mt-[50px]`}
+          onClick={() => sendGAEvent('event', 'cta_click', { cta_name: 'see_all_sessions' })}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4, delay: 0.2 }}
+        >
+          <span className={styles.largeButtonInner}>See All Sessions</span>
+        </motion.button>
+      </div>
     </section>
   )
 }

@@ -23,7 +23,7 @@ export function PreviousNearcons() {
         <div className="max-w-[1580px] mx-auto px-[50px]">
           <motion.h2
             className="font-helvetica inline-block text-nearcon-cream"
-            style={{ backgroundColor: '#000000', padding: '10px 40px', fontSize: '36px', fontWeight: 700 }}
+            style={{ backgroundColor: '#000000', padding: '12px 40px', fontSize: '36px', fontWeight: 700, lineHeight: '40px' }}
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
