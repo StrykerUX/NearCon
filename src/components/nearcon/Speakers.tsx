@@ -22,8 +22,8 @@ export function Speakers() {
   return (
     <>
       {/* Title section */}
-      <div className="w-full bg-cover bg-center mt-[100px]" style={{ backgroundImage: 'url(/img/Group-43-3.png)' }}>
-        <div className="max-w-[1580px] mx-auto px-[50px]">
+      <div className="w-full bg-cover bg-center mt-[100px] px-[50px]" style={{ backgroundImage: 'url(/img/Group-43-3.png)' }}>
+        <div className="max-w-[1580px] mx-auto">
           <motion.h2
             className="font-helvetica text-4xl md:text-5xl inline-block"
             style={{ backgroundColor: '#EBE3D3', padding: '10px 40px' }}

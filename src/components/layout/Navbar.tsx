@@ -9,8 +9,8 @@ export function Navbar() {
   }
 
   return (
-    <nav className="sticky top-0 z-50 bg-nearcon-cream border-b border-text-primary font-helvetica text-[17px] font-[400]">
-      <div className="max-w-[1580px] mx-auto h-16 flex items-center justify-between px-6 lg:px-12">
+    <nav className="sticky top-0 z-50 bg-nearcon-cream border-b border-text-primary font-helvetica text-[17px] font-[400] px-[50px]">
+      <div className="max-w-[1580px] mx-auto h-16 flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center h-16">
           <div className="flex items-center">
