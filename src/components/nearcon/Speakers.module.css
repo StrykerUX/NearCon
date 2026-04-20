@@ -1,0 +1,55 @@
+.applyButton {
+  position: relative;
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  padding: 20px 60px;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 19px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #FFFFFF;
+  background: linear-gradient(90deg, #000000 0%, #000000 50%, #65D56E 75%, #59C2E8 100%);
+  background-size: 300% 100%;
+  background-position: 0% 0%;
+  border: none;
+  text-decoration: none;
+  transition: all 0.4s ease;
+  cursor: pointer;
+}
+
+/* Brillo sutil */
+.applyButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transition: left 0.5s ease;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Hover: desplazar gradiente hacia verde/azul */
+.applyButton:hover {
+  background-position: 100% 0%;
+  transform: translateY(-2px);
+  color: #000000;
+}
+
+.applyButton:hover::before {
+  left: 100%;
+}
+
+/* Active: presión */
+.applyButton:active {
+  transform: translateY(0);
+}

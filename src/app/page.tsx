@@ -4,6 +4,7 @@ import { Countdown } from '@/components/nearcon/Countdown'
 import { IntroText } from '@/components/nearcon/IntroText'
 import { WhatToExpect } from '@/components/nearcon/WhatToExpect'
 import { Speakers } from '@/components/nearcon/Speakers'
+import { ScrollerBanner } from '@/components/nearcon/ScrollerBanner'
 import { Schedule } from '@/components/nearcon/Schedule'
 import { GetInvolved } from '@/components/nearcon/GetInvolved'
 import { Sponsors } from '@/components/nearcon/Sponsors'
@@ -33,10 +34,14 @@ export default function Home() {
       {/* Full-width black section */}
       <WhatToExpect />
 
+      {/* Speakers section — full width */}
+      <Speakers />
+
+      {/* Scroller banner — full width */}
+      <ScrollerBanner />
+
       {/* Sections between black sections — constrained to 1550px */}
       <div className="max-w-[1580px] mx-auto">
-        <div className="h-12 w-full pattern-diagonal border-b border-text-primary opacity-50" />
-        <Speakers />
         <Schedule />
         <GetInvolved />
         <Sponsors />

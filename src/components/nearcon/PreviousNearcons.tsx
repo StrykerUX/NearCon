@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { FrameCorners } from '../ui/FrameCorners'
-import { PREVIOUS_NEARCON_IMAGES, RUNNING_NUMBERS } from '@/lib/data'
+import { PREVIOUS_NEARCON_IMAGES } from '@/lib/data'
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -17,56 +17,59 @@ const cardVariants = {
 
 export function PreviousNearcons() {
   return (
-    <section className="bg-black text-nearcon-cream relative overflow-hidden py-16 md:py-24">
-      {/* Running numbers top */}
-      <div className="absolute top-4 left-0 w-full overflow-hidden text-[10px] font-mono text-gray-400 opacity-60 whitespace-nowrap tracking-wider pointer-events-none select-none">
-        {RUNNING_NUMBERS}
+    <section className="bg-black text-nearcon-cream py-[100px]">
+      {/* Div 1: Title section */}
+      <div className="w-full bg-cover bg-center" style={{ backgroundImage: 'url(/img/Group-3-1.png)' }}>
+        <div className="max-w-[1580px] mx-auto px-[50px]">
+          <motion.h2
+            className="font-helvetica inline-block text-nearcon-cream"
+            style={{ backgroundColor: '#000000', padding: '10px 40px', fontSize: '36px', fontWeight: 700 }}
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            Previous NEARCONS
+          </motion.h2>
+        </div>
       </div>
 
-      <div className="max-w-[1580px] mx-auto px-[50px]">
-        <motion.h2
-          className="font-helvetica text-xl text-nearcon-cream mb-12 relative z-10"
-          initial={{ opacity: 0, x: -16 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.45 }}
-        >
-          Previous NEARCONS
-        </motion.h2>
-
+      {/* Div 2: Cards section */}
+      <div className="max-w-[1580px] mx-auto px-[50px] py-[100px]">
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[40px]"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-60px' }}
           variants={containerVariants}
         >
           {PREVIOUS_NEARCON_IMAGES.map((imgUrl, idx) => (
-            <motion.div
-              key={idx}
-              className="relative p-2 aspect-square"
-              variants={cardVariants}
-              whileHover={{ scale: 1.02 }}
-              transition={{ duration: 0.2 }}
-            >
-              <FrameCorners color="border-gray-500" size="w-6 h-6" />
-              <div className="w-full h-full p-2 relative">
-                <Image
-                  src={imgUrl}
-                  alt={`Previous Nearcon Event ${idx + 1}`}
-                  fill
-                  className="object-cover brightness-75 hover:brightness-100 transition-all duration-300"
-                  sizes="(max-width: 768px) 100vw, 25vw"
-                />
+            <motion.div key={idx} className="relative" variants={cardVariants}>
+              <div className="group">
+                <div className="p-[25px] relative overflow-hidden transition-transform duration-300 group-hover:scale-[0.92]" style={{ transformOrigin: 'center' }}>
+                  <FrameCorners color="border-[#EBE3D3]" size="w-[40px] h-[40px]" />
+                  <div
+                    className="aspect-square overflow-hidden relative transition-transform duration-300 group-hover:scale-[1.08]"
+                    style={{ transformOrigin: 'center' }}
+                  >
+                    <Image
+                      src={imgUrl}
+                      alt={`Previous Nearcon Event ${idx + 1}`}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, 25vw"
+                    />
+                  </div>
+                </div>
               </div>
             </motion.div>
           ))}
         </motion.div>
       </div>
 
-      {/* Running numbers bottom */}
-      <div className="absolute bottom-4 left-0 w-full overflow-hidden text-[10px] font-mono text-gray-400 opacity-60 whitespace-nowrap tracking-wider pointer-events-none select-none">
-        {RUNNING_NUMBERS}
+      {/* Div 3: Bottom bar image */}
+      <div className="w-full" style={{ height: '65px' }}>
+        <img src="/img/Group-3-1.png" alt="Bottom bar" className="w-full h-full object-cover" />
       </div>
     </section>
   )
