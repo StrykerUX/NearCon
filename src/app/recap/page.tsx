@@ -1,8 +1,8 @@
 import { Navbar } from '@/components/layout/Navbar'
 import { RecapHero } from '@/components/recap/RecapHero'
 import { RecapIntro } from '@/components/recap/RecapIntro'
-import { RecapDivider } from '@/components/recap/RecapDivider'
 import { SessionHighlights } from '@/components/recap/SessionHighlights'
+import { RecapWhatToExpect } from '@/components/recap/RecapWhatToExpect'
 import { Footer } from '@/components/layout/Footer'
 
 export default function RecapPage() {
@@ -19,11 +19,11 @@ export default function RecapPage() {
         <RecapIntro />
       </div>
 
-      {/* Divider */}
-      <RecapDivider />
-
       {/* Session Highlights */}
       <SessionHighlights />
+
+      {/* What to Expect */}
+      <RecapWhatToExpect />
 
       {/* Footer */}
       <Footer />

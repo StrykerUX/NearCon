@@ -1,7 +1,7 @@
 'use client'
 
-import { motion, AnimatePresence } from 'framer-motion'
-import { useState } from 'react'
+import { motion } from 'framer-motion'
+import { useEffect, useState } from 'react'
 import { FrameCorners } from '../ui/FrameCorners'
 import styles from '../nearcon/WhatToExpect.module.css'
 
@@ -112,20 +112,114 @@ const SESSIONS: Record<number, Session[]> = {
   ]
 }
 
-const eventVariants = {
-  hidden: { opacity: 0, x: -20 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.45 } },
+interface DayGroup {
+  day: number
+  date: string
+  stage: string
+  sessions: Session[]
 }
 
-const listVariants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
+const DAYS: DayGroup[] = [
+  {
+    day: 1,
+    date: 'FEBRUARY 23, 2026',
+    stage: 'SINGULARITY STAGE',
+    sessions: SESSIONS[1]
+  },
+  {
+    day: 2,
+    date: 'FEBRUARY 24, 2026',
+    stage: 'SINGULARITY STAGE',
+    sessions: SESSIONS[2]
+  }
+]
+
+const SessionCard = ({ session }: { session: Session }) => (
+  <motion.div
+    className="bg-black text-nearcon-cream relative p-[30px] flex-shrink-0"
+    initial={{ opacity: 0 }}
+    whileInView={{ opacity: 1 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.45 }}
+  >
+    <div className="relative p-[30px]">
+      <FrameCorners color="border-[#EBE3D3]" size="w-[40px] h-[40px]" />
+
+      <div className="flex items-start justify-between gap-8">
+        {/* Left — time */}
+        <div
+          className="shrink-0"
+          style={{ fontFamily: 'Poppins', fontSize: '14px', fontWeight: 400, color: '#EBE3D3', minWidth: '70px' }}
+        >
+          {session.time}
+        </div>
+
+        {/* Center — content */}
+        <div className="flex-1">
+          <h3
+            className="mb-2"
+            style={{ fontFamily: 'Helvetica', fontSize: '26px', fontWeight: 700, color: '#EBE3D3' }}
+          >
+            {session.title}
+          </h3>
+          <p
+            style={{ fontFamily: 'Poppins', fontSize: '16px', fontWeight: 300, color: '#EBE3D3', lineHeight: '1.5' }}
+          >
+            {session.description}
+          </p>
+        </div>
+
+        {/* Right — speaker */}
+        <div className="shrink-0 flex flex-col items-end gap-3 ml-8">
+          <div
+            className="w-12 h-12 rounded-full flex items-center justify-center shrink-0"
+            style={{ backgroundColor: '#444', fontFamily: 'Helvetica', fontSize: '14px', fontWeight: 700, color: '#000' }}
+          >
+            {session.initials}
+          </div>
+
+          <div className="text-right">
+            <p style={{ fontFamily: 'Poppins', fontSize: '14px', fontWeight: 400, color: '#EBE3D3' }}>
+              {session.speaker}
+            </p>
+            <p style={{ fontFamily: 'Poppins', fontSize: '12px', fontWeight: 300, color: '#EBE3D3', opacity: 0.6 }}>
+              {session.role}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </motion.div>
+)
+
+const DaySection = ({ dayGroup }: { dayGroup: DayGroup }) => {
+  const visibleSessions = dayGroup.sessions.slice(0, 3)
+
+  return (
+    <div className={dayGroup.day > 1 ? 'mt-[40px]' : ''}>
+      {/* Day header */}
+      <motion.div
+        className="bg-black text-nearcon-green px-8 py-3 w-full"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.45 }}
+        style={{ fontFamily: 'Helvetica', fontSize: '14px', fontWeight: 700, letterSpacing: '1px' }}
+      >
+        DAY {String(dayGroup.day).padStart(2, '0')} — {dayGroup.date} · {dayGroup.stage}
+      </motion.div>
+
+      {/* Sessions */}
+      <div className="space-y-4 mt-[20px]">
+        {visibleSessions.map((session) => (
+          <SessionCard key={session.id} session={session} />
+        ))}
+      </div>
+    </div>
+  )
 }
 
 export function SessionHighlights() {
-  const [activeDay, setActiveDay] = useState<1 | 2>(1)
-  const sessions = SESSIONS[activeDay]
-
   return (
     <section className="bg-nearcon-cream">
       {/* Title section */}
@@ -146,101 +240,24 @@ export function SessionHighlights() {
 
       {/* Content section */}
       <div className="px-[50px] py-[100px]">
-      <div className="max-w-[1580px] mx-auto">
-
-        {/* Day tabs */}
-        <div className="flex gap-4 mb-12 mt-12">
-          {([1, 2] as const).map((day) => (
-            <button
-              key={day}
-              onClick={() => setActiveDay(day)}
-              className={`px-6 py-2 font-bold border border-black transition-colors ${
-                activeDay === day ? 'bg-black text-nearcon-cream' : 'bg-transparent text-black hover:bg-gray-200'
-              }`}
-              style={{ fontFamily: 'Helvetica', fontSize: '20px', fontWeight: 700 }}
-            >
-              {day === 1 ? 'February 23, 2026' : 'February 24, 2026'}
-            </button>
-          ))}
-        </div>
-
-        {/* Sessions list */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeDay}
-            className="space-y-4"
-            initial="hidden"
-            animate="visible"
-            variants={listVariants}
-          >
-            {sessions.map((session) => (
-              <motion.div
-                key={session.id}
-                className="bg-black text-nearcon-cream relative p-[30px]"
-                variants={eventVariants}
-              >
-                <div className="relative p-[30px]">
-                  <FrameCorners color="border-[#EBE3D3]" size="w-[40px] h-[40px]" />
-
-                  <div className="flex items-start justify-between gap-8">
-                    {/* Left — time */}
-                    <div
-                      className="shrink-0"
-                      style={{ fontFamily: 'Poppins', fontSize: '14px', fontWeight: 400, color: '#EBE3D3', minWidth: '70px' }}
-                    >
-                      {session.time}
-                    </div>
-
-                    {/* Center — content */}
-                    <div className="flex-1">
-                      <h3
-                        className="mb-2"
-                        style={{ fontFamily: 'Helvetica', fontSize: '26px', fontWeight: 700, color: '#EBE3D3' }}
-                      >
-                        {session.title}
-                      </h3>
-                      <p
-                        style={{ fontFamily: 'Poppins', fontSize: '16px', fontWeight: 300, color: '#EBE3D3', lineHeight: '1.5' }}
-                      >
-                        {session.description}
-                      </p>
-                    </div>
-
-                    {/* Right — speaker */}
-                    <div className="shrink-0 flex flex-col items-end gap-3 ml-8">
-                      <div
-                        className="w-12 h-12 rounded-full flex items-center justify-center shrink-0"
-                        style={{ backgroundColor: '#444', fontFamily: 'Helvetica', fontSize: '14px', fontWeight: 700, color: '#000' }}
-                      >
-                        {session.initials}
-                      </div>
-
-                      <div className="text-right">
-                        <p style={{ fontFamily: 'Poppins', fontSize: '14px', fontWeight: 400, color: '#EBE3D3' }}>
-                          {session.speaker}
-                        </p>
-                        <p style={{ fontFamily: 'Poppins', fontSize: '12px', fontWeight: 300, color: '#EBE3D3', opacity: 0.6 }}>
-                          {session.role}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
+        <div className="max-w-[1580px] mx-auto">
+          {/* Days with sessions */}
+          <div className="space-y-0">
+            {DAYS.map((dayGroup) => (
+              <DaySection key={dayGroup.day} dayGroup={dayGroup} />
             ))}
-          </motion.div>
-        </AnimatePresence>
+          </div>
 
-        {/* Button */}
-        <motion.button
-          className={`${styles.largeButton} mt-[50px]`}
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.4, delay: 0.2 }}
-        >
-          <span className={styles.largeButtonInner}>See All Sessions</span>
-        </motion.button>
+          {/* Button */}
+          <motion.button
+            className={`${styles.largeButton} mt-[50px]`}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: 0.2 }}
+          >
+            <span className={styles.largeButtonInner}>See All Sessions</span>
+          </motion.button>
         </div>
       </div>
     </section>
