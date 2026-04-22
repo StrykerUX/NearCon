@@ -1,0 +1,66 @@
+.asciiWrapper {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: crosshair;
+}
+
+.asciiContent {
+  width: 100%;
+  max-width: 1580px;
+  padding: 2vw;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: max(6px, 0.7vw);
+  line-height: 1.1;
+  letter-spacing: 0.15em;
+  font-weight: normal;
+  background-image: linear-gradient(
+    110deg,
+    #475569 0%,
+    #475569 35%,
+    #5bc7be 45%,
+    #65d66e 50%,
+    #ff6998 55%,
+    #edcd18 60%,
+    #475569 70%,
+    #475569 100%
+  );
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: aiColorSweep 12s ease-in-out infinite;
+  white-space: pre;
+  user-select: none;
+}
+
+@keyframes aiColorSweep {
+  0%   { background-position: 0% 50%; }
+  20%  { background-position: 0% 50%; }
+  80%  { background-position: 100% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+.scanlines {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0) 50%,
+    rgba(0, 0, 0, 0.08) 50%,
+    rgba(0, 0, 0, 0.08)
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 10;
+}
+
+@media screen and (max-width: 1024px) {
+  .asciiContent {
+    font-size: max(12px, 0.9vw);
+  }
+}
