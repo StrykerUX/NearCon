@@ -80,21 +80,13 @@ export function ThankYouSponsors() {
   return (
     <section className="bg-nearcon-cream py-[100px]">
       {/* Title stripe */}
-      <div
-        className="w-full bg-cover bg-center px-[50px] mb-[80px]"
-        style={{ backgroundImage: 'url(/img/Group-3-1.png)' }}
-      >
+      <div className="px-[50px] mb-[80px]">
         <div className="max-w-[1580px] mx-auto">
-          <motion.h2
-            className="font-helvetica inline-block text-nearcon-cream"
-            style={{ backgroundColor: '#000000', padding: '12px 40px', fontSize: '36px', fontWeight: 700, lineHeight: '40px' }}
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            Thank You to Our Sponsors
-          </motion.h2>
+          <div className="bg-black py-5 px-[40px]">
+            <h2 className="text-nearcon-cream" style={{ fontFamily: 'Helvetica', fontSize: '36px', fontWeight: 700 }}>
+              Thank You to Our Sponsors
+            </h2>
+          </div>
         </div>
       </div>
 
@@ -104,7 +96,7 @@ export function ThankYouSponsors() {
           {/* Sponsors */}
           <div>
             <SectionLabel label="SPONSORS" />
-            <div className="grid grid-cols-5 gap-[0px]">
+            <div className="grid grid-cols-4 gap-[40px]">
               {SPONSORS.map((src, i) => (
                 <LogoCard key={i} src={src} alt={`Sponsor ${i + 1}`} />
               ))}
@@ -114,7 +106,7 @@ export function ThankYouSponsors() {
           {/* Community Partners */}
           <div>
             <SectionLabel label="COMMUNITY PARTNERS" />
-            <div className="grid grid-cols-7 gap-[0px]">
+            <div className="grid grid-cols-4 gap-[40px]">
               {COMMUNITY_PARTNERS.map((src, i) => (
                 <LogoCard key={i} src={src} alt={`Community Partner ${i + 1}`} />
               ))}
@@ -124,7 +116,7 @@ export function ThankYouSponsors() {
           {/* Media Partners */}
           <div>
             <SectionLabel label="MEDIA PARTNERS" />
-            <div className="grid grid-cols-5 gap-[0px]">
+            <div className="grid grid-cols-4 gap-[40px]">
               {MEDIA_PARTNERS.map((src, i) => (
                 <LogoCard key={i} src={src} alt={`Media Partner ${i + 1}`} />
               ))}

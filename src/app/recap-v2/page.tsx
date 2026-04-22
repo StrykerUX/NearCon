@@ -35,7 +35,7 @@ export default function RecapV2Page() {
       </div>
 
       {/* Innovation Sandbox */}
-      <div className="mt-[90px] mb-[100px]">
+      <div className="mt-[90px] mb-[20px]">
         <InnovationSandbox />
       </div>
 
