@@ -67,35 +67,37 @@ export function RecapWhatToExpect() {
       {/* Gallery section */}
       <div className="px-[50px] py-[100px]">
         <div className="max-w-[1580px] mx-auto">
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[40px]"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-60px' }}
-          variants={containerVariants}
-        >
-          {galleryImages.map((imgUrl, idx) => (
-            <motion.div key={idx} className="relative" variants={cardVariants}>
-              <div className="group">
-                <div className="p-[25px] relative overflow-hidden transition-transform duration-300 group-hover:scale-[0.92]" style={{ transformOrigin: 'center' }}>
-                  <FrameCorners color="border-[#EBE3D3]" size="w-[40px] h-[40px]" />
-                  <div
-                    className="aspect-square overflow-hidden relative transition-transform duration-300 group-hover:scale-[1.08]"
-                    style={{ transformOrigin: 'center' }}
-                  >
-                    <Image
-                      src={imgUrl}
-                      alt={`Event Photo ${idx + 1}`}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 768px) 100vw, 25vw"
-                    />
+          <div className="columns-1 md:columns-2 lg:columns-3 gap-[20px]">
+            {galleryImages.map((imgUrl, idx) => (
+              <motion.div
+                key={idx}
+                className="break-inside-avoid mb-[20px]"
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ duration: 0.45, delay: (idx % 3) * 0.08 }}
+              >
+                <div className="group">
+                  <div className="p-[20px] relative overflow-hidden transition-transform duration-300 group-hover:scale-[0.93]" style={{ transformOrigin: 'center' }}>
+                    <FrameCorners color="border-[#EBE3D3]" size="w-[32px] h-[32px]" />
+                    <div
+                      className="overflow-hidden transition-transform duration-300 group-hover:scale-[1.07]"
+                      style={{ transformOrigin: 'center' }}
+                    >
+                      <Image
+                        src={imgUrl}
+                        alt={`Event Photo ${idx + 1}`}
+                        width={800}
+                        height={600}
+                        className="w-full h-auto block"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      />
+                    </div>
                   </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
 
