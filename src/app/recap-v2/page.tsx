@@ -5,6 +5,7 @@ import { SessionHighlights } from '@/components/recap/SessionHighlights'
 import { AgentWars } from '@/components/recap/AgentWars'
 import { InnovationSandbox } from '@/components/recap/InnovationSandbox'
 import { RecapWhatToExpectV2 } from '@/components/recap/RecapWhatToExpectV2'
+import { ThankYouSponsors } from '@/components/recap/ThankYouSponsors'
 import { RecapCTA } from '@/components/recap/RecapCTA'
 import { Footer } from '@/components/layout/Footer'
 
@@ -37,6 +38,9 @@ export default function RecapV2Page() {
       <div className="mt-[90px] mb-[100px]">
         <InnovationSandbox />
       </div>
+
+      {/* Thank You to Our Sponsors */}
+      <ThankYouSponsors />
 
       {/* See you at NEARCON 2027 */}
       <RecapCTA />
