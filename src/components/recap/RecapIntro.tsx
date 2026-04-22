@@ -1,9 +1,9 @@
 'use client'
 
 import Image from 'next/image'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { FrameCorners } from '../ui/FrameCorners'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -15,7 +15,34 @@ const itemVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.55 } },
 }
 
+const PHOTOS = [
+  '/img/NEARCON_B-52.jpg',
+  '/img/NEARCON_B-54.jpg',
+  '/img/NEARCON_B-36.jpg',
+  '/img/NEARCON_B-20.jpg',
+  '/img/NEARCON_A-14.jpg',
+  '/img/NEARCON_B-81.jpg',
+]
+
+const getRandomStart = () => Math.floor(Math.random() * PHOTOS.length)
+
 export function RecapIntro() {
+  const [index, setIndex] = useState(0)
+
+  useEffect(() => {
+    setIndex(getRandomStart())
+  }, [])
+  const [zoomed, setZoomed] = useState(false)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % PHOTOS.length)
+      setZoomed(true)
+      setTimeout(() => setZoomed(false), 250)
+    }, 5000)
+    return () => clearInterval(interval)
+  }, [])
+
   return (
     <motion.section
       className="px-[50px] py-16 md:py-24 flex items-stretch gap-[80px]"
@@ -42,23 +69,40 @@ export function RecapIntro() {
 
       {/* Right — image with frame corners */}
       <motion.div className="w-[45%] flex items-center justify-center" variants={itemVariants}>
-        <div className="group">
-          <div className="relative p-[30px] overflow-hidden transition-transform duration-300 group-hover:scale-[0.92]" style={{ transformOrigin: 'center' }}>
+        <div>
+          <motion.div
+            className="relative p-[30px] overflow-hidden"
+            style={{ transformOrigin: 'center' }}
+            animate={{ scale: zoomed ? 0.92 : 1 }}
+            transition={{ duration: 0.2, ease: 'easeInOut' }}
+          >
             <FrameCorners size="w-10 h-10" />
-            <div
-              className="relative overflow-hidden transition-transform duration-300 group-hover:scale-[1.08]"
+            <motion.div
+              className="relative overflow-hidden"
               style={{ transformOrigin: 'center' }}
+              animate={{ scale: zoomed ? 1.08 : 1 }}
+              transition={{ duration: 0.2, ease: 'easeInOut' }}
             >
-              <Image
-                src="/img/NEARCON_B-81.jpg"
-                alt="NEARCON 2026"
-                width={600}
-                height={600}
-                sizes="45vw"
-                className="w-full h-auto"
-              />
-            </div>
-          </div>
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={index}
+                  initial={{ clipPath: 'inset(0 0 100% 0)' }}
+                  animate={{ clipPath: 'inset(0 0 0% 0)' }}
+                  exit={{ clipPath: 'inset(100% 0 0 0)' }}
+                  transition={{ duration: 0.275, ease: [0.16, 1, 0.3, 1] }}
+                >
+                  <Image
+                    src={PHOTOS[index]}
+                    alt="NEARCON 2026"
+                    width={600}
+                    height={600}
+                    sizes="45vw"
+                    className="w-full h-auto"
+                  />
+                </motion.div>
+              </AnimatePresence>
+            </motion.div>
+          </motion.div>
         </div>
       </motion.div>
     </motion.section>
