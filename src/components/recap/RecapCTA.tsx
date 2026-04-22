@@ -99,7 +99,7 @@ export function RecapCTA() {
         frame += '\n'
       }
 
-      canvas.innerText = frame
+      canvas!.innerText = frame
       time += speed
       animFrameId = requestAnimationFrame(render)
     }
