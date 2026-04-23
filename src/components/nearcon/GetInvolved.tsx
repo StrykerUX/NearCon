@@ -5,13 +5,19 @@ import { sendGAEvent } from '@next/third-parties/google'
 
 export function GetInvolved() {
   return (
-    <section className="border-b border-text-primary bg-nearcon-cream pb-8 md:pb-16">
-      <div className="bg-black py-5 px-[50px] w-full mb-8">
-        <h2 className="font-helvetica text-2xl md:text-3xl text-nearcon-cream">Other Ways to Get Involved</h2>
+    <section className="bg-nearcon-cream pb-8 md:pb-16">
+      <div className="px-[50px] mb-8">
+        <div className="max-w-[1580px] mx-auto">
+          <div className="bg-black py-5 px-[40px]">
+            <h2 className="font-helvetica text-[36px] text-nearcon-cream">Other Ways to Get Involved</h2>
+          </div>
+        </div>
       </div>
 
+      <div className="px-[50px]">
+      <div className="max-w-[1580px] mx-auto">
       <motion.div
-        className="relative w-full max-w-6xl mx-auto h-[400px] md:h-[600px] flex items-center justify-center px-4 md:px-8"
+        className="relative w-full aspect-[2/1] flex items-center justify-center"
         initial={{ opacity: 0, scale: 0.95 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true, margin: '-60px' }}
@@ -99,6 +105,8 @@ export function GetInvolved() {
           </g>
         </svg>
       </motion.div>
+      </div>
+      </div>
     </section>
   )
 }

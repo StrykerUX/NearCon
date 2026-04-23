@@ -36,6 +36,7 @@ export function Hero() {
       animate="visible"
       variants={containerVariants}
     >
+      <div className="max-w-[1580px] mx-auto">
       <div className="relative w-full overflow-hidden flex items-center justify-center border border-text-primary">
         {/* Background Image */}
         <div className="relative w-full h-auto">
@@ -49,6 +50,7 @@ export function Hero() {
           />
         </div>
 
+      </div>
       </div>
     </motion.section>
   )

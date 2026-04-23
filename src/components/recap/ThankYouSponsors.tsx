@@ -49,17 +49,25 @@ function LogoCard({ src, alt }: { src: string; alt: string }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-20px' }}
       transition={{ duration: 0.4 }}
-      className="relative p-[20px]"
+      className="group"
     >
-      <FrameCorners color="border-[#000000]" size="w-[25px] h-[25px]" />
-      <div className="relative h-[110px]">
-        <Image
-          src={src}
-          alt={alt}
-          fill
-          className="object-contain"
-          sizes="(max-width: 768px) 50vw, 20vw"
-        />
+      <div
+        className="relative p-[20px] overflow-hidden transition-transform duration-300 group-hover:scale-[0.97]"
+        style={{ transformOrigin: 'center' }}
+      >
+        <FrameCorners color="border-[#000000]" size="w-[40px] h-[40px]" />
+        <div
+          className="relative h-[110px] overflow-hidden transition-transform duration-300 group-hover:scale-[1.04]"
+          style={{ transformOrigin: 'center' }}
+        >
+          <Image
+            src={src}
+            alt={alt}
+            fill
+            className="object-contain"
+            sizes="(max-width: 768px) 50vw, 20vw"
+          />
+        </div>
       </div>
     </motion.div>
   )

@@ -49,7 +49,8 @@ export function Schedule() {
 
   return (
     <section className="py-[100px]" id="schedule">
-      <div className="max-w-[1580px] mx-auto px-[50px]">
+      <div className="px-[50px]">
+      <div className="max-w-[1580px] mx-auto">
         <motion.h2
           className="font-helvetica mb-8"
           style={{ fontSize: '36px', fontWeight: 700 }}
@@ -155,6 +156,7 @@ export function Schedule() {
         >
           <span className={styles.largeButtonInner}>See All Sessions</span>
         </motion.button>
+      </div>
       </div>
     </section>
   )

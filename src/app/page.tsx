@@ -19,9 +19,7 @@ export default function Home() {
       <Navbar />
 
       {/* Hero section */}
-      <div className="max-w-[1580px] mx-auto">
-        <Hero />
-      </div>
+      <Hero />
 
       {/* IntroText section */}
       <div className="max-w-[1400px] mx-auto">
@@ -43,20 +41,16 @@ export default function Home() {
       {/* Live Schedule section — full width */}
       <Schedule />
 
-      {/* Sections between black sections — constrained to 1550px */}
-      <div className="max-w-[1580px] mx-auto">
-        <GetInvolved />
-        <Sponsors />
-        <Partners />
-      </div>
+      {/* Sections between black sections */}
+      <GetInvolved />
+      <Sponsors />
+      <Partners />
 
       {/* Full-width black section */}
       <PreviousNearcons />
 
-      {/* Footer — constrained to 1550px */}
-      <div className="max-w-[1580px] mx-auto">
-        <Footer />
-      </div>
+      {/* Footer */}
+      <Footer />
     </div>
   )
 }

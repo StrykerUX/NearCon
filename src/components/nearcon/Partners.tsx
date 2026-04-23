@@ -1,8 +1,23 @@
 'use client'
 
+import Image from 'next/image'
 import { motion } from 'framer-motion'
-import { GridCorners } from '../ui/GridCorners'
-import { COMMUNITY_PARTNERS, MEDIA_PARTNERS } from '@/lib/data'
+import { FrameCorners } from '../ui/FrameCorners'
+
+const COMMUNITY_PARTNER_LOGOS = [
+  '/img/partners/Community Partners/nearcon-Community-Partner-logo.png',
+  '/img/partners/Community Partners/nearcon-Community-Partner-logo-–-3.png',
+  '/img/partners/Community Partners/nearcon-Community-Partner-logoo-–-2.png',
+  '/img/partners/Community Partners/nearcon-Community-Partner-logoo-–-4.png',
+  '/img/partners/Community Partners/nearcon-Community-Partner-logoo-–-5.png',
+  '/img/partners/Community Partners/nearcon-Community-Partner-logoo-–-7.png',
+  '/img/partners/Community Partners/nearcon-Community-Partner-logoo-–-8.png',
+]
+
+const MEDIA_PARTNER_LOGOS = [
+  '/img/partners/Media Partners/nearcon-Media-Partner-logo-–-1.png',
+  '/img/partners/Media Partners/nearcon-Media-Partner-logo-–-4.png',
+]
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -14,122 +29,107 @@ const cellVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.35 } },
 }
 
-function PartnerCell({ partner }: { partner: (typeof COMMUNITY_PARTNERS)[0] }) {
-  if (!partner.name) return (
-    <div className="relative h-24 flex items-center justify-center">
-      <GridCorners />
-    </div>
-  )
-
-  const renderContent = () => {
-    if (partner.name === 'Mission Bit') {
-      return <span className={partner.className}>{partner.name}</span>
-    }
-    if (partner.name === 'SVAI') {
-      return (
-        <div className="flex items-center gap-2">
-          <span className="font-black text-xl">SVAI</span>
-          <span className="text-[6px] font-bold leading-none text-blue-500 w-12">{partner.extra}</span>
-        </div>
-      )
-    }
-    if (partner.name === 'Cooperative Futures Institute') {
-      return (
-        <div className="flex flex-col items-center">
-          <span className="text-2xl mb-1">🏛️</span>
-          <span className="font-serif text-[8px] uppercase tracking-tighter w-20 text-center leading-tight">{partner.name}</span>
-        </div>
-      )
-    }
-    if (partner.name === 'frontiertower') {
-      return (
-        <div className="flex items-center gap-2">
-          <span className="bg-purple-600 text-white px-1 font-serif text-xs">ft</span>
-          <span className={partner.className}>{partner.name}</span>
-        </div>
-      )
-    }
-    if (partner.name === 'The AI Collective') {
-      return (
-        <div className="flex items-center gap-2">
-          <span className="text-3xl text-orange-500 font-light">C</span>
-          <span className={partner.className}>{partner.name}</span>
-        </div>
-      )
-    }
-    return <span className={partner.className}>{partner.name}</span>
-  }
-
+function LogoCell({ src, alt }: { src: string; alt: string }) {
   return (
-    <div className="flex items-center justify-center gap-2 grayscale group-hover:grayscale-0 transition-all opacity-80 group-hover:opacity-100">
-      {renderContent()}
-    </div>
+    <motion.div
+      className="relative p-[20px] overflow-hidden group"
+      variants={cellVariants}
+    >
+      <FrameCorners color="border-text-primary" size="w-[20px] h-[20px]" />
+      <div className="relative h-[110px] transition-transform duration-300 group-hover:scale-[1.04]">
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          className="object-contain"
+          sizes="(max-width: 768px) 50vw, 25vw"
+        />
+      </div>
+    </motion.div>
   )
 }
 
 export function Partners() {
+  const firstRow = COMMUNITY_PARTNER_LOGOS.slice(0, 4)
+  const secondRow = COMMUNITY_PARTNER_LOGOS.slice(4)
+
   return (
     <>
       {/* Community Partners */}
-      <section className="border-b border-text-primary pb-12">
-        <div className="bg-black py-4 px-[50px] w-full mb-12">
-          <h2 className="font-helvetica text-2xl text-nearcon-cream">Community Partners</h2>
+      <section>
+        <div className="px-[50px] mb-12">
+          <div className="max-w-[1580px] mx-auto">
+            <div className="bg-black py-4 px-[40px]">
+              <h2 className="font-helvetica text-[36px] text-nearcon-cream">Community Partners</h2>
+            </div>
+          </div>
         </div>
-        <div className="px-[50px] max-w-6xl mx-auto mb-16">
+        <div className="px-[50px] mb-16">
+          <div className="max-w-[1580px] mx-auto">
+          {/* First row: 4 logos */}
           <motion.div
-            className="grid grid-cols-2 md:grid-cols-4 gap-0 text-black"
+            className="grid grid-cols-2 md:grid-cols-4 gap-0"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-60px' }}
             variants={containerVariants}
           >
-            {COMMUNITY_PARTNERS.map((partner, idx) => (
-              <motion.div
-                key={idx}
-                className="relative h-24 flex items-center justify-center hover:bg-[#E0D6C8] transition-colors group"
-                variants={cellVariants}
-              >
-                <GridCorners />
-                <PartnerCell partner={partner} />
-              </motion.div>
+            {firstRow.map((src, idx) => (
+              <LogoCell key={idx} src={src} alt={`Community Partner ${idx + 1}`} />
             ))}
           </motion.div>
+          {/* Second row: 3 logos centered (same cell width as 4-col grid) */}
+          <motion.div
+            className="grid grid-cols-3 gap-0 w-3/4 mx-auto"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-60px' }}
+            variants={containerVariants}
+          >
+            {secondRow.map((src, idx) => (
+              <LogoCell key={idx + 4} src={src} alt={`Community Partner ${idx + 5}`} />
+            ))}
+          </motion.div>
+          </div>
         </div>
 
         {/* Media Partners */}
-        <div className="bg-black py-4 px-[50px] w-full mb-12">
-          <h2 className="font-helvetica text-2xl text-nearcon-cream">Media Partners</h2>
+        <div className="px-[50px] mb-12">
+          <div className="max-w-[1580px] mx-auto">
+            <div className="bg-black py-4 px-[40px]">
+              <h2 className="font-helvetica text-[36px] text-nearcon-cream">Media Partners</h2>
+            </div>
+          </div>
         </div>
-        <div className="px-[50px] max-w-4xl mx-auto">
+        <div className="px-[50px] pb-[100px]">
+          <div className="max-w-[1580px] mx-auto">
           <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 gap-0 text-black"
+            className="grid grid-cols-1 md:grid-cols-2 gap-0"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={containerVariants}
           >
-            {MEDIA_PARTNERS.map((partner, idx) => (
+            {MEDIA_PARTNER_LOGOS.map((src, idx) => (
               <motion.div
                 key={idx}
-                className="relative h-24 flex items-center justify-center hover:bg-[#E0D6C8] transition-colors group"
+                className="relative p-[20px] overflow-hidden group"
                 variants={cellVariants}
               >
-                <GridCorners />
-                <div className="flex items-center justify-center gap-2 grayscale group-hover:grayscale-0 transition-all opacity-80 group-hover:opacity-100">
-                  {partner.name === 'THE ROLLUP' ? (
-                    <>
-                      <span className="text-2xl">🌀</span>
-                      <span className={partner.className}>{partner.name}</span>
-                    </>
-                  ) : (
-                    <span className={partner.className}>
-                      <span className="font-bold">YAP</span> GLOBAL
-                    </span>
-                  )}
+                <FrameCorners color="border-text-primary" size="w-[20px] h-[20px]" />
+                <div className="relative h-[110px] transition-transform duration-300 group-hover:scale-[1.04]">
+                  <Image
+                    src={src}
+                    alt={`Media Partner ${idx + 1}`}
+                    fill
+                    className="object-contain"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
                 </div>
               </motion.div>
             ))}
           </motion.div>
+          </div>
         </div>
       </section>
     </>

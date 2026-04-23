@@ -39,7 +39,8 @@ export function Speakers() {
 
       {/* Cards section */}
       <section className="relative overflow-hidden" id="speakers">
-      <div className="max-w-[1580px] mx-auto px-[50px] pt-20">
+      <div className="px-[50px] pt-20">
+      <div className="max-w-[1580px] mx-auto">
 
       <motion.div
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16 relative z-10"
@@ -118,6 +119,7 @@ export function Speakers() {
       >
         APPLY TO SPEAK
       </motion.button>
+      </div>
       </div>
     </section>
     </>

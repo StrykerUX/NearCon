@@ -76,7 +76,7 @@ export function Footer() {
 
       {/* Footer graphic */}
       <motion.div
-        className="w-full relative overflow-hidden"
+        className="max-w-[1580px] mx-auto relative overflow-hidden"
         style={{
           backgroundImage: 'url(/img/Group-40-1.png)',
           backgroundSize: 'contain',

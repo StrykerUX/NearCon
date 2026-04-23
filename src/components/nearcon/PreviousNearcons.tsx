@@ -20,7 +20,8 @@ export function PreviousNearcons() {
     <section className="bg-black text-nearcon-cream py-[100px]">
       {/* Div 1: Title section */}
       <div className="w-full bg-cover bg-center" style={{ backgroundImage: 'url(/img/Group-3-1.png)' }}>
-        <div className="max-w-[1580px] mx-auto px-[50px]">
+        <div className="px-[50px]">
+          <div className="max-w-[1580px] mx-auto">
           <motion.h2
             className="font-helvetica inline-block text-nearcon-cream"
             style={{ backgroundColor: '#000000', padding: '12px 40px', fontSize: '36px', fontWeight: 700, lineHeight: '40px' }}
@@ -31,11 +32,13 @@ export function PreviousNearcons() {
           >
             Previous NEARCONS
           </motion.h2>
+          </div>
         </div>
       </div>
 
       {/* Div 2: Cards section */}
-      <div className="max-w-[1580px] mx-auto px-[50px] py-[100px]">
+      <div className="px-[50px] py-[100px]">
+        <div className="max-w-[1580px] mx-auto">
         <motion.div
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[40px]"
           initial="hidden"
@@ -65,6 +68,7 @@ export function PreviousNearcons() {
             </motion.div>
           ))}
         </motion.div>
+        </div>
       </div>
 
       {/* Div 3: Bottom bar image */}
