@@ -44,6 +44,20 @@
   100% { background-position: 100% 50%; }
 }
 
+.gradientDefault {
+  background: linear-gradient(90deg, #65D56E, #59C2E8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.gradientHover {
+  background: linear-gradient(90deg, #F98372, #F1B139);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
 .scanlines {
   position: absolute;
   inset: 0;
