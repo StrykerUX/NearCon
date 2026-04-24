@@ -42,35 +42,14 @@ const MEDIA_PARTNERS = [
   '/img/partners/Media Partners/nearcon-Media-Partner-logo-–-4.png',
 ]
 
-function LogoCard({ src, alt }: { src: string; alt: string }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-20px' }}
-      transition={{ duration: 0.4 }}
-      className="group"
-    >
-      <div
-        className="relative p-[20px] overflow-hidden transition-transform duration-300 group-hover:scale-[0.97]"
-        style={{ transformOrigin: 'center' }}
-      >
-        <FrameCorners color="border-[#000000]" size="w-[40px] h-[40px]" />
-        <div
-          className="relative h-[110px] overflow-hidden transition-transform duration-300 group-hover:scale-[1.04]"
-          style={{ transformOrigin: 'center' }}
-        >
-          <Image
-            src={src}
-            alt={alt}
-            fill
-            className="object-contain"
-            sizes="(max-width: 768px) 50vw, 20vw"
-          />
-        </div>
-      </div>
-    </motion.div>
-  )
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { staggerChildren: 0.04 } },
+}
+
+const cellVariants = {
+  hidden: { opacity: 0, scale: 0.95 },
+  visible: { opacity: 1, scale: 1, transition: { duration: 0.3 } },
 }
 
 function SectionLabel({ label }: { label: string }) {
@@ -84,7 +63,46 @@ function SectionLabel({ label }: { label: string }) {
   )
 }
 
+function LogoGrid({ logos, cols, className, altPrefix }: {
+  logos: string[]
+  cols: string
+  className?: string
+  altPrefix: string
+}) {
+  return (
+    <motion.div
+      className={`grid ${cols} gap-0 ${className ?? ''}`}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: '-60px' }}
+      variants={containerVariants}
+    >
+      {logos.map((src, idx) => (
+        <motion.div
+          key={idx}
+          className="relative p-[20px] overflow-hidden group"
+          variants={cellVariants}
+        >
+          <FrameCorners color="border-text-primary" size="w-[20px] h-[20px]" />
+          <div className="relative h-[110px] transition-transform duration-300 group-hover:scale-[1.04]">
+            <Image
+              src={src}
+              alt={`${altPrefix} ${idx + 1}`}
+              fill
+              className="object-contain"
+              sizes="(max-width: 768px) 50vw, 25vw"
+            />
+          </div>
+        </motion.div>
+      ))}
+    </motion.div>
+  )
+}
+
 export function ThankYouSponsors() {
+  const communityFirst = COMMUNITY_PARTNERS.slice(0, 4)
+  const communitySecond = COMMUNITY_PARTNERS.slice(4)
+
   return (
     <section className="bg-nearcon-cream py-[100px]">
       {/* Title stripe */}
@@ -104,31 +122,20 @@ export function ThankYouSponsors() {
           {/* Sponsors */}
           <div>
             <SectionLabel label="SPONSORS" />
-            <div className="grid grid-cols-4 gap-[40px]">
-              {SPONSORS.map((src, i) => (
-                <LogoCard key={i} src={src} alt={`Sponsor ${i + 1}`} />
-              ))}
-            </div>
+            <LogoGrid logos={SPONSORS} cols="grid-cols-2 md:grid-cols-4" altPrefix="Sponsor" />
           </div>
 
           {/* Community Partners */}
           <div>
             <SectionLabel label="COMMUNITY PARTNERS" />
-            <div className="grid grid-cols-4 gap-[40px]">
-              {COMMUNITY_PARTNERS.map((src, i) => (
-                <LogoCard key={i} src={src} alt={`Community Partner ${i + 1}`} />
-              ))}
-            </div>
+            <LogoGrid logos={communityFirst} cols="grid-cols-2 md:grid-cols-4" altPrefix="Community Partner" />
+            <LogoGrid logos={communitySecond} cols="grid-cols-3" className="w-3/4 mx-auto" altPrefix="Community Partner" />
           </div>
 
           {/* Media Partners */}
           <div>
             <SectionLabel label="MEDIA PARTNERS" />
-            <div className="grid grid-cols-4 gap-[40px]">
-              {MEDIA_PARTNERS.map((src, i) => (
-                <LogoCard key={i} src={src} alt={`Media Partner ${i + 1}`} />
-              ))}
-            </div>
+            <LogoGrid logos={MEDIA_PARTNERS} cols="grid-cols-1 md:grid-cols-2" altPrefix="Media Partner" />
           </div>
 
         </div>

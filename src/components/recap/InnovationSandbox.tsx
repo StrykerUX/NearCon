@@ -44,11 +44,11 @@ export function InnovationSandbox() {
 
       {/* Content */}
       <div className="px-[50px] py-[60px]">
-        <div className="max-w-[1580px] mx-auto flex gap-[80px] items-start">
+        <div className="max-w-[1580px] mx-auto flex gap-[80px] items-stretch">
 
           {/* Left column */}
           <motion.div
-            className="w-[45%]"
+            className="w-[45%] flex flex-col"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-60px' }}
@@ -75,7 +75,7 @@ export function InnovationSandbox() {
 
             {/* Prize badge */}
             <div
-              className="inline-block mb-[36px] px-[35px] py-[14px]"
+              className="self-start mb-[36px] px-[35px] py-[14px]"
               style={{ background: 'linear-gradient(90deg, #F98372 0%, #F1B139 100%)' }}
             >
               <p style={{ fontFamily: 'Helvetica', fontSize: '20px', fontWeight: 700, color: '#000000' }}>
@@ -83,7 +83,7 @@ export function InnovationSandbox() {
               </p>
             </div>
 
-            <p style={{ fontFamily: 'Poppins', fontSize: '13px', fontWeight: 300, color: '#000000', opacity: 0.5 }}>
+            <p className="mt-auto" style={{ fontFamily: 'Poppins', fontSize: '13px', fontWeight: 300, color: '#000000', opacity: 0.5 }}>
               Across four prize tracks: The Private Web, AI That Works for You, Open Society, and Only on NEAR.
             </p>
           </motion.div>

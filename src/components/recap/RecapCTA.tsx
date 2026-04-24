@@ -5,7 +5,7 @@ import { useEffect, useRef } from 'react'
 import styles from './RecapCTA.module.css'
 import btnStyles from '../nearcon/WhatToExpect.module.css'
 
-const COLS = 160
+const COLS = 220
 const ROWS = 55
 const CHARS = [
   ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',

@@ -9,8 +9,6 @@
 }
 
 .asciiContent {
-  width: 100%;
-  max-width: 1580px;
   padding: 2vw;
   font-family: 'Courier New', Courier, monospace;
   font-size: max(6px, 0.7vw);
