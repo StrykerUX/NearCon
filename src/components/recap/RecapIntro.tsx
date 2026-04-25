@@ -45,7 +45,7 @@ export function RecapIntro() {
 
   return (
     <motion.section
-      className="px-[50px] py-16 md:py-24 flex items-stretch gap-[80px]"
+      className="px-[50px] pt-0 pb-[100px] flex items-stretch gap-[80px]"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: '-80px' }}

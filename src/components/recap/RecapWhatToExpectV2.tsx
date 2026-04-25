@@ -22,26 +22,25 @@ const allPhotos = [
 
 const getRandomPhotos = () => {
   const shuffled = [...allPhotos].sort(() => Math.random() - 0.5)
-  return shuffled.slice(0, 7)
+  return shuffled.slice(0, 6)
 }
 
 // Bento layout — 4 cols, 3 rows de 280px cada una
-// [  0 (2col 2row)  ] [ 1 (1col 1row) ] [ 2 (1col 1row) ]
-// [  0 (2col 2row)  ] [   3 (2col 1row)                 ]
-// [ 4 (1×1) ] [ 5 (1×1) ] [   6 (2col 1row)             ]
+// [  0 (2col 2row)  ] [ 1 (1×1) ] [ 2 (1×1) ]
+// [  0 (2col 2row)  ] [  3 (2col 2row)       ]
+// [ 4 (1×1) ] [ 5 (1×1) ] [  3 (2col 2row)   ]
 
 const layout = [
-  { col: '1 / 3', row: '1 / 3' }, // grande izquierda
-  { col: '3 / 4', row: '1 / 2' }, // pequeña
-  { col: '4 / 5', row: '1 / 2' }, // pequeña
-  { col: '3 / 5', row: '2 / 3' }, // ancha derecha
-  { col: '1 / 2', row: '3 / 4' }, // pequeña abajo izquierda
-  { col: '2 / 3', row: '3 / 4' }, // pequeña abajo centro
-  { col: '3 / 5', row: '3 / 4' }, // ancha derecha
+  { col: '1 / 3', row: '1 / 3' }, // 0: grande izquierda (2×2)
+  { col: '3 / 4', row: '1 / 2' }, // 1: pequeña
+  { col: '4 / 5', row: '1 / 2' }, // 2: pequeña
+  { col: '3 / 5', row: '2 / 4' }, // 3: grande derecha (2×2) — fusión de las 2 anchas
+  { col: '1 / 2', row: '3 / 4' }, // 4: pequeña abajo izquierda
+  { col: '2 / 3', row: '3 / 4' }, // 5: pequeña abajo centro
 ]
 
 export function RecapWhatToExpectV2() {
-  const [photos, setPhotos] = useState<string[]>(allPhotos.slice(0, 7))
+  const [photos, setPhotos] = useState<string[]>(allPhotos.slice(0, 6))
 
   useEffect(() => {
     setPhotos(getRandomPhotos())
