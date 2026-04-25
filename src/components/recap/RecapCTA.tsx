@@ -138,8 +138,8 @@ export function RecapCTA() {
             </span>
             <span className="block">
               <span style={{ fontSize: '100px', backgroundColor: '#000000', padding: '4px 16px', display: 'inline-block' }}>
-                <span style={{ color: '#EBE3D3' }}>NEAR</span>
-                <span className={styles.gradientDefault}>CON </span>
+                <span className={styles.gradientDefault}>NEAR</span>
+                <span style={{ color: '#EBE3D3' }}>CON </span>
                 <span className={styles.gradientHover}>2027.</span>
               </span>
             </span>
