@@ -52,7 +52,7 @@ export function RecapIntro() {
       variants={containerVariants}
     >
       {/* Left — title and text */}
-      <motion.div className="w-[55%] text-[#000000]" variants={itemVariants}>
+      <motion.div className="w-[55%] text-[#000000] flex flex-col justify-center" variants={itemVariants}>
         <h2 className="font-helvetica text-[36px] font-bold mb-8 leading-tight">
           NEARCON 2026 proved that the future isn't coming — it's already building.
         </h2>
@@ -69,7 +69,7 @@ export function RecapIntro() {
 
       {/* Right — image with frame corners */}
       <motion.div className="w-[45%] flex items-center justify-center" variants={itemVariants}>
-        <div>
+        <div className="w-full">
           <motion.div
             className="relative p-[30px] overflow-hidden"
             style={{ transformOrigin: 'center' }}
@@ -83,24 +83,27 @@ export function RecapIntro() {
               animate={{ scale: zoomed ? 1.08 : 1 }}
               transition={{ duration: 0.2, ease: 'easeInOut' }}
             >
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={index}
-                  initial={{ clipPath: 'inset(0 0 100% 0)' }}
-                  animate={{ clipPath: 'inset(0 0 0% 0)' }}
-                  exit={{ clipPath: 'inset(100% 0 0 0)' }}
-                  transition={{ duration: 0.275, ease: [0.16, 1, 0.3, 1] }}
-                >
-                  <Image
-                    src={PHOTOS[index]}
-                    alt="NEARCON 2026"
-                    width={600}
-                    height={600}
-                    sizes="45vw"
-                    className="w-full h-auto"
-                  />
-                </motion.div>
-              </AnimatePresence>
+              {/* Fixed aspect-ratio container — height never collapses during AnimatePresence transition */}
+              <div className="relative w-full" style={{ aspectRatio: '4/3' }}>
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={index}
+                    className="absolute inset-0"
+                    initial={{ clipPath: 'inset(0 0 100% 0)' }}
+                    animate={{ clipPath: 'inset(0 0 0% 0)' }}
+                    exit={{ clipPath: 'inset(100% 0 0 0)' }}
+                    transition={{ duration: 0.275, ease: [0.16, 1, 0.3, 1] }}
+                  >
+                    <Image
+                      src={PHOTOS[index]}
+                      alt="NEARCON 2026"
+                      fill
+                      className="object-cover"
+                      sizes="45vw"
+                    />
+                  </motion.div>
+                </AnimatePresence>
+              </div>
             </motion.div>
           </motion.div>
         </div>
