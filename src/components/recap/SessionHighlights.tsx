@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
+import Image from 'next/image'
 import { FrameCorners } from '../ui/FrameCorners'
 import styles from '../nearcon/WhatToExpect.module.css'
 
@@ -134,51 +135,80 @@ const DAYS: DayGroup[] = [
   }
 ]
 
-const SessionCard = ({ session }: { session: Session }) => (
-  <motion.div
-    className="bg-black text-nearcon-cream relative p-[30px] flex-shrink-0"
-    initial={{ opacity: 0 }}
-    whileInView={{ opacity: 1 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.45 }}
-  >
-    <div className="relative p-[30px]">
-      <FrameCorners color="border-[#EBE3D3]" size="w-[40px] h-[40px]" />
+const CAROUSEL_PHOTOS = [
+  '/img/NEARCON_B-80.jpg',
+  '/img/NEARCON_B-7.jpg',
+  '/img/NEARCON_B-85.jpg',
+  '/img/NEARCON_C-105.jpg',
+  '/img/NEARCON_B-15.jpg',
+  '/img/NEARCON_B-94.jpg',
+  '/img/NEARCON_C-106.jpg',
+  '/img/NEARCON_C-129.jpg',
+  '/img/NEARCON_A-28.jpg',
+  '/img/NEARCON_A-9.jpg',
+  '/img/NEARCON_B-88.jpg',
+  '/img/NEARCON_C-123.jpg',
+]
 
-      <div className="flex items-start justify-between gap-8">
-        {/* Left — time */}
-        <div
-          className="shrink-0"
-          style={{ fontFamily: 'Poppins', fontSize: '14px', fontWeight: 400, color: '#EBE3D3', minWidth: '70px' }}
-        >
+const PhotoCard = ({ src }: { src: string }) => (
+  <div
+    className="bg-black flex-shrink-0 relative"
+    style={{ width: '400px', alignSelf: 'stretch' }}
+  >
+    {/* frame corners container — inset 20px from card edge */}
+    <div className="absolute inset-[20px]">
+      <FrameCorners color="border-[#EBE3D3]" size="w-[40px] h-[40px]" />
+      {/* image — 25px inside from frame corners */}
+      <div className="absolute inset-[25px] overflow-hidden">
+        <Image
+          src={src}
+          alt="NEARCON 2026"
+          fill
+          className="object-cover"
+          sizes="400px"
+        />
+      </div>
+    </div>
+  </div>
+)
+
+const SessionCard = ({ session }: { session: Session }) => (
+  <div
+    className="bg-black text-nearcon-cream relative p-[50px] flex-shrink-0"
+    style={{ width: '500px', height: '350px' }}
+  >
+    {/* FrameCorners inset 25px from card edge, spanning full card height */}
+    <div className="absolute inset-[25px] pointer-events-none">
+      <FrameCorners color="border-[#EBE3D3]" size="w-[40px] h-[40px]" />
+    </div>
+
+      <div className="flex flex-col gap-4 h-full">
+        {/* Time */}
+        <div style={{ fontFamily: 'Poppins', fontSize: '14px', fontWeight: 400, color: '#EBE3D3', opacity: 0.6 }}>
           {session.time}
         </div>
 
-        {/* Center — content */}
-        <div className="flex-1">
-          <h3
-            className="mb-2"
-            style={{ fontFamily: 'Helvetica', fontSize: '26px', fontWeight: 700, color: '#EBE3D3' }}
-          >
-            {session.title}
-          </h3>
-          <p
-            style={{ fontFamily: 'Poppins', fontSize: '16px', fontWeight: 300, color: '#EBE3D3', lineHeight: '1.5' }}
-          >
-            {session.description}
-          </p>
-        </div>
+        {/* Title */}
+        <h3
+          style={{ fontFamily: 'Helvetica', fontSize: '26px', fontWeight: 700, color: '#EBE3D3', lineHeight: '1.2' }}
+        >
+          {session.title}
+        </h3>
 
-        {/* Right — speaker */}
-        <div className="shrink-0 flex flex-col items-end gap-3 ml-8">
+        {/* Description */}
+        <p className="line-clamp-1" style={{ fontFamily: 'Poppins', fontSize: '15px', fontWeight: 300, color: '#EBE3D3', lineHeight: '1.5' }}>
+          {session.description}
+        </p>
+
+        {/* Speaker */}
+        <div className="flex items-center gap-3 mt-auto">
           <div
-            className="w-12 h-12 rounded-full flex items-center justify-center shrink-0"
-            style={{ backgroundColor: '#444', fontFamily: 'Helvetica', fontSize: '14px', fontWeight: 700, color: '#000' }}
+            className="w-10 h-10 rounded-full flex items-center justify-center shrink-0"
+            style={{ backgroundColor: '#444', fontFamily: 'Helvetica', fontSize: '13px', fontWeight: 700, color: '#000' }}
           >
             {session.initials}
           </div>
-
-          <div className="text-right">
+          <div>
             <p style={{ fontFamily: 'Poppins', fontSize: '14px', fontWeight: 400, color: '#EBE3D3' }}>
               {session.speaker}
             </p>
@@ -188,12 +218,17 @@ const SessionCard = ({ session }: { session: Session }) => (
           </div>
         </div>
       </div>
-    </div>
-  </motion.div>
+  </div>
 )
 
-const DaySection = ({ dayGroup }: { dayGroup: DayGroup }) => {
-  const visibleSessions = dayGroup.sessions.slice(0, 3)
+const DaySection = ({ dayGroup, photos }: { dayGroup: DayGroup; photos: string[] }) => {
+  const interleaved: Array<{ type: 'session'; data: Session } | { type: 'photo'; src: string }> = []
+  dayGroup.sessions.forEach((session, i) => {
+    interleaved.push({ type: 'session', data: session })
+    interleaved.push({ type: 'photo', src: photos[i % photos.length] })
+  })
+  const doubled = [...interleaved, ...interleaved]
+  const isReverse = dayGroup.day > 1
 
   return (
     <div className={dayGroup.day > 1 ? 'mt-[40px]' : ''}>
@@ -209,11 +244,22 @@ const DaySection = ({ dayGroup }: { dayGroup: DayGroup }) => {
         DAY {String(dayGroup.day).padStart(2, '0')} — {dayGroup.date} · {dayGroup.stage}
       </motion.div>
 
-      {/* Sessions */}
-      <div className="space-y-4 mt-[20px]">
-        {visibleSessions.map((session) => (
-          <SessionCard key={session.id} session={session} />
-        ))}
+      {/* Carousel */}
+      <div className="overflow-hidden mt-[20px]">
+        <div
+          style={{
+            display: 'flex',
+            gap: '20px',
+            width: 'max-content',
+            animation: `${isReverse ? 'carousel-right' : 'carousel-left'} 35s linear infinite`,
+          }}
+        >
+          {doubled.map((item, idx) =>
+            item.type === 'session'
+              ? <SessionCard key={idx} session={item.data} />
+              : <PhotoCard key={idx} src={item.src} />
+          )}
+        </div>
       </div>
     </div>
   )
@@ -243,8 +289,8 @@ export function SessionHighlights() {
         <div className="max-w-[1580px] mx-auto">
           {/* Days with sessions */}
           <div className="space-y-0">
-            {DAYS.map((dayGroup) => (
-              <DaySection key={dayGroup.day} dayGroup={dayGroup} />
+            {DAYS.map((dayGroup, i) => (
+              <DaySection key={dayGroup.day} dayGroup={dayGroup} photos={CAROUSEL_PHOTOS.slice(i * 6, i * 6 + 6)} />
             ))}
           </div>
 
