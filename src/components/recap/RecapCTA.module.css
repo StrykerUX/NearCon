@@ -9,7 +9,8 @@
 }
 
 .asciiContent {
-  padding: 2vw;
+  padding: 0;
+  overflow: hidden;
   font-family: 'Courier New', Courier, monospace;
   font-size: max(6px, 0.7vw);
   line-height: 1.1;
