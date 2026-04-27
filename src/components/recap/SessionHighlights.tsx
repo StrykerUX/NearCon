@@ -250,8 +250,8 @@ const DaySection = ({ dayGroup, photos }: { dayGroup: DayGroup; photos: string[]
     }
     const totalWidth = stops[halfCount]
 
-    const MOVE_DURATION = 1.4   // seconds to slide to next card
-    const PAUSE_DURATION = 0.8  // seconds to hold at each card
+    const MOVE_DURATION = 3.0   // seconds to slide to next card
+    const PAUSE_DURATION = 2.5  // seconds to hold at each card
 
     const tl = gsap.timeline({ repeat: -1, defaults: { ease: 'power2.inOut' } })
 
