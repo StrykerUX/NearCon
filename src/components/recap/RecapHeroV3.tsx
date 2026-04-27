@@ -129,7 +129,7 @@ export function RecapHeroV3() {
           <AnimatePresence>
             {showContent && (
               <motion.div
-                className="relative z-10 flex flex-col justify-end p-[60px] h-full"
+                className="relative z-10 flex flex-col justify-end p-6 md:p-[60px] h-full"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
@@ -143,7 +143,8 @@ export function RecapHeroV3() {
                   </p>
                   <h1
                     className="text-nearcon-cream"
-                    style={{ fontFamily: 'Helvetica', fontSize: '75px', fontWeight: 700, lineHeight: '65px' }}
+                    className="text-[38px] md:text-[75px]"
+                  style={{ fontFamily: 'Helvetica', fontWeight: 700, lineHeight: '1.1' }}
                   >
                     Last NEARCON 2026
                   </h1>

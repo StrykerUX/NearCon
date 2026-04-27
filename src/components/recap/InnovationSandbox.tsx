@@ -34,21 +34,21 @@ export function InnovationSandbox() {
   return (
     <section className="bg-nearcon-cream">
       {/* Title stripe */}
-      <div className="px-[50px]">
+      <div className="px-5 md:px-[50px]">
         <div className="max-w-[1580px] mx-auto">
-          <div className="bg-black py-5 px-[40px]">
+          <div className="bg-black py-5 px-5 md:px-[40px]">
             <h2 className="text-nearcon-cream" style={{ fontFamily: 'Helvetica', fontSize: '36px', fontWeight: 700 }}>Innovation Sandbox</h2>
           </div>
         </div>
       </div>
 
       {/* Content */}
-      <div className="px-[50px] py-[60px]">
-        <div className="max-w-[1580px] mx-auto flex gap-[80px] items-stretch">
+      <div className="px-5 md:px-[50px] py-[40px] md:py-[60px]">
+        <div className="max-w-[1580px] mx-auto flex flex-col md:flex-row gap-[40px] md:gap-[80px] items-stretch">
 
           {/* Left column */}
           <motion.div
-            className="w-[45%] flex flex-col"
+            className="w-full md:w-[45%] flex flex-col"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-60px' }}
@@ -56,7 +56,8 @@ export function InnovationSandbox() {
           >
             <h3
               className="mb-[36px]"
-              style={{ fontFamily: 'Helvetica', fontSize: '46px', fontWeight: 700, lineHeight: 1.05, color: '#000000' }}
+              className="text-[32px] md:text-[46px]"
+              style={{ fontFamily: 'Helvetica', fontWeight: 700, lineHeight: 1.05, color: '#000000' }}
             >
               Virtual-First. Execution-Driven.
             </h3>
@@ -89,7 +90,7 @@ export function InnovationSandbox() {
           </motion.div>
 
           {/* Right column — Prize Track Winners */}
-          <div className="w-[55%]">
+          <div className="w-full md:w-[55%]">
             <div className="bg-black p-[20px]">
               <div className="relative p-[20px]">
                 <FrameCorners color="border-[#EBE3D3]" size="w-[40px] h-[40px]" />

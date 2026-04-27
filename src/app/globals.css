@@ -40,6 +40,19 @@
   }
 }
 
+/* Mobile overrides for bento grid */
+@media (max-width: 767px) {
+  .bento-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    grid-template-rows: repeat(3, 180px) !important;
+    gap: 12px !important;
+  }
+  .bento-cell {
+    grid-column: auto !important;
+    grid-row: auto !important;
+  }
+}
+
 @keyframes carousel-left {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }

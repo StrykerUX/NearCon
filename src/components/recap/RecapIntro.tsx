@@ -45,15 +45,15 @@ export function RecapIntro() {
 
   return (
     <motion.section
-      className="px-[50px] pt-[100px] pb-[100px] flex items-stretch gap-[80px]"
+      className="px-5 md:px-[50px] pt-[60px] md:pt-[100px] pb-[60px] md:pb-[100px] flex flex-col md:flex-row items-stretch gap-[40px] md:gap-[80px]"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: '-80px' }}
       variants={containerVariants}
     >
       {/* Left — title and text */}
-      <motion.div className="w-[55%] text-[#000000] flex flex-col justify-center" variants={itemVariants}>
-        <h2 className="font-helvetica text-[36px] font-bold mb-8 leading-tight">
+      <motion.div className="w-full md:w-[55%] text-[#000000] flex flex-col justify-center" variants={itemVariants}>
+        <h2 className="font-helvetica text-[24px] md:text-[36px] font-bold mb-8 leading-tight">
           NEARCON 2026 proved that the future isn't coming — it's already building.
         </h2>
         <p className="leading-relaxed space-y-4" style={{ fontFamily: 'Poppins', fontSize: '18px', fontWeight: 300 }}>
@@ -68,7 +68,7 @@ export function RecapIntro() {
       </motion.div>
 
       {/* Right — image with frame corners */}
-      <motion.div className="w-[45%] flex items-center justify-center" variants={itemVariants}>
+      <motion.div className="w-full md:w-[45%] flex items-center justify-center" variants={itemVariants}>
         <div className="w-full">
           <motion.div
             className="relative p-[30px] overflow-hidden"

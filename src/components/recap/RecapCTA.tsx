@@ -157,7 +157,7 @@ export function RecapCTA() {
       </div>
 
       {/* Content overlay */}
-      <div className="relative z-20 flex flex-col items-center text-center py-[100px] px-[50px]">
+      <div className="relative z-20 flex flex-col items-center text-center py-[60px] md:py-[100px] px-5 md:px-[50px]">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -166,12 +166,12 @@ export function RecapCTA() {
         >
           <h2 style={{ fontFamily: 'Helvetica', fontWeight: 700, lineHeight: 1.1 }}>
             <span className="block mb-2">
-              <span style={{ fontSize: '100px', color: '#EBE3D3', backgroundColor: '#000000', padding: '4px 16px', display: 'inline-block' }}>
+              <span className="text-[52px] md:text-[100px]" style={{ color: '#EBE3D3', backgroundColor: '#000000', padding: '4px 16px', display: 'inline-block' }}>
                 See you at
               </span>
             </span>
             <span className="block">
-              <span style={{ fontSize: '100px', backgroundColor: '#000000', padding: '4px 16px', display: 'inline-block' }}>
+              <span className="text-[52px] md:text-[100px]" style={{ backgroundColor: '#000000', padding: '4px 16px', display: 'inline-block' }}>
                 <span className={styles.gradientDefault}>NEAR</span>
                 <span style={{ color: '#EBE3D3' }}>CON </span>
                 <span className={styles.gradientHover}>2027.</span>

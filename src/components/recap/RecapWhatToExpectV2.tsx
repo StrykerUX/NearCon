@@ -49,7 +49,7 @@ export function RecapWhatToExpectV2() {
   return (
     <section className="bg-black text-nearcon-cream py-[100px]">
       {/* Title section */}
-      <div className="w-full bg-cover bg-center px-[50px]" style={{ backgroundImage: 'url(/img/Group-3-1.png)' }}>
+      <div className="w-full bg-cover bg-center px-5 md:px-[50px]" style={{ backgroundImage: 'url(/img/Group-3-1.png)' }}>
         <div className="max-w-[1580px] mx-auto">
           <motion.h2
             className="font-helvetica inline-block text-nearcon-cream"
@@ -65,9 +65,10 @@ export function RecapWhatToExpectV2() {
       </div>
 
       {/* Bento gallery */}
-      <div className="px-[50px] py-[100px]">
+      <div className="px-5 md:px-[50px] py-[50px] md:py-[100px]">
         <div className="max-w-[1580px] mx-auto">
           <div
+            className="bento-grid"
             style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(4, 1fr)',
@@ -78,6 +79,7 @@ export function RecapWhatToExpectV2() {
             {photos.map((imgUrl, idx) => (
               <motion.div
                 key={idx}
+                className="bento-cell"
                 style={{ gridColumn: layout[idx].col, gridRow: layout[idx].row }}
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
@@ -111,7 +113,7 @@ export function RecapWhatToExpectV2() {
       </div>
 
       {/* Banner section */}
-      <div className="px-[50px]">
+      <div className="px-5 md:px-[50px]">
         <div className="max-w-[1580px] mx-auto">
           <img src="/img/Group-41.png" alt="NearCon decoration" className="w-full h-auto border-b border-black" />
         </div>

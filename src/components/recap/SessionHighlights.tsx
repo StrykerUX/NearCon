@@ -311,7 +311,7 @@ export function SessionHighlights() {
   return (
     <section className="bg-nearcon-cream">
       {/* Title section */}
-      <div className="w-full bg-cover bg-center px-[50px]" style={{ backgroundImage: 'url(/img/Group-43-3.png)' }}>
+      <div className="w-full bg-cover bg-center px-5 md:px-[50px]" style={{ backgroundImage: 'url(/img/Group-43-3.png)' }}>
         <div className="max-w-[1580px] mx-auto">
           <motion.h2
             className="font-helvetica text-4xl md:text-5xl inline-block"
@@ -327,7 +327,7 @@ export function SessionHighlights() {
       </div>
 
       {/* Content section */}
-      <div className="px-[50px] py-[100px]">
+      <div className="px-0 md:px-[50px] py-[50px] md:py-[100px]">
         <div className="max-w-[1580px] mx-auto">
           {/* Days with sessions */}
           <div className="space-y-0">
