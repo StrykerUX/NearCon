@@ -1,8 +1,9 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { useEffect, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import Image from 'next/image'
+import { gsap } from 'gsap'
 import { FrameCorners } from '../ui/FrameCorners'
 import styles from '../nearcon/WhatToExpect.module.css'
 
@@ -222,6 +223,8 @@ const SessionCard = ({ session }: { session: Session }) => (
 )
 
 const DaySection = ({ dayGroup, photos }: { dayGroup: DayGroup; photos: string[] }) => {
+  const trackRef = useRef<HTMLDivElement>(null)
+
   const interleaved: Array<{ type: 'session'; data: Session } | { type: 'photo'; src: string }> = []
   dayGroup.sessions.forEach((session, i) => {
     interleaved.push({ type: 'session', data: session })
@@ -229,6 +232,49 @@ const DaySection = ({ dayGroup, photos }: { dayGroup: DayGroup; photos: string[]
   })
   const doubled = [...interleaved, ...interleaved]
   const isReverse = dayGroup.day > 1
+
+  useLayoutEffect(() => {
+    const track = trackRef.current
+    if (!track) return
+
+    const items = Array.from(track.children) as HTMLElement[]
+    const halfCount = items.length / 2
+    const GAP = 20
+
+    // Build cumulative stop positions after each item in the first half
+    const stops: number[] = [0]
+    let acc = 0
+    for (let i = 0; i < halfCount; i++) {
+      acc += items[i].offsetWidth + GAP
+      stops.push(acc)
+    }
+    const totalWidth = stops[halfCount]
+
+    const MOVE_DURATION = 1.4   // seconds to slide to next card
+    const PAUSE_DURATION = 0.8  // seconds to hold at each card
+
+    const tl = gsap.timeline({ repeat: -1, defaults: { ease: 'power2.inOut' } })
+
+    if (!isReverse) {
+      gsap.set(track, { x: 0 })
+      for (let i = 1; i <= halfCount; i++) {
+        tl.to(track, { x: -stops[i], duration: MOVE_DURATION })
+        tl.to(track, { duration: PAUSE_DURATION })
+      }
+      tl.set(track, { x: 0 })
+    } else {
+      gsap.set(track, { x: -totalWidth })
+      for (let i = halfCount - 1; i >= 0; i--) {
+        tl.to(track, { x: -stops[i], duration: MOVE_DURATION })
+        tl.to(track, { duration: PAUSE_DURATION })
+      }
+      tl.set(track, { x: -totalWidth })
+      // Offset Day 2 by one card-step so it pauses on a different card type than Day 1
+      tl.seek(MOVE_DURATION + PAUSE_DURATION, false)
+    }
+
+    return () => { tl.kill() }
+  }, [isReverse])
 
   return (
     <div className={dayGroup.day > 1 ? 'mt-[40px]' : ''}>
@@ -247,12 +293,8 @@ const DaySection = ({ dayGroup, photos }: { dayGroup: DayGroup; photos: string[]
       {/* Carousel */}
       <div className="overflow-hidden mt-[20px]">
         <div
-          style={{
-            display: 'flex',
-            gap: '20px',
-            width: 'max-content',
-            animation: `${isReverse ? 'carousel-right' : 'carousel-left'} 35s linear infinite`,
-          }}
+          ref={trackRef}
+          style={{ display: 'flex', gap: '20px', width: 'max-content' }}
         >
           {doubled.map((item, idx) =>
             item.type === 'session'
