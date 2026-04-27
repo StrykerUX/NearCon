@@ -15,43 +15,78 @@ export function RecapHeroV3() {
   const triggerRef = useRef<HTMLDivElement>(null)
   const heroRef = useRef<HTMLDivElement>(null)
   const [showContent, setShowContent] = useState(false)
+  const [showScroll, setShowScroll] = useState(false)
 
-  // Reveal gradient and titles after 8 seconds
+  // Reveal gradient and titles after 5 seconds
   useEffect(() => {
     const timer = setTimeout(() => setShowContent(true), 5000)
     return () => clearTimeout(timer)
   }, [])
 
+  // Show scroll indicator 500ms after content, hide on first scroll
+  useEffect(() => {
+    if (!showContent) return
+    const timer = setTimeout(() => setShowScroll(true), 500)
+    const handleScroll = () => setShowScroll(false)
+    window.addEventListener('scroll', handleScroll, { once: true })
+    return () => {
+      clearTimeout(timer)
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [showContent])
+
   // Scroll-driven shrink: full-screen → exact original hero dimensions
+  const stRef = useRef<ScrollTrigger | null>(null)
+
   useGSAP(() => {
     if (!triggerRef.current || !heroRef.current) return
 
-    const vw = window.innerWidth
-    const vh = window.innerHeight
+    const hero = heroRef.current
+    const trigger = triggerRef.current
 
-    // Match the original hero: px-[50px] pt-[50px] + max-w-[1580px] mx-auto + aspect-video
-    const containerWidth = Math.min(vw - 100, 1580)
-    const targetHeight = containerWidth * (9 / 16)
-    const hInset = (vw - containerWidth) / 2  // centers max-w-[1580px] within px-[50px]
-    const bottomInset = vh - 50 - targetHeight
+    const setup = () => {
+      if (stRef.current) { stRef.current.kill(); stRef.current = null }
+      gsap.set(hero, { top: 0, right: 0, bottom: 0, left: 0 })
 
-    gsap.fromTo(
-      heroRef.current,
-      { top: 0, right: 0, bottom: 0, left: 0 },
-      {
-        top: 50,
-        right: hInset,
-        bottom: bottomInset,
-        left: hInset,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: triggerRef.current,
-          start: 'top top',
-          end: 'bottom bottom',
-          scrub: 1,
-        },
-      }
-    )
+      // Use clientWidth to match CSS layout width (excludes scrollbar)
+      const vw = document.documentElement.clientWidth
+      const containerWidth = Math.min(vw - 100, 1580)
+      const hInset = (vw - containerWidth) / 2
+
+      gsap.fromTo(
+        hero,
+        { top: 0, right: 0, bottom: 0, left: 0 },
+        {
+          top: 50,
+          right: hInset,
+          bottom: 0,
+          left: hInset,
+          ease: 'none',
+          scrollTrigger: {
+            trigger,
+            start: 'top top',
+            end: 'bottom bottom',
+            scrub: 1,
+            onRefresh: (self) => { stRef.current = self },
+          },
+        }
+      )
+    }
+
+    setup()
+
+    let resizeTimer: ReturnType<typeof setTimeout>
+    const handleResize = () => {
+      clearTimeout(resizeTimer)
+      resizeTimer = setTimeout(setup, 150)
+    }
+
+    window.addEventListener('resize', handleResize)
+    return () => {
+      window.removeEventListener('resize', handleResize)
+      clearTimeout(resizeTimer)
+      if (stRef.current) stRef.current.kill()
+    }
   })
 
   return (
@@ -90,7 +125,7 @@ export function RecapHeroV3() {
             )}
           </AnimatePresence>
 
-          {/* Titles — slide up and fade in after 8s */}
+          {/* Titles — slide up and fade in after 5s */}
           <AnimatePresence>
             {showContent && (
               <motion.div
@@ -113,6 +148,39 @@ export function RecapHeroV3() {
                     Last NEARCON 2026
                   </h1>
                 </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* Scroll indicator */}
+          <AnimatePresence>
+            {showScroll && (
+              <motion.div
+                className="absolute bottom-[40px] right-[50px] z-20 flex flex-col items-center gap-[10px]"
+                style={{ padding: '20px 24px 24px', background: 'radial-gradient(ellipse at center, rgba(0,0,0,0.65) 0%, transparent 75%)' }}
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 8 }}
+                transition={{ duration: 0.5 }}
+              >
+                <motion.span
+                  style={{
+                    fontFamily: 'Helvetica',
+                    fontSize: '13px',
+                    fontWeight: 700,
+                    letterSpacing: '0.2em',
+                    color: 'rgba(235, 227, 211, 0.75)',
+                  }}
+                  animate={{ opacity: [0.75, 0.3, 0.75] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+                >
+                  [ SCROLL ]
+                </motion.span>
+                <motion.div
+                  style={{ width: '1px', height: '32px', backgroundColor: 'rgba(235, 227, 211, 0.4)' }}
+                  animate={{ scaleY: [1, 0.3, 1], originY: 0 }}
+                  transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+                />
               </motion.div>
             )}
           </AnimatePresence>
