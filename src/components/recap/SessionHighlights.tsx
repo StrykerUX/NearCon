@@ -15,6 +15,7 @@ interface Session {
   speaker: string
   role: string
   initials: string
+  image?: string
 }
 
 const SESSIONS: Record<number, Session[]> = {
@@ -26,7 +27,8 @@ const SESSIONS: Record<number, Session[]> = {
       description: 'Opening NEARCON 2026 — Setting the tone for two days at the intersection of AI, privacy, and the open web.',
       speaker: 'Illia Polosukhun',
       role: 'CEO - NEAR Protocol',
-      initials: 'IP'
+      initials: 'IP',
+      image: '/img/07-Illia-Polosukhin-1.jpg'
     },
     {
       id: '2',
@@ -35,7 +37,8 @@ const SESSIONS: Record<number, Session[]> = {
       description: 'How agentic systems are rebuilding financial infrastructure from the ground up, enabling programmable, autonomous commerce.',
       speaker: 'Jessica Scrimale',
       role: 'Chief Operating Officer - NEAR Foundation',
-      initials: 'JS'
+      initials: 'JS',
+      image: '/img/35-Jessica-Scrimale.jpg'
     },
     {
       id: '3',
@@ -44,16 +47,18 @@ const SESSIONS: Record<number, Session[]> = {
       description: 'A new primitives framework for agent-to-agent transactions, identity, and trust in a world where AI is the buyer and seller.',
       speaker: 'Lukasz Kaiser',
       role: 'Research Lead - Near AI',
-      initials: 'LK'
+      initials: 'LK',
+      image: '/img/17-Lukasz-Kaiser-1.jpg'
     },
     {
       id: '4',
       time: '2:00 PM',
       title: 'Autonomous Systems in Practice',
       description: 'From research benchmarks to real-world deployment — what it actually takes to ship an autonomous system into production.',
-      speaker: 'Ilya Polosukhun + Ashish Vaswani',
+      speaker: 'Illia Polosukhun + Ashish Vaswani',
       role: 'Panel',
-      initials: 'AV'
+      initials: 'IP',
+      image: '/img/07-Illia-Polosukhin-1.jpg'
     },
     {
       id: '5',
@@ -62,7 +67,8 @@ const SESSIONS: Record<number, Session[]> = {
       description: 'What comes after scale? Reasoning, adaptation, and the architecture decisions that will define the next generation of models.',
       speaker: 'Lukasz Kaiser',
       role: 'Research Lead - Near AI',
-      initials: 'LK'
+      initials: 'LK',
+      image: '/img/17-Lukasz-Kaiser-1.jpg'
     }
   ],
   2: [
@@ -73,7 +79,8 @@ const SESSIONS: Record<number, Session[]> = {
       description: 'The gap between demos and deployment is real. A practical breakdown of what\'s working, what\'s not, and where the biggest leverage points are.',
       speaker: 'Anupam Datta',
       role: 'Founder - Airbus',
-      initials: 'AD'
+      initials: 'AD',
+      image: '/img/NC_SPEAKER_47-Anupam-Datta_NEARCON-1080x1080-1.jpg'
     },
     {
       id: '7',
@@ -82,7 +89,8 @@ const SESSIONS: Record<number, Session[]> = {
       description: 'Introducing the Shade Agent Framework — a new model for secure, accountable agent execution that doesn\'t compromise autonomy.',
       speaker: 'Haseeb Qureshi',
       role: 'Managing Partner - Dragonfly',
-      initials: 'HQ'
+      initials: 'HQ',
+      image: '/img/06-Haseeb-1.jpg'
     },
     {
       id: '8',
@@ -91,7 +99,8 @@ const SESSIONS: Record<number, Session[]> = {
       description: 'How zero-knowledge proofs, private cloud, and verifiable computation become the infrastructure of a trustworthy Internet.',
       speaker: 'Erik Voorhees',
       role: 'Founder - Vertec',
-      initials: 'EV'
+      initials: 'EV',
+      image: '/img/19-Erik-Voorhees.jpg'
     },
     {
       id: '9',
@@ -100,7 +109,8 @@ const SESSIONS: Record<number, Session[]> = {
       description: 'A deep look at NEAR\'s intent-based transaction model and why it\'s the most promising path to real-world crypto utility.',
       speaker: 'Alex Skidanov',
       role: 'Co-Founder - NEAR Protocol',
-      initials: 'AS'
+      initials: 'AS',
+      image: '/img/15-Alex-Skidanov-1.jpg'
     },
     {
       id: '10',
@@ -109,7 +119,8 @@ const SESSIONS: Record<number, Session[]> = {
       description: 'Two days. Hundreds of conversations. One direction. What we build next, together.',
       speaker: 'Illia Polosukhun',
       role: 'CEO - NEAR Protocol',
-      initials: 'IP'
+      initials: 'IP',
+      image: '/img/07-Illia-Polosukhin-1.jpg'
     }
   ]
 }
@@ -205,11 +216,17 @@ const SessionCard = ({ session }: { session: Session }) => (
 
         {/* Speaker */}
         <div className="flex items-center gap-3 mt-auto">
-          <div
-            className="w-10 h-10 rounded-full flex items-center justify-center shrink-0"
-            style={{ backgroundColor: '#444', fontFamily: 'Helvetica', fontSize: '13px', fontWeight: 700, color: '#000' }}
-          >
-            {session.initials}
+          <div className="w-10 h-10 overflow-hidden shrink-0 relative">
+            {session.image ? (
+              <Image src={session.image} alt={session.speaker} fill className="object-cover" sizes="40px" />
+            ) : (
+              <div
+                className="w-full h-full flex items-center justify-center"
+                style={{ backgroundColor: '#444', fontFamily: 'Helvetica', fontSize: '13px', fontWeight: 700, color: '#000' }}
+              >
+                {session.initials}
+              </div>
+            )}
           </div>
           <div>
             <p style={{ fontFamily: 'Poppins', fontSize: '14px', fontWeight: 400, color: '#EBE3D3' }}>
