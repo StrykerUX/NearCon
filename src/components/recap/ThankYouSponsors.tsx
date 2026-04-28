@@ -84,7 +84,7 @@ function LogoGrid({ logos, cols, className, altPrefix }: {
           variants={cellVariants}
         >
           <FrameCorners color="border-text-primary" size="w-[20px] h-[20px]" />
-          <div className="relative h-[110px] transition-transform duration-300 group-hover:scale-[1.04]">
+          <div className="relative h-[70px] md:h-[110px] transition-transform duration-300 group-hover:scale-[1.04]">
             <Image
               src={src}
               alt={`${altPrefix} ${idx + 1}`}
@@ -104,19 +104,19 @@ export function ThankYouSponsors() {
   const communitySecond = COMMUNITY_PARTNERS.slice(4)
 
   return (
-    <section className="bg-nearcon-cream py-[100px]">
+    <section className="bg-nearcon-cream pt-[60px] pb-[100px] md:pt-[100px]">
       {/* Title stripe */}
-      <div className="px-5 md:px-[50px] mb-10 md:mb-[80px]">
+      <div className="px-[25px] md:px-[50px] mb-10 md:mb-[80px]">
         <div className="max-w-[1580px] mx-auto">
           <div className="bg-black py-5 px-[40px]">
-            <h2 className="text-nearcon-cream" style={{ fontFamily: 'Helvetica', fontSize: '36px', fontWeight: 700 }}>
+            <h2 className="text-nearcon-cream text-[30px] leading-[36px] md:text-[36px] md:leading-normal" style={{ fontFamily: 'Helvetica', fontWeight: 700 }}>
               Thank You to Our Sponsors
             </h2>
           </div>
         </div>
       </div>
 
-      <div className="px-5 md:px-[50px]">
+      <div className="px-[25px] md:px-[50px]">
         <div className="max-w-[1580px] mx-auto flex flex-col gap-[60px]">
 
           {/* Sponsors */}
@@ -129,13 +129,13 @@ export function ThankYouSponsors() {
           <div>
             <SectionLabel label="COMMUNITY PARTNERS" />
             <LogoGrid logos={communityFirst} cols="grid-cols-2 md:grid-cols-4" altPrefix="Community Partner" />
-            <LogoGrid logos={communitySecond} cols="grid-cols-3" className="w-3/4 mx-auto" altPrefix="Community Partner" />
+            <LogoGrid logos={communitySecond} cols="grid-cols-2 md:grid-cols-3" className="md:w-3/4 md:mx-auto [&>*:last-child]:col-span-2 [&>*:last-child]:w-1/2 [&>*:last-child]:mx-auto md:[&>*:last-child]:col-span-1 md:[&>*:last-child]:w-full" altPrefix="Community Partner" />
           </div>
 
           {/* Media Partners */}
           <div>
             <SectionLabel label="MEDIA PARTNERS" />
-            <LogoGrid logos={MEDIA_PARTNERS} cols="grid-cols-1 md:grid-cols-2" altPrefix="Media Partner" />
+            <LogoGrid logos={MEDIA_PARTNERS} cols="grid-cols-2" altPrefix="Media Partner" />
           </div>
 
         </div>

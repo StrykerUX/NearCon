@@ -45,7 +45,7 @@ export function RecapIntro() {
 
   return (
     <motion.section
-      className="px-5 md:px-[50px] pt-[60px] md:pt-[100px] pb-[60px] md:pb-[100px] flex flex-col md:flex-row items-stretch gap-[40px] md:gap-[80px]"
+      className="px-[25px] md:px-[50px] pt-[100px] pb-[100px] flex flex-col md:flex-row items-stretch gap-[40px] md:gap-[80px]"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: '-80px' }}
@@ -56,7 +56,7 @@ export function RecapIntro() {
         <h2 className="font-helvetica text-[24px] md:text-[36px] font-bold mb-8 leading-tight">
           NEARCON 2026 proved that the future isn't coming — it's already building.
         </h2>
-        <p className="leading-relaxed space-y-4" style={{ fontFamily: 'Poppins', fontSize: '18px', fontWeight: 300 }}>
+        <p className="text-[16px] leading-[22px] md:text-[18px] md:leading-relaxed space-y-4" style={{ fontFamily: 'Poppins', fontWeight: 300 }}>
           For two days in San Francisco's Fort Mason Center, NEARCON 2026 gathered the minds that will define the next decade of AI, privacy, and open infrastructure. Under the theme Private. Intelligent. Yours., the conversation shifted from speculation to execution.
           <br />
           <br />

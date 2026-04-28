@@ -157,7 +157,7 @@ export function RecapCTA() {
       </div>
 
       {/* Content overlay */}
-      <div className="relative z-20 flex flex-col items-center text-center py-[60px] md:py-[100px] px-5 md:px-[50px]">
+      <div className="relative z-20 flex flex-col items-center text-center py-[60px] md:py-[100px] px-[25px] md:px-[50px]">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -181,13 +181,11 @@ export function RecapCTA() {
         </motion.div>
 
         <motion.p
-          className="mt-[50px] max-w-[500px]"
+          className="mt-[50px] max-w-[500px] text-[16px] leading-[22px] md:text-[18px] md:leading-[1.7]"
           style={{
             fontFamily: 'Poppins',
-            fontSize: '18px',
             fontWeight: 300,
             color: '#EBE3D3',
-            lineHeight: 1.7,
             backgroundColor: '#000000',
             padding: '12px 24px',
           }}

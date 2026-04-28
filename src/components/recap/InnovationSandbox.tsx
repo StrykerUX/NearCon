@@ -34,16 +34,16 @@ export function InnovationSandbox() {
   return (
     <section className="bg-nearcon-cream">
       {/* Title stripe */}
-      <div className="px-5 md:px-[50px]">
+      <div className="px-[25px] md:px-[50px]">
         <div className="max-w-[1580px] mx-auto">
-          <div className="bg-black py-5 px-5 md:px-[40px]">
-            <h2 className="text-nearcon-cream" style={{ fontFamily: 'Helvetica', fontSize: '36px', fontWeight: 700 }}>Innovation Sandbox</h2>
+          <div className="bg-black py-5 px-[25px] md:px-[40px]">
+            <h2 className="text-nearcon-cream text-[30px] leading-[36px] md:text-[36px] md:leading-normal" style={{ fontFamily: 'Helvetica', fontWeight: 700 }}>Innovation Sandbox</h2>
           </div>
         </div>
       </div>
 
       {/* Content */}
-      <div className="px-5 md:px-[50px] py-[40px] md:py-[60px]">
+      <div className="px-[25px] md:px-[50px] py-[40px] md:py-[60px]">
         <div className="max-w-[1580px] mx-auto flex flex-col md:flex-row gap-[40px] md:gap-[80px] items-stretch">
 
           {/* Left column */}
@@ -55,16 +55,15 @@ export function InnovationSandbox() {
             transition={{ duration: 0.6 }}
           >
             <h3
-              className="mb-[36px]"
-              className="text-[32px] md:text-[46px]"
+              className="mb-[36px] text-[32px] md:text-[46px]"
               style={{ fontFamily: 'Helvetica', fontWeight: 700, lineHeight: 1.05, color: '#000000' }}
             >
               Virtual-First. Execution-Driven.
             </h3>
 
             <div
-              className="space-y-[20px] mb-[40px]"
-              style={{ fontFamily: 'Poppins', fontSize: '18px', fontWeight: 300, color: '#000000', lineHeight: '1.7' }}
+              className="space-y-[20px] mb-[40px] text-[16px] leading-[22px] md:text-[18px] md:leading-[1.7]"
+              style={{ fontFamily: 'Poppins', fontWeight: 300, color: '#000000' }}
             >
               <p>
                 Starting January 26th, teams worldwide entered the NEARCON 2026 Innovation Sandbox — a fully virtual sprint to build real working demos showcasing NEAR's technical capabilities.
@@ -104,14 +103,14 @@ export function InnovationSandbox() {
                 {tracks.map((track, idx) => (
                   <motion.div
                     key={idx}
-                    className={`flex items-center justify-between gap-[40px] py-[24px] ${idx < tracks.length - 1 ? 'border-b border-white/10' : ''}`}
+                    className={`flex items-center justify-between gap-[16px] md:gap-[40px] py-[24px] ${idx < tracks.length - 1 ? 'border-b border-white/10' : ''}`}
                     initial={{ opacity: 0, x: 20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: idx * 0.1 }}
                   >
                     {/* Track info */}
-                    <div className="flex-1">
+                    <div className="flex-1 min-w-0">
                       <p style={{ fontFamily: 'Helvetica', fontSize: '17px', fontWeight: 700, color: '#EBE3D3' }}>
                         {track.name}
                       </p>
@@ -121,7 +120,7 @@ export function InnovationSandbox() {
                     </div>
 
                     {/* Winner */}
-                    <div className="shrink-0 text-right">
+                    <div className="w-[90px] md:w-auto md:shrink-0 text-right">
                       <p style={{ fontFamily: 'Helvetica', fontSize: '14px', fontWeight: 700, color: track.color }}>
                         {track.winner}
                       </p>

@@ -49,8 +49,10 @@ export function RecapHeroV3() {
       gsap.set(hero, { top: 0, right: 0, bottom: 0, left: 0 })
 
       // Use clientWidth to match CSS layout width (excludes scrollbar)
+      // Match lateral padding: 25px on mobile (<768px), 50px on desktop
       const vw = document.documentElement.clientWidth
-      const containerWidth = Math.min(vw - 100, 1580)
+      const sidePadding = vw < 768 ? 25 : 50
+      const containerWidth = Math.min(vw - sidePadding * 2, 1580)
       const hInset = (vw - containerWidth) / 2
 
       gsap.fromTo(
@@ -91,9 +93,9 @@ export function RecapHeroV3() {
 
   return (
     // Trigger div: provides scroll distance for the animation (100vh hero + 600px to shrink)
-    <div ref={triggerRef} style={{ height: 'calc(100vh + 600px)' }}>
+    <div ref={triggerRef} style={{ height: 'calc(100vh + 600px)' }} className="bg-nearcon-cream">
       {/* Sticky viewport: stays at top while trigger scrolls */}
-      <div className="sticky top-0 h-screen overflow-hidden bg-nearcon-cream">
+      <div className="sticky top-0 h-screen overflow-hidden">
         {/* Hero: absolutely positioned, GSAP animates inset from 0 → 50px */}
         <div
           ref={heroRef}
@@ -143,7 +145,7 @@ export function RecapHeroV3() {
                   </p>
                   <h1
                     className="text-nearcon-cream"
-                    className="text-[38px] md:text-[75px]"
+                    className="text-nearcon-cream text-[46px] md:text-[75px]"
                   style={{ fontFamily: 'Helvetica', fontWeight: 700, lineHeight: '1.1' }}
                   >
                     Last NEARCON 2026
@@ -157,7 +159,7 @@ export function RecapHeroV3() {
           <AnimatePresence>
             {showScroll && (
               <motion.div
-                className="absolute bottom-[40px] right-[50px] z-20 flex flex-col items-center gap-[10px]"
+                className="absolute top-[30px] left-1/2 -translate-x-1/2 md:top-auto md:bottom-[40px] md:left-auto md:right-[50px] md:translate-x-0 z-20 flex flex-col items-center gap-[10px]"
                 style={{ padding: '20px 24px 24px', background: 'radial-gradient(ellipse at center, rgba(0,0,0,0.65) 0%, transparent 75%)' }}
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}

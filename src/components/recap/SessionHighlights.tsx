@@ -251,7 +251,7 @@ const DaySection = ({ dayGroup, photos }: { dayGroup: DayGroup; photos: string[]
     const totalWidth = stops[halfCount]
 
     const MOVE_DURATION = 3.0   // seconds to slide to next card
-    const PAUSE_DURATION = 2.5  // seconds to hold at each card
+    const PAUSE_DURATION = 5.0  // seconds to hold at each card
 
     const tl = gsap.timeline({ repeat: -1, defaults: { ease: 'power2.inOut' } })
 
@@ -280,7 +280,7 @@ const DaySection = ({ dayGroup, photos }: { dayGroup: DayGroup; photos: string[]
     <div className={dayGroup.day > 1 ? 'mt-[40px]' : ''}>
       {/* Day header */}
       <motion.div
-        className="bg-black text-nearcon-green px-8 py-3 w-full"
+        className="bg-black text-nearcon-green px-[25px] md:px-8 py-3 w-full"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
@@ -311,10 +311,10 @@ export function SessionHighlights() {
   return (
     <section className="bg-nearcon-cream">
       {/* Title section */}
-      <div className="w-full bg-cover bg-center px-5 md:px-[50px]" style={{ backgroundImage: 'url(/img/Group-43-3.png)' }}>
+      <div className="w-full bg-cover bg-center px-[25px] md:px-[50px]" style={{ backgroundImage: 'url(/img/Group-43-3.png)' }}>
         <div className="max-w-[1580px] mx-auto">
           <motion.h2
-            className="font-helvetica text-4xl md:text-5xl inline-block"
+            className="font-helvetica text-[30px] leading-[36px] md:text-[36px] md:leading-normal inline-block"
             style={{ backgroundColor: '#EBE3D3', padding: '10px 40px' }}
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -327,7 +327,7 @@ export function SessionHighlights() {
       </div>
 
       {/* Content section */}
-      <div className="px-0 md:px-[50px] py-[50px] md:py-[100px]">
+      <div className="px-[25px] md:px-[50px] pt-[50px] pb-[75px] md:pt-[100px] md:pb-[100px]">
         <div className="max-w-[1580px] mx-auto">
           {/* Days with sessions */}
           <div className="space-y-0">

@@ -40,6 +40,14 @@
   }
 }
 
+/* Mobile section title overrides */
+@media (max-width: 767px) {
+  .in-photos-title {
+    font-size: 30px !important;
+    line-height: 36px !important;
+  }
+}
+
 /* Mobile overrides for bento grid */
 @media (max-width: 767px) {
   .bento-grid {

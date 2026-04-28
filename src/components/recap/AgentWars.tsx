@@ -14,16 +14,16 @@ export function AgentWars() {
   return (
     <section className="bg-nearcon-cream">
       {/* Title stripe */}
-      <div className="px-5 md:px-[50px]">
+      <div className="px-[25px] md:px-[50px]">
         <div className="max-w-[1580px] mx-auto">
-          <div className="bg-black py-5 px-5 md:px-[40px]">
-            <h2 className="text-nearcon-cream" style={{ fontFamily: 'Helvetica', fontSize: '36px', fontWeight: 700 }}>NEARCON Agent Wars</h2>
+          <div className="bg-black py-5 px-[25px] md:px-[40px]">
+            <h2 className="text-nearcon-cream text-[30px] leading-[36px] md:text-[36px] md:leading-normal" style={{ fontFamily: 'Helvetica', fontWeight: 700 }}>NEARCON Agent Wars</h2>
           </div>
         </div>
       </div>
 
       {/* Content */}
-      <div className="px-5 md:px-[50px] py-[40px] md:py-[60px]">
+      <div className="px-[25px] md:px-[50px] pt-[40px] pb-0 md:py-[60px]">
         <div className="max-w-[1580px] mx-auto flex flex-col md:flex-row gap-[40px] md:gap-[80px] items-start">
 
           {/* Left column */}
@@ -41,16 +41,15 @@ export function AgentWars() {
               THE FIRST HACKATHON WHERE
             </p>
             <h3
-              className="mb-[40px]"
-              className="text-[32px] md:text-[46px]"
+              className="mb-[40px] text-[32px] md:text-[46px]"
               style={{ fontFamily: 'Helvetica', fontWeight: 700, lineHeight: 1, color: '#000000' }}
             >
               HUMANS DON'T CODE.
             </h3>
 
             <div
-              className="space-y-[20px] mb-0"
-              style={{ fontFamily: 'Poppins', fontSize: '18px', fontWeight: 300, color: '#000000', lineHeight: '1.7' }}
+              className="space-y-[20px] mb-0 text-[16px] leading-[22px] md:text-[18px] md:leading-[1.7]"
+              style={{ fontFamily: 'Poppins', fontWeight: 300, color: '#000000' }}
             >
               <p>
                 For four hours on February 24th, agents took over. Participants connected their AI agents to the NEAR AI Marketplace and watched them fetch, build, and submit — completely autonomously.
