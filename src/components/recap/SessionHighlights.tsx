@@ -153,8 +153,9 @@ const CAROUSEL_PHOTOS = [
 
 const PhotoCard = ({ src }: { src: string }) => (
   <div
-    className="bg-black flex-shrink-0 relative"
-    style={{ width: '400px', alignSelf: 'stretch' }}
+    data-card-type="photo"
+    className="bg-black flex-shrink-0 relative w-[calc(100vw-50px)] md:w-[400px]"
+    style={{ alignSelf: 'stretch' }}
   >
     {/* frame corners container — inset 20px from card edge */}
     <div className="absolute inset-[20px]">
@@ -166,7 +167,7 @@ const PhotoCard = ({ src }: { src: string }) => (
           alt="NEARCON 2026"
           fill
           className="object-cover"
-          sizes="400px"
+          sizes="(max-width: 768px) calc(100vw - 50px), 400px"
         />
       </div>
     </div>
@@ -175,8 +176,9 @@ const PhotoCard = ({ src }: { src: string }) => (
 
 const SessionCard = ({ session }: { session: Session }) => (
   <div
-    className="bg-black text-nearcon-cream relative p-[50px] flex-shrink-0"
-    style={{ width: '500px', height: '350px' }}
+    data-card-type="session"
+    className="bg-black text-nearcon-cream relative p-[50px] flex-shrink-0 w-[calc(100vw-50px)] md:w-[500px]"
+    style={{ height: '350px' }}
   >
     {/* FrameCorners inset 25px from card edge, spanning full card height */}
     <div className="absolute inset-[25px] pointer-events-none">
@@ -224,6 +226,7 @@ const SessionCard = ({ session }: { session: Session }) => (
 
 const DaySection = ({ dayGroup, photos }: { dayGroup: DayGroup; photos: string[] }) => {
   const trackRef = useRef<HTMLDivElement>(null)
+  const containerRef = useRef<HTMLDivElement>(null)
 
   const interleaved: Array<{ type: 'session'; data: Session } | { type: 'photo'; src: string }> = []
   dayGroup.sessions.forEach((session, i) => {
@@ -235,45 +238,77 @@ const DaySection = ({ dayGroup, photos }: { dayGroup: DayGroup; photos: string[]
 
   useLayoutEffect(() => {
     const track = trackRef.current
-    if (!track) return
+    const container = containerRef.current
+    if (!track || !container) return
 
-    const items = Array.from(track.children) as HTMLElement[]
-    const halfCount = items.length / 2
+    const MOVE_DURATION = 3.0
+    const PAUSE_DURATION = 5.0
     const GAP = 20
 
-    // Build cumulative stop positions after each item in the first half
-    const stops: number[] = [0]
-    let acc = 0
-    for (let i = 0; i < halfCount; i++) {
-      acc += items[i].offsetWidth + GAP
-      stops.push(acc)
-    }
-    const totalWidth = stops[halfCount]
+    const buildTimeline = () => {
+      const isMobile = document.documentElement.clientWidth < 768
+      const mobileWidth = container.clientWidth
 
-    const MOVE_DURATION = 3.0   // seconds to slide to next card
-    const PAUSE_DURATION = 5.0  // seconds to hold at each card
+      const items = Array.from(track.children) as HTMLElement[]
 
-    const tl = gsap.timeline({ repeat: -1, defaults: { ease: 'power2.inOut' } })
+      // Set precise pixel widths so GSAP stops align exactly with the container edge
+      items.forEach((item) => {
+        if (isMobile) {
+          item.style.width = `${mobileWidth}px`
+        } else {
+          item.style.width = item.dataset.cardType === 'photo' ? '400px' : '500px'
+        }
+      })
 
-    if (!isReverse) {
-      gsap.set(track, { x: 0 })
-      for (let i = 1; i <= halfCount; i++) {
-        tl.to(track, { x: -stops[i], duration: MOVE_DURATION })
-        tl.to(track, { duration: PAUSE_DURATION })
+      const halfCount = items.length / 2
+      const stops: number[] = [0]
+      let acc = 0
+      for (let i = 0; i < halfCount; i++) {
+        acc += items[i].offsetWidth + GAP
+        stops.push(acc)
       }
-      tl.set(track, { x: 0 })
-    } else {
-      gsap.set(track, { x: -totalWidth })
-      for (let i = halfCount - 1; i >= 0; i--) {
-        tl.to(track, { x: -stops[i], duration: MOVE_DURATION })
-        tl.to(track, { duration: PAUSE_DURATION })
+      const totalWidth = stops[halfCount]
+
+      const tl = gsap.timeline({ repeat: -1, defaults: { ease: 'power2.inOut' } })
+
+      if (!isReverse) {
+        gsap.set(track, { x: 0 })
+        for (let i = 1; i <= halfCount; i++) {
+          tl.to(track, { x: -stops[i], duration: MOVE_DURATION })
+          tl.to(track, { duration: PAUSE_DURATION })
+        }
+        tl.set(track, { x: 0 })
+      } else {
+        gsap.set(track, { x: -totalWidth })
+        for (let i = halfCount - 1; i >= 0; i--) {
+          tl.to(track, { x: -stops[i], duration: MOVE_DURATION })
+          tl.to(track, { duration: PAUSE_DURATION })
+        }
+        tl.set(track, { x: -totalWidth })
+        tl.seek(MOVE_DURATION + PAUSE_DURATION, false)
       }
-      tl.set(track, { x: -totalWidth })
-      // Offset Day 2 by one card-step so it pauses on a different card type than Day 1
-      tl.seek(MOVE_DURATION + PAUSE_DURATION, false)
+
+      return tl
     }
 
-    return () => { tl.kill() }
+    let tl = buildTimeline()
+
+    let resizeTimer: ReturnType<typeof setTimeout>
+    const handleResize = () => {
+      clearTimeout(resizeTimer)
+      resizeTimer = setTimeout(() => {
+        tl.kill()
+        tl = buildTimeline()
+      }, 150)
+    }
+
+    window.addEventListener('resize', handleResize)
+
+    return () => {
+      tl.kill()
+      clearTimeout(resizeTimer)
+      window.removeEventListener('resize', handleResize)
+    }
   }, [isReverse])
 
   return (
@@ -291,7 +326,7 @@ const DaySection = ({ dayGroup, photos }: { dayGroup: DayGroup; photos: string[]
       </motion.div>
 
       {/* Carousel */}
-      <div className="overflow-hidden mt-[20px]">
+      <div ref={containerRef} className="overflow-hidden mt-[20px]">
         <div
           ref={trackRef}
           style={{ display: 'flex', gap: '20px', width: 'max-content' }}
