@@ -165,24 +165,34 @@ export function RecapHeroV3() {
                 exit={{ opacity: 0, y: 8 }}
                 transition={{ duration: 0.5 }}
               >
-                <motion.span
+                <div
                   style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '4px',
                     fontFamily: 'Helvetica',
                     fontSize: '13px',
                     fontWeight: 700,
                     letterSpacing: '0.2em',
                     color: 'rgba(235, 227, 211, 0.75)',
                   }}
-                  animate={{ opacity: [0.75, 0.3, 0.75] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
                 >
-                  [ SCROLL ]
-                </motion.span>
-                <motion.div
-                  style={{ width: '1px', height: '32px', backgroundColor: 'rgba(235, 227, 211, 0.4)' }}
-                  animate={{ scaleY: [1, 0.3, 1], originY: 0 }}
-                  transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-                />
+                  <motion.span
+                    style={{ display: 'inline-block', originX: '100%', originY: '50%' }}
+                    animate={{ scaleX: [1, 0.4, 1] }}
+                    transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+                  >
+                    [
+                  </motion.span>
+                  <span>SCROLL</span>
+                  <motion.span
+                    style={{ display: 'inline-block', originX: '0%', originY: '50%' }}
+                    animate={{ scaleX: [1, 0.4, 1] }}
+                    transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+                  >
+                    ]
+                  </motion.span>
+                </div>
               </motion.div>
             )}
           </AnimatePresence>

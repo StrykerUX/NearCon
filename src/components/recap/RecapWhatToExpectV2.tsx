@@ -115,7 +115,8 @@ export function RecapWhatToExpectV2() {
       {/* Banner section */}
       <div className="px-[25px] md:px-[50px]">
         <div className="max-w-[1580px] mx-auto">
-          <img src="/img/Group-41.png" alt="NearCon decoration" className="w-full h-auto border-b border-black" />
+          <img src="/img/Group-35.png" alt="NearCon decoration" className="w-full h-auto border-b border-black md:hidden" />
+          <img src="/img/Group-41.png" alt="NearCon decoration" className="w-full h-auto border-b border-black hidden md:block" />
         </div>
       </div>
     </section>
