@@ -144,7 +144,6 @@ export function RecapHeroV3() {
                     FORT MASON CENTER - SAN FRANCISCO - FEB 23-24, 2026
                   </p>
                   <h1
-                    className="text-nearcon-cream"
                     className="text-nearcon-cream text-[46px] md:text-[75px]"
                   style={{ fontFamily: 'Helvetica', fontWeight: 700, lineHeight: '1.1' }}
                   >
