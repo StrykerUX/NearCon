@@ -147,7 +147,7 @@ export function RecapHeroV3() {
                     className="text-nearcon-cream text-[46px] md:text-[75px]"
                   style={{ fontFamily: 'Helvetica', fontWeight: 700, lineHeight: '1.1' }}
                   >
-                    Last NEARCON 2026
+                    NEARCON 2026
                   </h1>
                 </div>
               </motion.div>
