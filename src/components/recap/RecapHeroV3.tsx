@@ -159,7 +159,7 @@ export function RecapHeroV3() {
             {showScroll && (
               <motion.div
                 className="absolute top-[30px] left-1/2 -translate-x-1/2 md:top-auto md:bottom-[40px] md:left-auto md:right-[50px] md:translate-x-0 z-20 flex flex-col items-center gap-[10px]"
-                style={{ padding: '20px 24px 24px', background: 'radial-gradient(ellipse at center, rgba(0,0,0,0.65) 0%, transparent 75%)' }}
+                style={{ padding: '18px 24px', background: '#000000' }}
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 8 }}
@@ -174,6 +174,7 @@ export function RecapHeroV3() {
                     fontSize: '13px',
                     fontWeight: 700,
                     letterSpacing: '0.2em',
+                    lineHeight: '16px',
                     color: 'rgba(235, 227, 211, 0.75)',
                   }}
                 >
