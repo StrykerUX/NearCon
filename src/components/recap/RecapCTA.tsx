@@ -157,7 +157,7 @@ export function RecapCTA() {
       </div>
 
       {/* Content overlay */}
-      <div className="relative z-20 flex flex-col items-center text-center py-[60px] md:py-[100px] px-[25px] md:px-[50px]">
+      <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-center px-[25px] md:px-[50px]">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -199,6 +199,7 @@ export function RecapCTA() {
 
         <motion.div
           className={`${btnStyles.largeButton} mt-[50px] max-w-[400px] w-full`}
+          style={{ display: 'none' }}
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
