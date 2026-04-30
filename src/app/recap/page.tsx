@@ -1,21 +1,17 @@
-import { Navbar } from '@/components/layout/Navbar'
-import { RecapHero } from '@/components/recap/RecapHero'
+import { RecapHeroV3 } from '@/components/recap/RecapHeroV3'
 import { RecapIntro } from '@/components/recap/RecapIntro'
 import { SessionHighlights } from '@/components/recap/SessionHighlights'
 import { AgentWars } from '@/components/recap/AgentWars'
 import { InnovationSandbox } from '@/components/recap/InnovationSandbox'
-import { RecapWhatToExpect } from '@/components/recap/RecapWhatToExpect'
+import { RecapWhatToExpectV2 } from '@/components/recap/RecapWhatToExpectV2'
+import { ThankYouSponsors } from '@/components/recap/ThankYouSponsors'
 import { RecapCTA } from '@/components/recap/RecapCTA'
-import { Footer } from '@/components/layout/Footer'
 
-export default function RecapPage() {
+export default function RecapV3Page() {
   return (
     <div className="min-h-screen bg-nearcon-cream text-text-primary selection:bg-nearcon-green selection:text-text-primary">
-      {/* Navbar */}
-      <Navbar />
-
       {/* Hero Section */}
-      <RecapHero />
+      <RecapHeroV3 />
 
       {/* Intro Section */}
       <div className="max-w-[1580px] mx-auto">
@@ -26,7 +22,7 @@ export default function RecapPage() {
       <SessionHighlights />
 
       {/* What to Expect */}
-      <RecapWhatToExpect />
+      <RecapWhatToExpectV2 />
 
       {/* Agent Wars */}
       <div className="mt-[100px]">
@@ -34,15 +30,15 @@ export default function RecapPage() {
       </div>
 
       {/* Innovation Sandbox */}
-      <div className="mt-[90px] mb-[100px]">
+      <div className="mt-[90px] mb-[20px]">
         <InnovationSandbox />
       </div>
 
+      {/* Thank You to Our Sponsors */}
+      <ThankYouSponsors />
+
       {/* See you at NEARCON 2027 */}
       <RecapCTA />
-
-      {/* Footer */}
-      <Footer />
     </div>
   )
 }
