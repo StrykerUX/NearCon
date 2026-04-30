@@ -23,17 +23,16 @@ export function RecapHeroV3() {
     return () => clearTimeout(timer)
   }, [])
 
-  // Show scroll indicator 500ms after content, hide on first scroll
+  // Show scroll indicator at 3s, hide on first scroll
   useEffect(() => {
-    if (!showContent) return
-    const timer = setTimeout(() => setShowScroll(true), 500)
+    const timer = setTimeout(() => setShowScroll(true), 3000)
     const handleScroll = () => setShowScroll(false)
     window.addEventListener('scroll', handleScroll, { once: true })
     return () => {
       clearTimeout(timer)
       window.removeEventListener('scroll', handleScroll)
     }
-  }, [showContent])
+  }, [])
 
   // Scroll-driven shrink: full-screen → exact original hero dimensions
   const stRef = useRef<ScrollTrigger | null>(null)
