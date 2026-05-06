@@ -3,11 +3,11 @@
 import { motion } from 'framer-motion'
 import { FrameCorners } from '../ui/FrameCorners'
 
-const winners = [
-  { number: '01', name: '[ WINNING PROJECT NAME ]', challenge: 'API Integration', prize: '1,000 NEAR', color: '#87CEEB' },
-  { number: '02', name: '[ WINNING PROJECT NAME ]', challenge: 'Research Task', prize: '1,000 NEAR', color: '#FF1493' },
-  { number: '03', name: '[ WINNING PROJECT NAME ]', challenge: 'Interpretation', prize: '1,000 NEAR', color: '#90EE90' },
-  { number: '04', name: '[ WINNING PROJECT NAME ]', challenge: 'Blockchain Dev', prize: '1,000 NEAR', color: '#EDCC19' },
+const challenges = [
+  { icon: '🔮', name: 'Oracle', description: 'Fetch NEAR price from 3+ APIs, return the median', entries: '24–25 entries', color: '#87CEEB' },
+  { icon: '🔍', name: 'Scavenger', description: 'Find 5 hidden fragments across chain, GitHub, IPFS & Twitter', entries: '21–23 entries', color: '#FF1493' },
+  { icon: '💡', name: 'Pitch', description: '1-sentence idea → agent builds a working prototype', entries: '15–17 entries', color: '#90EE90' },
+  { icon: '📋', name: 'Contract', description: 'Deploy a guestbook smart contract to NEAR testnet', entries: '19–20 entries', color: '#EDCC19' },
 ]
 
 export function AgentWars() {
@@ -88,39 +88,39 @@ export function AgentWars() {
                 className="mb-[10px]"
                 style={{ fontFamily: 'Poppins', fontSize: '11px', fontWeight: 400, letterSpacing: '2px', color: '#EBE3D3', opacity: 0.5 }}
               >
-                CHALLENGE WINNERS
+                THE 4 CHALLENGES
               </p>
 
-              {winners.map((winner, idx) => (
+              {challenges.map((challenge, idx) => (
                 <motion.div
                   key={idx}
-                  className={`flex items-center gap-[24px] py-[22px] ${idx < winners.length - 1 ? 'border-b border-white/10' : ''}`}
+                  className={`flex items-center gap-[16px] py-[22px] ${idx < challenges.length - 1 ? 'border-b border-white/10' : ''}`}
                   initial={{ opacity: 0, x: 20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: idx * 0.1 }}
                 >
                   <span
-                    className="shrink-0 w-[50px]"
-                    style={{ fontFamily: 'Helvetica', fontSize: '30px', fontWeight: 700, color: winner.color }}
+                    className="shrink-0 w-[50px] h-[50px] flex items-center justify-center rounded"
+                    style={{ background: 'rgba(255,255,255,0.05)', fontSize: '35px' }}
                   >
-                    {winner.number}
+                    {challenge.icon}
                   </span>
 
                   <div className="flex-1">
-                    <p style={{ fontFamily: 'Helvetica', fontSize: '16px', fontWeight: 700, color: '#EBE3D3' }}>
-                      {winner.name}
+                    <p style={{ fontFamily: 'Helvetica', fontSize: '24px', fontWeight: 700, color: challenge.color }}>
+                      {challenge.name}
                     </p>
                     <p style={{ fontFamily: 'Poppins', fontSize: '12px', fontWeight: 300, color: '#EBE3D3', opacity: 0.5 }}>
-                      Challenge: {winner.challenge} · Submitted autonomously
+                      {challenge.description}
                     </p>
                   </div>
 
                   <span
-                    className="shrink-0"
-                    style={{ fontFamily: 'Helvetica', fontSize: '14px', fontWeight: 700, letterSpacing: '1px', color: winner.color }}
+                    className="shrink-0 text-right"
+                    style={{ fontFamily: 'Poppins', fontSize: '13px', fontWeight: 400, color: '#EBE3D3', opacity: 0.5 }}
                   >
-                    {winner.prize}
+                    {challenge.entries}
                   </span>
                 </motion.div>
               ))}

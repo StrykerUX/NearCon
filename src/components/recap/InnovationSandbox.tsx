@@ -5,27 +5,27 @@ import { FrameCorners } from '../ui/FrameCorners'
 
 const tracks = [
   {
+    icon: '🔒',
     name: 'The Private Web and Private Life',
-    description: 'Consumer apps or Web3 widgets where privacy is the default',
-    winner: '[ WINNING PROJECT NAME ]',
+    description: 'Consumer apps or Web3 widgets where privacy is the default across finance, identity, and user data',
     color: '#87CEEB',
   },
   {
+    icon: '🤖',
     name: 'AI That Works for You',
-    description: 'Private cloud, private chat, Shade Agents and agentic payments',
-    winner: '[ WINNING PROJECT NAME ]',
+    description: 'Private cloud, private chat, Shade Agents and agentic payments to build user-serving AI',
     color: '#FF1493',
   },
   {
-    name: 'Open Society: Finance to the Real World',
-    description: 'Solutions integrating stablecoins, NEAR Intents, real-world outcomes',
-    winner: '[ WINNING PROJECT NAME ]',
-    color: '#90EE90',
+    icon: '🌐',
+    name: 'Open Society: From Finance to the Real World',
+    description: 'Solutions integrating stablecoins, NEAR Intents, or products that turn real-world facts into reliable on-chain outcomes',
+    color: '#4A9EFF',
   },
   {
-    name: 'Only on NEAR',
-    description: 'Exceptional use of NEAR-native capabilities',
-    winner: '[ WINNING PROJECT NAME ]',
+    icon: '⭐',
+    name: 'NEAR-Only Bonus Bounty',
+    description: 'Additional recognition for teams that submitted to one of the above tracks using exclusively NEAR-native capabilities',
     color: '#EDCC19',
   },
 ]
@@ -48,7 +48,7 @@ export function InnovationSandbox() {
 
           {/* Left column */}
           <motion.div
-            className="w-full md:w-[45%] flex flex-col"
+            className="w-full md:w-[50%] flex flex-col"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-60px' }}
@@ -89,7 +89,7 @@ export function InnovationSandbox() {
           </motion.div>
 
           {/* Right column — Prize Track Winners */}
-          <div className="w-full md:w-[55%]">
+          <div className="w-full md:w-[50%]">
             <div className="bg-black p-[20px]">
               <div className="relative p-[20px]">
                 <FrameCorners color="border-[#EBE3D3]" size="w-[40px] h-[40px]" />
@@ -97,35 +97,31 @@ export function InnovationSandbox() {
                   className="mb-[10px]"
                   style={{ fontFamily: 'Poppins', fontSize: '11px', fontWeight: 400, letterSpacing: '2px', color: '#EBE3D3', opacity: 0.5 }}
                 >
-                  PRIZE TRACK WINNERS
+                  BOUNTY TRACKS
                 </p>
 
                 {tracks.map((track, idx) => (
                   <motion.div
                     key={idx}
-                    className={`flex items-center justify-between gap-[16px] md:gap-[40px] py-[24px] ${idx < tracks.length - 1 ? 'border-b border-white/10' : ''}`}
+                    className={`flex items-center gap-[16px] py-[22px] ${idx < tracks.length - 1 ? 'border-b border-white/10' : ''}`}
                     initial={{ opacity: 0, x: 20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: idx * 0.1 }}
                   >
-                    {/* Track info */}
+                    <span
+                      className="shrink-0 w-[50px] h-[50px] flex items-center justify-center rounded"
+                      style={{ background: 'rgba(255,255,255,0.05)', fontSize: '35px' }}
+                    >
+                      {track.icon}
+                    </span>
+
                     <div className="flex-1 min-w-0">
-                      <p style={{ fontFamily: 'Helvetica', fontSize: '17px', fontWeight: 700, color: '#EBE3D3' }}>
+                      <p style={{ fontFamily: 'Helvetica', fontSize: '17px', fontWeight: 700, color: track.color }}>
                         {track.name}
                       </p>
-                      <p style={{ fontFamily: 'Poppins', fontSize: '12px', fontWeight: 300, color: '#EBE3D3', opacity: 0.5 }}>
+                      <p style={{ fontFamily: 'Poppins', fontSize: '16px', fontWeight: 300, color: '#EBE3D3', opacity: 0.5 }}>
                         {track.description}
-                      </p>
-                    </div>
-
-                    {/* Winner */}
-                    <div className="w-[90px] md:w-auto md:shrink-0 text-right">
-                      <p style={{ fontFamily: 'Helvetica', fontSize: '14px', fontWeight: 700, color: track.color }}>
-                        {track.winner}
-                      </p>
-                      <p style={{ fontFamily: 'Poppins', fontSize: '11px', fontWeight: 300, color: track.color, opacity: 0.8 }}>
-                        Winner — 1st place
                       </p>
                     </div>
                   </motion.div>
