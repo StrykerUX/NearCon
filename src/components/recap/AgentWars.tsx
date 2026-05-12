@@ -1,13 +1,15 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { Eye, ScanSearch, Lightbulb, FileText } from 'lucide-react'
 import { FrameCorners } from '../ui/FrameCorners'
+import type { LucideIcon } from 'lucide-react'
 
-const challenges = [
-  { icon: '🔮', name: 'Oracle', description: 'Fetch NEAR price from 3+ APIs, return the median', entries: '24–25 entries', color: '#87CEEB' },
-  { icon: '🔍', name: 'Scavenger', description: 'Find 5 hidden fragments across chain, GitHub, IPFS & Twitter', entries: '21–23 entries', color: '#FF1493' },
-  { icon: '💡', name: 'Pitch', description: '1-sentence idea → agent builds a working prototype', entries: '15–17 entries', color: '#90EE90' },
-  { icon: '📋', name: 'Contract', description: 'Deploy a guestbook smart contract to NEAR testnet', entries: '19–20 entries', color: '#EDCC19' },
+const challenges: { icon: LucideIcon; name: string; description: string; entries: string; color: string }[] = [
+  { icon: Eye, name: 'Oracle', description: 'Fetch NEAR price from 3+ APIs, return the median', entries: '24–25 entries', color: '#87CEEB' },
+  { icon: ScanSearch, name: 'Scavenger', description: 'Find 5 hidden fragments across chain, GitHub, IPFS & Twitter', entries: '21–23 entries', color: '#FF1493' },
+  { icon: Lightbulb, name: 'Pitch', description: '1-sentence idea → agent builds a working prototype', entries: '15–17 entries', color: '#90EE90' },
+  { icon: FileText, name: 'Contract', description: 'Deploy a guestbook smart contract to NEAR testnet', entries: '19–20 entries', color: '#EDCC19' },
 ]
 
 export function AgentWars() {
@@ -102,9 +104,9 @@ export function AgentWars() {
                 >
                   <span
                     className="shrink-0 w-[50px] h-[50px] flex items-center justify-center rounded"
-                    style={{ background: 'rgba(255,255,255,0.05)', fontSize: '35px' }}
+                    style={{ background: 'rgba(255,255,255,0.05)' }}
                   >
-                    {challenge.icon}
+                    <challenge.icon size={60} color={challenge.color} strokeWidth={1.5} />
                   </span>
 
                   <div className="flex-1">

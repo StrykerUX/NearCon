@@ -1,29 +1,31 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { ShieldCheck, Bot, Globe, Star } from 'lucide-react'
 import { FrameCorners } from '../ui/FrameCorners'
+import type { LucideIcon } from 'lucide-react'
 
-const tracks = [
+const tracks: { icon: LucideIcon; name: string; description: string; color: string }[] = [
   {
-    icon: '🔒',
+    icon: ShieldCheck,
     name: 'The Private Web and Private Life',
     description: 'Consumer apps or Web3 widgets where privacy is the default across finance, identity, and user data',
     color: '#87CEEB',
   },
   {
-    icon: '🤖',
+    icon: Bot,
     name: 'AI That Works for You',
     description: 'Private cloud, private chat, Shade Agents and agentic payments to build user-serving AI',
     color: '#FF1493',
   },
   {
-    icon: '🌐',
+    icon: Globe,
     name: 'Open Society: From Finance to the Real World',
     description: 'Solutions integrating stablecoins, NEAR Intents, or products that turn real-world facts into reliable on-chain outcomes',
     color: '#4A9EFF',
   },
   {
-    icon: '⭐',
+    icon: Star,
     name: 'NEAR-Only Bonus Bounty',
     description: 'Additional recognition for teams that submitted to one of the above tracks using exclusively NEAR-native capabilities',
     color: '#EDCC19',
@@ -111,9 +113,9 @@ export function InnovationSandbox() {
                   >
                     <span
                       className="shrink-0 w-[50px] h-[50px] flex items-center justify-center rounded"
-                      style={{ background: 'rgba(255,255,255,0.05)', fontSize: '35px' }}
+                      style={{ background: 'rgba(255,255,255,0.05)' }}
                     >
-                      {track.icon}
+                      <track.icon size={60} color={track.color} strokeWidth={1.5} />
                     </span>
 
                     <div className="flex-1 min-w-0">
