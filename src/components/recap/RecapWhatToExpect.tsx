@@ -17,7 +17,6 @@ const cardVariants = {
 
 const galleryImagesOriginal = [
   '/img/NEARCON_B-80.jpg',
-  '/img/NEARCON_B-7.jpg',
   '/img/NEARCON_B-85.jpg',
   '/img/NEARCON_C-105.jpg',
   '/img/NEARCON_B-15.jpg',

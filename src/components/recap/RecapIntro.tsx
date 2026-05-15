@@ -20,7 +20,6 @@ const PHOTOS = [
   '/img/NEARCON_B-54.jpg',
   '/img/NEARCON_B-36.jpg',
   '/img/NEARCON_B-20.jpg',
-  '/img/NEARCON_A-14.jpg',
   '/img/NEARCON_B-81.jpg',
 ]
 

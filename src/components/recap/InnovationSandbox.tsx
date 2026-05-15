@@ -1,31 +1,31 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ShieldCheck, Bot, Globe, Star } from 'lucide-react'
+import { Lock, Cpu, Network, Gem } from 'lucide-react'
 import { FrameCorners } from '../ui/FrameCorners'
 import type { LucideIcon } from 'lucide-react'
 
 const tracks: { icon: LucideIcon; name: string; description: string; color: string }[] = [
   {
-    icon: ShieldCheck,
+    icon: Lock,
     name: 'The Private Web and Private Life',
     description: 'Consumer apps or Web3 widgets where privacy is the default across finance, identity, and user data',
     color: '#87CEEB',
   },
   {
-    icon: Bot,
+    icon: Cpu,
     name: 'AI That Works for You',
     description: 'Private cloud, private chat, Shade Agents and agentic payments to build user-serving AI',
     color: '#FF1493',
   },
   {
-    icon: Globe,
+    icon: Network,
     name: 'Open Society: From Finance to the Real World',
     description: 'Solutions integrating stablecoins, NEAR Intents, or products that turn real-world facts into reliable on-chain outcomes',
     color: '#4A9EFF',
   },
   {
-    icon: Star,
+    icon: Gem,
     name: 'NEAR-Only Bonus Bounty',
     description: 'Additional recognition for teams that submitted to one of the above tracks using exclusively NEAR-native capabilities',
     color: '#EDCC19',

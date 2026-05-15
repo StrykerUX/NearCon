@@ -1,15 +1,15 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Eye, ScanSearch, Lightbulb, FileText } from 'lucide-react'
+import { LineChart, Crosshair, Layers, FileCode2 } from 'lucide-react'
 import { FrameCorners } from '../ui/FrameCorners'
 import type { LucideIcon } from 'lucide-react'
 
 const challenges: { icon: LucideIcon; name: string; description: string; entries: string; color: string }[] = [
-  { icon: Eye, name: 'Oracle', description: 'Fetch NEAR price from 3+ APIs, return the median', entries: '24–25 entries', color: '#87CEEB' },
-  { icon: ScanSearch, name: 'Scavenger', description: 'Find 5 hidden fragments across chain, GitHub, IPFS & Twitter', entries: '21–23 entries', color: '#FF1493' },
-  { icon: Lightbulb, name: 'Pitch', description: '1-sentence idea → agent builds a working prototype', entries: '15–17 entries', color: '#90EE90' },
-  { icon: FileText, name: 'Contract', description: 'Deploy a guestbook smart contract to NEAR testnet', entries: '19–20 entries', color: '#EDCC19' },
+  { icon: LineChart, name: 'Oracle', description: 'Fetch NEAR price from 3+ APIs, return the median', entries: '24–25 entries', color: '#87CEEB' },
+  { icon: Crosshair, name: 'Scavenger', description: 'Find 5 hidden fragments across chain, GitHub, IPFS & Twitter', entries: '21–23 entries', color: '#FF1493' },
+  { icon: Layers, name: 'Pitch', description: '1-sentence idea → agent builds a working prototype', entries: '15–17 entries', color: '#90EE90' },
+  { icon: FileCode2, name: 'Contract', description: 'Deploy a guestbook smart contract to NEAR testnet', entries: '19–20 entries', color: '#EDCC19' },
 ]
 
 export function AgentWars() {
