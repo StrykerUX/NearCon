@@ -1,11 +1,12 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { useLayoutEffect, useRef } from 'react'
 import Image from 'next/image'
 import { gsap } from 'gsap'
 import { FrameCorners } from '../ui/FrameCorners'
 import styles from '../nearcon/WhatToExpect.module.css'
+import { Session as AirtableSession } from '@/lib/airtable'
 
 interface Session {
   id: string
@@ -18,113 +19,6 @@ interface Session {
   image?: string
 }
 
-const SESSIONS: Record<number, Session[]> = {
-  1: [
-    {
-      id: '1',
-      time: '9:00 AM',
-      title: 'Welcome Remarks',
-      description: 'Opening NEARCON 2026 — Setting the tone for two days at the intersection of AI, privacy, and the open web.',
-      speaker: 'Illia Polosukhun',
-      role: 'CEO - NEAR Protocol',
-      initials: 'IP',
-      image: '/img/07-Illia-Polosukhin-1.jpg'
-    },
-    {
-      id: '2',
-      time: '10:00 AM',
-      title: 'DeFi Unbound: The Future of Finance',
-      description: 'How agentic systems are rebuilding financial infrastructure from the ground up, enabling programmable, autonomous commerce.',
-      speaker: 'Jessica Scrimale',
-      role: 'Chief Operating Officer - NEAR Foundation',
-      initials: 'JS',
-      image: '/img/35-Jessica-Scrimale.jpg'
-    },
-    {
-      id: '3',
-      time: '11:00 AM',
-      title: 'The Unified Commerce Layer for the Agentic Era',
-      description: 'A new primitives framework for agent-to-agent transactions, identity, and trust in a world where AI is the buyer and seller.',
-      speaker: 'Lukasz Kaiser',
-      role: 'Research Lead - Near AI',
-      initials: 'LK',
-      image: '/img/17-Lukasz-Kaiser-1.jpg'
-    },
-    {
-      id: '4',
-      time: '2:00 PM',
-      title: 'Autonomous Systems in Practice',
-      description: 'From research benchmarks to real-world deployment — what it actually takes to ship an autonomous system into production.',
-      speaker: 'Illia Polosukhun + Ashish Vaswani',
-      role: 'Panel',
-      initials: 'IP',
-      image: '/img/07-Illia-Polosukhin-1.jpg'
-    },
-    {
-      id: '5',
-      time: '4:00 PM',
-      title: 'Scaling Intelligence and Generalization',
-      description: 'What comes after scale? Reasoning, adaptation, and the architecture decisions that will define the next generation of models.',
-      speaker: 'Lukasz Kaiser',
-      role: 'Research Lead - Near AI',
-      initials: 'LK',
-      image: '/img/17-Lukasz-Kaiser-1.jpg'
-    }
-  ],
-  2: [
-    {
-      id: '6',
-      time: '9:00 AM',
-      title: 'AI in Production: Where Automation Meets Reality',
-      description: 'The gap between demos and deployment is real. A practical breakdown of what\'s working, what\'s not, and where the biggest leverage points are.',
-      speaker: 'Anupam Datta',
-      role: 'Founder - Airbus',
-      initials: 'AD',
-      image: '/img/NC_SPEAKER_47-Anupam-Datta_NEARCON-1080x1080-1.jpg'
-    },
-    {
-      id: '7',
-      time: '11:00 AM',
-      title: 'Why Agents Shouldn\'t Hold Their Own Keys',
-      description: 'Introducing the Shade Agent Framework — a new model for secure, accountable agent execution that doesn\'t compromise autonomy.',
-      speaker: 'Haseeb Qureshi',
-      role: 'Managing Partner - Dragonfly',
-      initials: 'HQ',
-      image: '/img/06-Haseeb-1.jpg'
-    },
-    {
-      id: '8',
-      time: '2:00 PM',
-      title: 'Privacy is Fundamental: Verifying Privacy and Transparency in the Age of AI',
-      description: 'How zero-knowledge proofs, private cloud, and verifiable computation become the infrastructure of a trustworthy Internet.',
-      speaker: 'Erik Voorhees',
-      role: 'Founder - Vertec',
-      initials: 'EV',
-      image: '/img/19-Erik-Voorhees.jpg'
-    },
-    {
-      id: '9',
-      time: '3:00 PM',
-      title: 'The Future of Stablecoin Swaps: NEAR Intents',
-      description: 'A deep look at NEAR\'s intent-based transaction model and why it\'s the most promising path to real-world crypto utility.',
-      speaker: 'Alex Skidanov',
-      role: 'Co-Founder - NEAR Protocol',
-      initials: 'AS',
-      image: '/img/15-Alex-Skidanov-1.jpg'
-    },
-    {
-      id: '10',
-      time: '6:00 PM',
-      title: 'Closing Remarks',
-      description: 'Two days. Hundreds of conversations. One direction. What we build next, together.',
-      speaker: 'Illia Polosukhun',
-      role: 'CEO - NEAR Protocol',
-      initials: 'IP',
-      image: '/img/07-Illia-Polosukhin-1.jpg'
-    }
-  ]
-}
-
 interface DayGroup {
   day: number
   date: string
@@ -132,20 +26,21 @@ interface DayGroup {
   sessions: Session[]
 }
 
-const DAYS: DayGroup[] = [
-  {
-    day: 1,
-    date: 'FEBRUARY 23, 2026',
-    stage: 'SINGULARITY STAGE',
-    sessions: SESSIONS[1]
-  },
-  {
-    day: 2,
-    date: 'FEBRUARY 24, 2026',
-    stage: 'SINGULARITY STAGE',
-    sessions: SESSIONS[2]
+function mapSession(s: AirtableSession): Session {
+  const first = s.speakerFirstName
+  const last = s.speakerLastName
+  const roleParts = [s.speakerRole, s.speakerCompany].filter(Boolean)
+  return {
+    id: s.id,
+    time: s.startTime,
+    title: s.sessionName,
+    description: s.description,
+    speaker: `${first} ${last}`.trim(),
+    role: roleParts.join(' - '),
+    initials: `${first[0] ?? ''}${last[0] ?? ''}`.toUpperCase(),
+    image: s.speakerImage || undefined,
   }
-]
+}
 
 const CAROUSEL_PHOTOS = [
   '/img/NEARCON_B-80.jpg',
@@ -359,7 +254,22 @@ const DaySection = ({ dayGroup, photos }: { dayGroup: DayGroup; photos: string[]
   )
 }
 
-export function SessionHighlights() {
+export function SessionHighlights({ sessions }: { sessions: AirtableSession[] }) {
+  const days: DayGroup[] = [
+    {
+      day: 1,
+      date: 'FEBRUARY 23, 2026',
+      stage: 'SINGULARITY STAGE',
+      sessions: sessions.filter(s => s.day === '2026-02-23').map(mapSession),
+    },
+    {
+      day: 2,
+      date: 'FEBRUARY 24, 2026',
+      stage: 'SINGULARITY STAGE',
+      sessions: sessions.filter(s => s.day === '2026-02-24').map(mapSession),
+    },
+  ].filter(d => d.sessions.length > 0)
+
   return (
     <section className="bg-nearcon-cream">
       {/* Title section */}
@@ -383,7 +293,7 @@ export function SessionHighlights() {
         <div className="max-w-[1580px] mx-auto">
           {/* Days with sessions */}
           <div className="space-y-0">
-            {DAYS.map((dayGroup, i) => (
+            {days.map((dayGroup, i) => (
               <DaySection key={dayGroup.day} dayGroup={dayGroup} photos={CAROUSEL_PHOTOS.slice(i * 6, i * 6 + 6)} />
             ))}
           </div>

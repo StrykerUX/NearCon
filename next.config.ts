@@ -13,6 +13,14 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "via.placeholder.com",
       },
+      {
+        protocol: "https",
+        hostname: "v5.airtableusercontent.com",
+      },
+      {
+        protocol: "https",
+        hostname: "*.airtableusercontent.com",
+      },
     ],
   },
 }

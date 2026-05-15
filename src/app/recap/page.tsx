@@ -6,8 +6,11 @@ import { InnovationSandbox } from '@/components/recap/InnovationSandbox'
 import { RecapWhatToExpectV2 } from '@/components/recap/RecapWhatToExpectV2'
 import { ThankYouSponsors } from '@/components/recap/ThankYouSponsors'
 import { RecapCTA } from '@/components/recap/RecapCTA'
+import { getSessions } from '@/lib/airtable'
 
-export default function RecapV3Page() {
+export default async function RecapV3Page() {
+  const sessions = await getSessions()
+
   return (
     <div className="min-h-screen bg-nearcon-cream text-text-primary selection:bg-nearcon-green selection:text-text-primary">
       {/* Hero Section */}
@@ -19,7 +22,7 @@ export default function RecapV3Page() {
       </div>
 
       {/* Session Highlights */}
-      <SessionHighlights />
+      <SessionHighlights sessions={sessions} />
 
       {/* What to Expect */}
       <RecapWhatToExpectV2 />
