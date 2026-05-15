@@ -60,6 +60,10 @@ export async function getSessions(): Promise<Session[]> {
   const data = await sessionsRes.json()
 
   return data.records
+    .filter((record: any) => {
+      const speakers = record.fields['⚙️ Confirmed Speakers'] ?? []
+      return record.fields['Ready?'] === true && speakers.length === 1
+    })
     .map((record: any) => {
       const speakerIds: string[] = record.fields['⚙️ Confirmed Speakers'] ?? []
       const speaker = speakersMap[speakerIds[0]] ?? {}
@@ -78,6 +82,5 @@ export async function getSessions(): Promise<Session[]> {
         ready: record.fields['Ready?'] === true,
       }
     })
-    .filter((s: Session) => s.ready === true)
     .sort((a: Session, b: Session) => a.startTime.localeCompare(b.startTime))
 }

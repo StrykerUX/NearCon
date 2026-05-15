@@ -7,9 +7,11 @@ import { RecapWhatToExpectV2 } from '@/components/recap/RecapWhatToExpectV2'
 import { ThankYouSponsors } from '@/components/recap/ThankYouSponsors'
 import { RecapCTA } from '@/components/recap/RecapCTA'
 import { getSessions } from '@/lib/airtable'
+import { getVideos } from '@/lib/youtube'
+import { SessionVideos } from '@/components/recap/SessionVideos'
 
 export default async function RecapV3Page() {
-  const sessions = await getSessions()
+  const [sessions, videos] = await Promise.all([getSessions(), getVideos()])
 
   return (
     <div className="min-h-screen bg-nearcon-cream text-text-primary selection:bg-nearcon-green selection:text-text-primary">
@@ -23,6 +25,9 @@ export default async function RecapV3Page() {
 
       {/* Session Highlights */}
       <SessionHighlights sessions={sessions} />
+
+      {/* Session Videos */}
+      <SessionVideos videos={videos} />
 
       {/* What to Expect */}
       <RecapWhatToExpectV2 />
