@@ -91,23 +91,24 @@ const SessionCard = ({ session }: { session: Session }) => (
       <FrameCorners color="border-[#EBE3D3]" size="w-[40px] h-[40px]" />
     </div>
 
-      <div className="flex flex-col gap-4 h-full">
+      <div className="flex flex-col gap-3 h-full">
         {/* Time */}
         <div style={{ fontFamily: 'Poppins', fontSize: '14px', fontWeight: 400, color: '#EBE3D3', opacity: 0.6 }}>
           {session.time}
         </div>
 
-        {/* Title */}
-        <h3
-          style={{ fontFamily: 'Helvetica', fontSize: '26px', fontWeight: 700, color: '#EBE3D3', lineHeight: '1.2' }}
-        >
-          {session.title}
-        </h3>
+        {/* Title + Description — flexible area */}
+        <div className="flex flex-col flex-1 gap-1 min-h-0">
+          <h3
+            style={{ fontFamily: 'Helvetica', fontSize: '26px', fontWeight: 700, color: '#EBE3D3', lineHeight: '1.2' }}
+          >
+            {session.title}
+          </h3>
 
-        {/* Description */}
-        <p className="line-clamp-1" style={{ fontFamily: 'Poppins', fontSize: '15px', fontWeight: 300, color: '#EBE3D3', lineHeight: '1.5' }}>
-          {session.description}
-        </p>
+          <p className="line-clamp-2" style={{ fontFamily: 'Poppins', fontSize: '15px', fontWeight: 300, color: '#EBE3D3', lineHeight: '1.5' }}>
+            {session.description}
+          </p>
+        </div>
 
         {/* Speaker */}
         <div className="flex items-center gap-3 mt-auto">
