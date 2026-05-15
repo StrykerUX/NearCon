@@ -84,13 +84,13 @@ function LogoGrid({ logos, cols, className, altPrefix }: {
           variants={cellVariants}
         >
           <FrameCorners color="border-text-primary" size="w-[20px] h-[20px]" />
-          <div className="relative h-[70px] md:h-[110px] transition-transform duration-300 group-hover:scale-[1.04]">
+          <div className="relative h-[70px] transition-transform duration-300 group-hover:scale-[1.04]">
             <Image
               src={src}
               alt={`${altPrefix} ${idx + 1}`}
               fill
               className="object-contain"
-              sizes="(max-width: 768px) 50vw, 25vw"
+              sizes="(max-width: 768px) 50vw, 20vw"
             />
           </div>
         </motion.div>
@@ -100,8 +100,8 @@ function LogoGrid({ logos, cols, className, altPrefix }: {
 }
 
 export function ThankYouSponsors() {
-  const communityFirst = COMMUNITY_PARTNERS.slice(0, 4)
-  const communitySecond = COMMUNITY_PARTNERS.slice(4)
+  const communityFirst = COMMUNITY_PARTNERS.slice(0, 5)
+  const communitySecond = COMMUNITY_PARTNERS.slice(5)
 
   return (
     <section className="bg-nearcon-cream pt-[60px] pb-[100px] md:pt-[100px]">
@@ -122,14 +122,14 @@ export function ThankYouSponsors() {
           {/* Sponsors */}
           <div>
             <SectionLabel label="SPONSORS" />
-            <LogoGrid logos={SPONSORS} cols="grid-cols-2 md:grid-cols-4" altPrefix="Sponsor" />
+            <LogoGrid logos={SPONSORS} cols="grid-cols-2 md:grid-cols-5" altPrefix="Sponsor" />
           </div>
 
           {/* Community Partners */}
           <div>
             <SectionLabel label="COMMUNITY PARTNERS" />
-            <LogoGrid logos={communityFirst} cols="grid-cols-2 md:grid-cols-4" altPrefix="Community Partner" />
-            <LogoGrid logos={communitySecond} cols="grid-cols-2 md:grid-cols-3" className="md:w-3/4 md:mx-auto [&>*:last-child]:col-span-2 [&>*:last-child]:w-1/2 [&>*:last-child]:mx-auto md:[&>*:last-child]:col-span-1 md:[&>*:last-child]:w-full" altPrefix="Community Partner" />
+            <LogoGrid logos={communityFirst} cols="grid-cols-2 md:grid-cols-5" altPrefix="Community Partner" />
+            <LogoGrid logos={communitySecond} cols="grid-cols-2" className="md:w-2/5 md:mx-auto" altPrefix="Community Partner" />
           </div>
 
           {/* Media Partners */}
