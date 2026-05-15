@@ -56,7 +56,10 @@ export async function getSessions(): Promise<Session[]> {
     getSpeakersMap()
   ])
 
-  if (!sessionsRes.ok) throw new Error('Airtable sessions API error')
+  if (!sessionsRes.ok) {
+    console.error('Airtable sessions API error:', sessionsRes.status)
+    return []
+  }
   const data = await sessionsRes.json()
 
   return data.records
