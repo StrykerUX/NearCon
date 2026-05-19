@@ -15,21 +15,6 @@ export function Hero2027() {
       className="relative w-full bg-black overflow-hidden"
       style={{ minHeight: '100svh', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }}
     >
-      {/* Grid decoration */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          backgroundImage:
-            'linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px)',
-          backgroundSize: '80px 80px',
-        }}
-      />
-
-      {/* Corner decoration top-right */}
-      <div className="absolute top-[40px] right-[25px] md:right-[50px] opacity-20">
-        <div className="w-[60px] h-[60px] border-t border-r border-nearcon-cream" />
-      </div>
-
       {/* Content bottom-left */}
       <div className="relative z-10 px-[25px] md:px-[50px] pb-[40px] md:pb-[60px]">
         <div className="max-w-[1580px] mx-auto">

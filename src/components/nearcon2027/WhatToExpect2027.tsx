@@ -1,11 +1,10 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Brain, Hammer, Globe, Lock, type LucideIcon } from 'lucide-react'
+import { FrameCorners } from '../ui/FrameCorners'
 
 interface Card {
   num: string
-  icon: LucideIcon
   titleA: string
   titleB: string
   description: string
@@ -14,28 +13,24 @@ interface Card {
 const cards: Card[] = [
   {
     num: '01',
-    icon: Brain,
     titleA: 'Thought',
     titleB: 'Leadership',
     description: 'Keynotes and panels from the builders defining the next decade of AI, privacy, and open infrastructure. No hype. No filler.',
   },
   {
     num: '02',
-    icon: Hammer,
     titleA: 'Builder',
     titleB: 'Formats',
     description: 'Workshops, demos, hackathons, and sandbox environments where shipping matters more than slides.',
   },
   {
     num: '03',
-    icon: Globe,
     titleA: 'Ecosystem',
     titleB: 'Gathering',
     description: 'The NEAR ecosystem — protocols, projects, partners — in one room. High-signal networking with a curated, relevant audience.',
   },
   {
     num: '04',
-    icon: Lock,
     titleA: 'Private.',
     titleB: 'Intelligent. Yours.',
     description: 'Building an AI economy on users\' terms — where ownership, privacy, and open access are non-negotiable defaults.',
@@ -44,10 +39,10 @@ const cards: Card[] = [
 
 export function WhatToExpect2027() {
   return (
-    <section className="bg-black text-nearcon-cream">
-      {/* Section header */}
-      <div className="px-[25px] md:px-[50px] pt-[70px] md:pt-[100px]">
-        <div className="max-w-[1580px] mx-auto">
+    <section className="bg-black text-nearcon-cream px-[25px] md:px-[50px] py-[70px] md:py-[100px]">
+      <div className="max-w-[1580px] mx-auto">
+        {/* Section header */}
+        <div className="mb-[50px]">
           <div className="bg-nearcon-cream py-5 px-[25px] md:px-[40px] inline-block">
             <h2
               className="text-black text-[30px] leading-[36px] md:text-[36px] md:leading-normal"
@@ -57,11 +52,9 @@ export function WhatToExpect2027() {
             </h2>
           </div>
         </div>
-      </div>
 
-      {/* Cards grid */}
-      <div className="px-[25px] md:px-[50px] pt-[50px] pb-[80px] md:pb-[120px]">
-        <div className="max-w-[1580px] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[1px] bg-nearcon-cream/10">
+        {/* Cards grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[1px] bg-nearcon-cream/10">
           {cards.map((card, idx) => (
             <motion.div
               key={idx}
@@ -71,11 +64,13 @@ export function WhatToExpect2027() {
               viewport={{ once: true, margin: '-40px' }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
             >
+              <FrameCorners color="border-nearcon-cream/20" size="w-[20px] h-[20px]" />
+
               {/* Decorative number */}
               <span
                 className="absolute top-[16px] right-[20px] select-none pointer-events-none"
                 style={{
-                  fontFamily: 'Helvetica',
+                  fontFamily: 'Roboto Mono, monospace',
                   fontSize: '100px',
                   fontWeight: 700,
                   lineHeight: 1,
@@ -85,8 +80,8 @@ export function WhatToExpect2027() {
                 {card.num}
               </span>
 
-              {/* Icon */}
-              <card.icon size={60} color="#65D56E" strokeWidth={1.2} />
+              {/* Green accent bar */}
+              <div style={{ width: '40px', height: '3px', backgroundColor: '#65D56E' }} />
 
               {/* Title */}
               <div>

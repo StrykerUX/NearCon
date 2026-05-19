@@ -1,21 +1,23 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { FrameCorners } from '../ui/FrameCorners'
 
 export function Statement2027() {
   return (
     <section className="bg-nearcon-cream px-[25px] md:px-[50px] py-[80px] md:py-[120px]">
-      <div className="max-w-[1580px] mx-auto flex flex-col md:flex-row gap-[50px] md:gap-[100px] items-start">
+      <div className="max-w-[1580px] mx-auto flex flex-col md:flex-row items-stretch gap-[50px] md:gap-[80px]">
 
         {/* Left — headline */}
         <motion.div
-          className="w-full md:w-1/2"
+          className="relative w-full md:w-[55%] p-[30px]"
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.65 }}
         >
-          <h2 style={{ fontFamily: 'Helvetica', fontWeight: 700, fontSize: 'clamp(28px, 3.5vw, 52px)', lineHeight: 1.1, color: '#000000' }}>
+          <FrameCorners size="w-10 h-10" />
+          <h2 className="font-helvetica text-[28px] md:text-[48px] font-bold leading-tight mb-8" style={{ color: '#000000' }}>
             The agentic economy needs open infrastructure.{' '}
             <span style={{ backgroundColor: '#000000', color: '#65D56E', padding: '2px 8px' }}>
               NEARCON is where we build it.
@@ -25,8 +27,8 @@ export function Statement2027() {
 
         {/* Right — body */}
         <motion.div
-          className="w-full md:w-1/2 flex flex-col gap-[24px]"
-          style={{ fontFamily: 'Poppins', fontSize: '16px', lineHeight: '1.75', fontWeight: 300, color: '#000000' }}
+          className="w-full md:w-[45%] flex flex-col justify-center gap-[24px]"
+          style={{ fontFamily: 'Poppins', fontSize: '18px', lineHeight: '1.75', fontWeight: 300, color: '#000000' }}
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
