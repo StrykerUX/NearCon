@@ -8,15 +8,19 @@ import { FrameCorners } from '../ui/FrameCorners'
 import styles from '../nearcon/WhatToExpect.module.css'
 import { Session as AirtableSession } from '@/lib/airtable'
 
+interface Speaker {
+  name: string
+  role: string
+  initials: string
+  image?: string
+}
+
 interface Session {
   id: string
   time: string
   title: string
   description: string
-  speaker: string
-  role: string
-  initials: string
-  image?: string
+  speakers: Speaker[]
 }
 
 interface DayGroup {
@@ -27,18 +31,17 @@ interface DayGroup {
 }
 
 function mapSession(s: AirtableSession): Session {
-  const first = s.speakerFirstName
-  const last = s.speakerLastName
-  const roleParts = [s.speakerRole, s.speakerCompany].filter(Boolean)
   return {
     id: s.id,
     time: s.startTime,
     title: s.sessionName,
     description: s.description,
-    speaker: `${first} ${last}`.trim(),
-    role: roleParts.join(' - '),
-    initials: `${first[0] ?? ''}${last[0] ?? ''}`.toUpperCase(),
-    image: s.speakerImage || undefined,
+    speakers: s.speakers.map((sp) => ({
+      name: `${sp.firstName} ${sp.lastName}`.trim(),
+      role: [sp.role, sp.company].filter(Boolean).join(' - '),
+      initials: `${sp.firstName[0] ?? ''}${sp.lastName[0] ?? ''}`.toUpperCase(),
+      image: sp.image || undefined,
+    })),
   }
 }
 
@@ -83,56 +86,60 @@ const SessionCard = ({ session }: { session: Session }) => (
   <div
     data-card-type="session"
     className="bg-black text-nearcon-cream relative p-[50px] flex-shrink-0 w-[calc(100vw-50px)] md:w-[500px]"
-    style={{ height: '350px' }}
+    style={{ minHeight: '350px' }}
   >
-    {/* FrameCorners inset 25px from card edge, spanning full card height */}
+    {/* FrameCorners inset 25px from card edge */}
     <div className="absolute inset-[25px] pointer-events-none">
       <FrameCorners color="border-[#EBE3D3]" size="w-[40px] h-[40px]" />
     </div>
 
-      <div className="flex flex-col gap-3 h-full">
-        {/* Time */}
-        <div style={{ fontFamily: 'Poppins', fontSize: '14px', fontWeight: 400, color: '#EBE3D3', opacity: 0.6 }}>
-          {session.time}
-        </div>
-
-        {/* Title + Description — flexible area */}
-        <div className="flex flex-col flex-1 gap-1 min-h-0">
-          <h3
-            style={{ fontFamily: 'Helvetica', fontSize: '26px', fontWeight: 700, color: '#EBE3D3', lineHeight: '1.2' }}
-          >
-            {session.title}
-          </h3>
-
-          <p className="line-clamp-2" style={{ fontFamily: 'Poppins', fontSize: '15px', fontWeight: 300, color: '#EBE3D3', lineHeight: '1.5' }}>
-            {session.description}
-          </p>
-        </div>
-
-        {/* Speaker */}
-        <div className="flex items-center gap-3 mt-auto">
-          <div className="w-10 h-10 overflow-hidden shrink-0 relative">
-            {session.image ? (
-              <Image src={session.image} alt={session.speaker} fill className="object-cover" sizes="40px" />
-            ) : (
-              <div
-                className="w-full h-full flex items-center justify-center"
-                style={{ backgroundColor: '#444', fontFamily: 'Helvetica', fontSize: '13px', fontWeight: 700, color: '#000' }}
-              >
-                {session.initials}
-              </div>
-            )}
-          </div>
-          <div>
-            <p style={{ fontFamily: 'Poppins', fontSize: '14px', fontWeight: 400, color: '#EBE3D3' }}>
-              {session.speaker}
-            </p>
-            <p style={{ fontFamily: 'Poppins', fontSize: '12px', fontWeight: 300, color: '#EBE3D3', opacity: 0.6 }}>
-              {session.role}
-            </p>
-          </div>
-        </div>
+    <div className="flex flex-col gap-3 h-full">
+      {/* Time */}
+      <div style={{ fontFamily: 'Poppins', fontSize: '14px', fontWeight: 400, color: '#EBE3D3', opacity: 0.6 }}>
+        {session.time}
       </div>
+
+      {/* Title + Description — flexible area */}
+      <div className="flex flex-col flex-1 gap-1 min-h-0">
+        <h3
+          style={{ fontFamily: 'Helvetica', fontSize: '26px', fontWeight: 700, color: '#EBE3D3', lineHeight: '1.2' }}
+        >
+          {session.title}
+        </h3>
+
+        <p className="line-clamp-2" style={{ fontFamily: 'Poppins', fontSize: '15px', fontWeight: 300, color: '#EBE3D3', lineHeight: '1.5' }}>
+          {session.description}
+        </p>
+      </div>
+
+      {/* Speakers */}
+      <div className="flex flex-col gap-2 mt-auto">
+        {session.speakers.map((speaker, i) => (
+          <div key={i} className="flex items-center gap-3">
+            <div className="w-10 h-10 overflow-hidden shrink-0 relative">
+              {speaker.image ? (
+                <Image src={speaker.image} alt={speaker.name} fill className="object-cover" sizes="40px" />
+              ) : (
+                <div
+                  className="w-full h-full flex items-center justify-center"
+                  style={{ backgroundColor: '#444', fontFamily: 'Helvetica', fontSize: '13px', fontWeight: 700, color: '#000' }}
+                >
+                  {speaker.initials}
+                </div>
+              )}
+            </div>
+            <div>
+              <p style={{ fontFamily: 'Poppins', fontSize: '14px', fontWeight: 400, color: '#EBE3D3' }}>
+                {speaker.name}
+              </p>
+              <p style={{ fontFamily: 'Poppins', fontSize: '12px', fontWeight: 300, color: '#EBE3D3', opacity: 0.6 }}>
+                {speaker.role}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
   </div>
 )
 
