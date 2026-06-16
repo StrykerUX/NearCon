@@ -26,12 +26,14 @@ const PHRASES = [
 export function RecapCTA() {
   const canvasRef = useRef<HTMLPreElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
+  const sectionRef = useRef<HTMLElement>(null)
   const gridRef = useRef({ cols: 220, rows: 55 })
 
   useEffect(() => {
     const canvas = canvasRef.current
     const container = containerRef.current
-    if (!canvas || !container) return
+    const section = sectionRef.current
+    if (!canvas || !container || !section) return
 
     // Measure a single character to calculate grid dimensions
     const measureChar = () => {
@@ -78,8 +80,8 @@ export function RecapCTA() {
     }
     const handleMouseLeave = () => { mouse.x = -100; mouse.y = -100 }
 
-    container.addEventListener('mousemove', handleMouseMove)
-    container.addEventListener('mouseleave', handleMouseLeave)
+    section.addEventListener('mousemove', handleMouseMove)
+    section.addEventListener('mouseleave', handleMouseLeave)
 
     function render() {
       const { cols, rows } = gridRef.current
@@ -142,13 +144,13 @@ export function RecapCTA() {
     return () => {
       cancelAnimationFrame(animFrameId)
       ro.disconnect()
-      container.removeEventListener('mousemove', handleMouseMove)
-      container.removeEventListener('mouseleave', handleMouseLeave)
+      section.removeEventListener('mousemove', handleMouseMove)
+      section.removeEventListener('mouseleave', handleMouseLeave)
     }
   }, [])
 
   return (
-    <section className="bg-black relative overflow-hidden" style={{ minHeight: '640px' }}>
+    <section ref={sectionRef} className="bg-black relative overflow-hidden" style={{ minHeight: '640px' }}>
 
       {/* ASCII background */}
       <div ref={containerRef} className={styles.asciiWrapper}>

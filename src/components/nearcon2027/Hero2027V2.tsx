@@ -32,6 +32,7 @@ const metadata = [
 export function Hero2027V2() {
   const canvasRef = useRef<HTMLPreElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
+  const sectionRef = useRef<HTMLElement>(null)
   const gridRef = useRef({ cols: 220, rows: 55 })
 
   useEffect(() => {
@@ -75,6 +76,9 @@ export function Hero2027V2() {
     const floatingPhrases: Array<{ x: number; y: number; life: number; text: string }> = []
     let animFrameId: number
 
+    const section = sectionRef.current
+    if (!section) return
+
     const handleMouseMove = (e: MouseEvent) => {
       const rect = canvas.getBoundingClientRect()
       const { cols, rows } = gridRef.current
@@ -83,8 +87,8 @@ export function Hero2027V2() {
     }
     const handleMouseLeave = () => { mouse.x = -100; mouse.y = -100 }
 
-    container.addEventListener('mousemove', handleMouseMove)
-    container.addEventListener('mouseleave', handleMouseLeave)
+    section.addEventListener('mousemove', handleMouseMove)
+    section.addEventListener('mouseleave', handleMouseLeave)
 
     function render() {
       const { cols, rows } = gridRef.current
@@ -145,13 +149,14 @@ export function Hero2027V2() {
     return () => {
       cancelAnimationFrame(animFrameId)
       ro.disconnect()
-      container.removeEventListener('mousemove', handleMouseMove)
-      container.removeEventListener('mouseleave', handleMouseLeave)
+      section.removeEventListener('mousemove', handleMouseMove)
+      section.removeEventListener('mouseleave', handleMouseLeave)
     }
   }, [])
 
   return (
     <section
+      ref={sectionRef}
       className="relative w-full bg-black overflow-hidden"
       style={{ minHeight: '100svh', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }}
     >
