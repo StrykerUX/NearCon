@@ -90,8 +90,7 @@ export function RecapWhatToExpectV2() {
                     className="relative w-full h-full p-[16px] overflow-hidden transition-transform duration-300 group-hover:scale-[0.97]"
                     style={{ transformOrigin: 'center' }}
                   >
-                    <FrameCorners color="border-[#EBE3D3]" size="w-[32px] h-[32px]" />
-                    <div
+                      <div
                       className="relative w-full h-full overflow-hidden transition-transform duration-300 group-hover:scale-[1.04]"
                       style={{ transformOrigin: 'center' }}
                     >
@@ -103,6 +102,7 @@ export function RecapWhatToExpectV2() {
                         sizes="(max-width: 768px) 100vw, 50vw"
                       />
                     </div>
+                    <FrameCorners color="border-[#EBE3D3]" size="w-[32px] h-[32px]" />
                   </div>
                 </div>
               </motion.div>

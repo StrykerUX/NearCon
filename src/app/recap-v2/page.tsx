@@ -1,6 +1,4 @@
-import { CountdownRecapV2 } from '@/components/nearcon2027/CountdownRecapV2'
-import { RecapHeroV3 } from '@/components/recap/RecapHeroV3'
-import { TickerBanner } from '@/components/ui/TickerBanner'
+import { RecapV2HeroBlock } from '@/components/recap/RecapV2HeroBlock'
 import { RecapIntro } from '@/components/recap/RecapIntro'
 import { SessionHighlights } from '@/components/recap/SessionHighlights'
 import { AgentWars } from '@/components/recap/AgentWars'
@@ -17,21 +15,8 @@ export default async function RecapV2Page() {
 
   return (
     <div className="min-h-screen bg-nearcon-cream text-text-primary selection:bg-nearcon-green selection:text-text-primary">
-      {/* Top banner stripe */}
-      <div style={{ paddingTop: '50px' }}>
-        <TickerBanner />
-      </div>
-
-      {/* Countdown Section */}
-      <CountdownRecapV2 />
-
-      {/* Banner stripe */}
-      <TickerBanner />
-
-      <div style={{ height: '80px' }} />
-
-      {/* Hero Section */}
-      <RecapHeroV3 mode="expand-shrink" />
+      {/* Hero block: primera sección sticky + video que la cubre al scrollear */}
+      <RecapV2HeroBlock />
 
       {/* Intro Section */}
       <div className="max-w-[1580px] mx-auto">
