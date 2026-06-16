@@ -75,38 +75,43 @@ export function RecapWhatToExpectV2() {
               gap: '50px',
             }}
           >
-            {photos.map((imgUrl, idx) => (
-              <motion.div
-                key={idx}
-                className="bento-cell"
-                style={{ gridColumn: layout[idx].col, gridRow: layout[idx].row }}
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, margin: '-40px' }}
-                transition={{ duration: 0.45, delay: idx * 0.07 }}
-              >
-                <div className="group w-full h-full">
-                  <div
-                    className="relative w-full h-full p-[16px] overflow-hidden transition-transform duration-300 group-hover:scale-[0.97]"
-                    style={{ transformOrigin: 'center' }}
-                  >
-                      <div
-                      className="relative w-full h-full overflow-hidden transition-transform duration-300 group-hover:scale-[1.04]"
+            {photos.map((imgUrl, idx) => {
+              const isLarge = idx === 0 || idx === 3
+              return (
+                <motion.div
+                  key={idx}
+                  className="bento-cell"
+                  style={{ gridColumn: layout[idx].col, gridRow: layout[idx].row }}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true, margin: '-40px' }}
+                  transition={{ duration: 0.45, delay: idx * 0.07 }}
+                >
+                  <div className="group w-full h-full">
+                    <div
+                      className={`relative w-full h-full p-[25px] overflow-hidden transition-transform duration-300 ${isLarge ? 'group-hover:scale-[0.96]' : 'group-hover:scale-[0.92]'}`}
                       style={{ transformOrigin: 'center' }}
                     >
-                      <Image
-                        src={imgUrl}
-                        alt={`Event Photo ${idx + 1}`}
-                        fill
-                        className="object-cover"
-                        sizes="(max-width: 768px) 100vw, 50vw"
-                      />
+                      <div
+                        className={`relative w-full h-full overflow-hidden transition-transform duration-300 ${isLarge ? 'group-hover:scale-[1.04]' : 'group-hover:scale-[1.08]'}`}
+                        style={{ transformOrigin: 'center' }}
+                      >
+                        <Image
+                          src={imgUrl}
+                          alt={`Event Photo ${idx + 1}`}
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 768px) 100vw, 50vw"
+                        />
+                      </div>
+                      <div className="absolute inset-0 z-10 pointer-events-none">
+                        <FrameCorners color="border-[#EBE3D3]" size="w-[32px] h-[32px]" />
+                      </div>
                     </div>
-                    <FrameCorners color="border-[#EBE3D3]" size="w-[32px] h-[32px]" />
                   </div>
-                </div>
-              </motion.div>
-            ))}
+                </motion.div>
+              )
+            })}
           </div>
         </div>
       </div>

@@ -72,7 +72,7 @@ export function RecapV2HeroBlock() {
       {/* Primera sección: sticky, z-index bajo */}
       <div
         ref={firstSectionRef}
-        style={{ position: 'sticky', top: 0, zIndex: 1, backgroundColor: '#EBE3D3' }}
+        style={{ position: 'sticky', top: 0, zIndex: 1, backgroundColor: '#EBE3D3', pointerEvents: 'none' }}
       >
         <div style={{ paddingTop: '50px' }}>
           <TickerBanner />
