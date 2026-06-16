@@ -11,20 +11,22 @@ gsap.registerPlugin(ScrollTrigger)
 const VIDEO_URL =
   'https://www.dropbox.com/scl/fi/jv8jljj1e8y3xnz3pwz8g/2026_NearCon_Sizzle.mp4?rlkey=xcrmj6o1gpv715zr3lwpgz7q6&st=dbjciyvz&dl=1'
 
-export function RecapHeroV3() {
+export function RecapHeroV3({ mode = 'shrink' }: { mode?: 'shrink' | 'expand-shrink' }) {
   const triggerRef = useRef<HTMLDivElement>(null)
   const heroRef = useRef<HTMLDivElement>(null)
-  const [showContent, setShowContent] = useState(false)
-  const [showScroll, setShowScroll] = useState(false)
+  const [showContent, setShowContent] = useState(mode === 'expand-shrink')
+  const [showScroll, setShowScroll] = useState(mode === 'expand-shrink')
 
-  // Reveal gradient and titles after 5 seconds
+  // Reveal gradient and titles after 5 seconds (only in shrink mode, video starts full)
   useEffect(() => {
+    if (mode !== 'shrink') return
     const timer = setTimeout(() => setShowContent(true), 5000)
     return () => clearTimeout(timer)
-  }, [])
+  }, [mode])
 
-  // Show scroll indicator at 3s, hide on first scroll
+  // Show scroll indicator at 3s, hide on first scroll (only in shrink mode)
   useEffect(() => {
+    if (mode !== 'shrink') return
     const timer = setTimeout(() => setShowScroll(true), 3000)
     const handleScroll = () => setShowScroll(false)
     window.addEventListener('scroll', handleScroll, { once: true })
@@ -32,9 +34,8 @@ export function RecapHeroV3() {
       clearTimeout(timer)
       window.removeEventListener('scroll', handleScroll)
     }
-  }, [])
+  }, [mode])
 
-  // Scroll-driven shrink: full-screen → exact original hero dimensions
   const stRef = useRef<ScrollTrigger | null>(null)
 
   useGSAP(() => {
@@ -45,33 +46,48 @@ export function RecapHeroV3() {
 
     const setup = () => {
       if (stRef.current) { stRef.current.kill(); stRef.current = null }
-      gsap.set(hero, { top: 0, right: 0, bottom: 0, left: 0 })
 
-      // Use clientWidth to match CSS layout width (excludes scrollbar)
-      // Match lateral padding: 25px on mobile (<768px), 50px on desktop
       const vw = document.documentElement.clientWidth
       const sidePadding = vw < 768 ? 25 : 50
       const containerWidth = Math.min(vw - sidePadding * 2, 1580)
       const hInset = (vw - containerWidth) / 2
 
-      gsap.fromTo(
-        hero,
-        { top: 0, right: 0, bottom: 0, left: 0 },
-        {
-          top: 50,
-          right: hInset,
-          bottom: 0,
-          left: hInset,
-          ease: 'none',
-          scrollTrigger: {
-            trigger,
-            start: 'top top',
-            end: 'bottom bottom',
-            scrub: 1,
-            onRefresh: (self) => { stRef.current = self },
-          },
-        }
-      )
+      if (mode === 'expand-shrink') {
+        gsap.set(hero, { top: 50, right: hInset, bottom: 0, left: hInset })
+
+        const tl = gsap.timeline({ defaults: { ease: 'none' } })
+        tl.to(hero, { top: 0, right: 0, bottom: 0, left: 0 })
+          .to(hero, { top: 50, right: hInset, bottom: 0, left: hInset })
+
+        stRef.current = ScrollTrigger.create({
+          animation: tl,
+          trigger,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 1,
+        })
+      } else {
+        gsap.set(hero, { top: 0, right: 0, bottom: 0, left: 0 })
+
+        gsap.fromTo(
+          hero,
+          { top: 0, right: 0, bottom: 0, left: 0 },
+          {
+            top: 50,
+            right: hInset,
+            bottom: 0,
+            left: hInset,
+            ease: 'none',
+            scrollTrigger: {
+              trigger,
+              start: 'top top',
+              end: 'bottom bottom',
+              scrub: 1,
+              onRefresh: (self) => { stRef.current = self },
+            },
+          }
+        )
+      }
     }
 
     setup()
@@ -90,9 +106,10 @@ export function RecapHeroV3() {
     }
   })
 
+  const triggerHeight = mode === 'expand-shrink' ? 'calc(100vh + 1200px)' : 'calc(100vh + 600px)'
+
   return (
-    // Trigger div: provides scroll distance for the animation (100vh hero + 600px to shrink)
-    <div ref={triggerRef} style={{ height: 'calc(100vh + 600px)' }} className="bg-nearcon-cream">
+    <div ref={triggerRef} style={{ height: triggerHeight }} className="bg-nearcon-cream">
       {/* Sticky viewport: stays at top while trigger scrolls */}
       <div className="sticky top-0 h-screen overflow-hidden">
         {/* Hero: absolutely positioned, GSAP animates inset from 0 → 50px */}

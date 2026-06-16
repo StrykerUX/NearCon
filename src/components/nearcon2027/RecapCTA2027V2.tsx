@@ -112,7 +112,7 @@ export function RecapCTA2027V2() {
               style={{ fontFamily: 'Helvetica', fontWeight: 700, fontSize: 'clamp(32px, 4vw, 60px)', lineHeight: 1.1 }}
             >
               <span className="text-nearcon-cream block">Missed NEARCON 2026?</span>
-              <span style={{ color: '#59C2E8' }}>We got you.</span>
+              <span style={{ background: 'linear-gradient(90deg, #65D56E, #59C2E8)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>We got you</span>
             </h2>
 
             <p style={{ fontFamily: 'Poppins', fontSize: '16px', fontWeight: 300, color: 'rgba(235,227,211,0.7)', lineHeight: 1.7 }}>
@@ -129,7 +129,7 @@ export function RecapCTA2027V2() {
               fontWeight: 700,
               letterSpacing: '2px',
               color: '#000000',
-              backgroundColor: '#F98372',
+              background: 'linear-gradient(90deg, #F98372, #F1B139)',
             }}
           >
             [ VIEW THE NEARCON 2026 RECAP ]
