@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useState, useEffect } from 'react'
+import { useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
@@ -12,22 +12,12 @@ import Link from 'next/link'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const TARGET = new Date('2027-03-09T19:00:00Z').getTime()
-
-function getDaysLeft() {
-  const distance = TARGET - Date.now()
-  if (distance <= 0) return 0
-  return Math.floor(distance / (1000 * 60 * 60 * 24))
-}
-
 export function RecapV2HeroBlock() {
   const firstSectionRef = useRef<HTMLDivElement>(null)
   const videoWrapperRef = useRef<HTMLDivElement>(null)
   const widgetRef = useRef<HTMLDivElement>(null)
   const stRef = useRef<ScrollTrigger | null>(null)
   const widgetStRef = useRef<ScrollTrigger | null>(null)
-  const [days] = useState(getDaysLeft)
-
   useGSAP(() => {
     if (!firstSectionRef.current || !videoWrapperRef.current || !widgetRef.current) return
 
@@ -74,11 +64,17 @@ export function RecapV2HeroBlock() {
         ref={firstSectionRef}
         style={{ position: 'sticky', top: 0, zIndex: 1, backgroundColor: '#EBE3D3', pointerEvents: 'none' }}
       >
-        <div style={{ paddingTop: '50px' }}>
-          <TickerBanner />
-        </div>
         <CountdownRecapV2 />
-        <TickerBanner />
+        <div style={{ position: 'relative', overflow: 'hidden' }}>
+          <div style={{ position: 'absolute', inset: 0 }}>
+            <TickerBanner />
+          </div>
+          <div style={{ position: 'relative', zIndex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <h1 style={{ fontFamily: 'Helvetica', fontSize: '75px', fontWeight: 700, lineHeight: 1, color: '#000000', backgroundColor: '#EBE3D3', padding: '6px 24px' }}>
+              NEARCON 2026 RECAP
+            </h1>
+          </div>
+        </div>
         <div style={{ height: '80px' }} />
       </div>
 
@@ -106,17 +102,9 @@ export function RecapV2HeroBlock() {
               <p style={{ fontFamily: 'Helvetica', fontSize: '18px', lineHeight: '22px', fontWeight: 700, background: 'linear-gradient(90deg, #65D56E, #59C2E8, #F98372, #F1B139)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>
                 NEARCON 2027
               </p>
-              <p style={{ fontFamily: 'Helvetica', fontSize: '18px', lineHeight: '22px', fontWeight: 400, color: '#EBE3D3', marginBottom: '10px' }}>
+              <p style={{ fontFamily: 'Helvetica', fontSize: '18px', lineHeight: '22px', fontWeight: 400, color: '#EBE3D3' }}>
                 is coming
               </p>
-              <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px' }}>
-                <span style={{ fontFamily: 'Roboto Mono', fontSize: '48px', fontWeight: 300, lineHeight: 1, color: '#EBE3D3' }}>
-                  {days}
-                </span>
-                <span style={{ fontFamily: 'Helvetica', fontSize: '11px', fontWeight: 700, letterSpacing: '3px', color: 'rgba(235,227,211,0.5)' }}>
-                  DAYS
-                </span>
-              </div>
             </div>
           </div>
         </Link>

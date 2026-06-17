@@ -159,12 +159,6 @@ export function RecapHeroV3({ mode = 'shrink' }: { mode?: 'shrink' | 'expand-shr
                   >
                     FORT MASON CENTER - SAN FRANCISCO - FEB 23-24, 2026
                   </p>
-                  <h1
-                    className="text-nearcon-cream text-[46px] md:text-[75px]"
-                  style={{ fontFamily: 'Helvetica', fontWeight: 700, lineHeight: '1.1' }}
-                  >
-                    NEARCON 2026
-                  </h1>
                 </div>
               </motion.div>
             )}
