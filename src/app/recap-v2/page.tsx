@@ -33,14 +33,10 @@ export default async function RecapV2Page() {
       <RecapWhatToExpectV2 />
 
       {/* Agent Wars */}
-      <div className="mt-[100px]">
-        <AgentWars />
-      </div>
+      <AgentWars />
 
       {/* Innovation Sandbox */}
-      <div className="mt-[90px] mb-[20px]">
-        <InnovationSandbox />
-      </div>
+      <InnovationSandbox />
 
       {/* Thank You to Our Sponsors */}
       <ThankYouSponsors />

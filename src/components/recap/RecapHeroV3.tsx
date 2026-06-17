@@ -53,11 +53,13 @@ export function RecapHeroV3({ mode = 'shrink' }: { mode?: 'shrink' | 'expand-shr
       const hInset = (vw - containerWidth) / 2
 
       if (mode === 'expand-shrink') {
-        gsap.set(hero, { top: 50, right: hInset, bottom: 0, left: hInset })
+        const maxInset = 50
+        gsap.set(hero, { top: 0, right: hInset, bottom: 0, left: hInset })
 
         const tl = gsap.timeline({ defaults: { ease: 'none' } })
-        tl.to(hero, { top: 0, right: 0, bottom: 0, left: 0 })
-          .to(hero, { top: 50, right: hInset, bottom: 0, left: hInset })
+        tl.to(hero, { top: 0, right: maxInset, bottom: 0, left: maxInset, duration: 1 })   // expande hasta máximo
+          .to(hero, { top: 0, right: maxInset, bottom: 0, left: maxInset, duration: 2 })   // hold en máximo
+          .to(hero, { top: 0, right: hInset, bottom: 0, left: hInset, duration: 1 })       // encoge
 
         stRef.current = ScrollTrigger.create({
           animation: tl,

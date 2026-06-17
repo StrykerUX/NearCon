@@ -46,13 +46,13 @@ export function RecapWhatToExpectV2() {
   }, [])
 
   return (
-    <section className="bg-black text-nearcon-cream pt-[75px] pb-[75px] md:pt-[100px] md:pb-[100px]">
+    <section className="bg-black text-nearcon-cream pt-[100px] pb-[100px]">
       {/* Title section */}
       <div className="w-full bg-cover bg-center px-[25px] md:px-[50px]" style={{ backgroundImage: 'url(/img/Group-3-1.png)' }}>
         <div className="max-w-[1580px] mx-auto">
           <motion.h2
             className="font-helvetica inline-block text-nearcon-cream in-photos-title"
-            style={{ backgroundColor: '#000000', padding: '12px 40px', fontSize: '36px', fontWeight: 700, lineHeight: '40px' }}
+            style={{ backgroundColor: '#000000', padding: '10px 40px', fontSize: '36px', fontWeight: 700, lineHeight: '40px' }}
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -64,7 +64,7 @@ export function RecapWhatToExpectV2() {
       </div>
 
       {/* Bento gallery */}
-      <div className="px-[25px] md:px-[50px] py-[50px] md:py-[100px]">
+      <div className="px-[25px] md:px-[50px] pt-[40px] pb-0">
         <div className="max-w-[1580px] mx-auto">
           <div
             className="bento-grid"

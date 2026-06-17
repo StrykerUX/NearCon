@@ -10,7 +10,7 @@ export function SessionVideos({ videos }: { videos: YTVideo[] }) {
   const [selectedId, setSelectedId] = useState(videos[0]?.id ?? '')
 
   return (
-    <section className="bg-nearcon-cream pt-[50px] pb-[75px] md:pt-[50px] md:pb-[100px]">
+    <section className="bg-nearcon-cream pt-[100px] pb-[100px]">
       <style>{`
         .videos-grid {
           display: flex;
@@ -78,7 +78,7 @@ export function SessionVideos({ videos }: { videos: YTVideo[] }) {
       </div>
 
       {/* Content */}
-      <div className="px-[25px] md:px-[50px] pt-[50px] md:pt-[100px]">
+      <div className="px-[25px] md:px-[50px] pt-[40px]">
         <div className="max-w-[1580px] mx-auto">
 
           <div className="videos-grid">
