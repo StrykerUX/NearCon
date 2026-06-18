@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import styles from '../recap/RecapCTA.module.css'
 
 const CHARS = [
@@ -34,6 +34,13 @@ export function Hero2027V2() {
   const containerRef = useRef<HTMLDivElement>(null)
   const sectionRef = useRef<HTMLElement>(null)
   const gridRef = useRef({ cols: 220, rows: 55 })
+  const [showScroll, setShowScroll] = useState(true)
+
+  useEffect(() => {
+    const handleScroll = () => setShowScroll(window.scrollY < 50)
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -189,6 +196,7 @@ export function Hero2027V2() {
 
           {/* Metadata row */}
           <motion.div
+            className="hidden"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.6 }}
@@ -218,6 +226,27 @@ export function Hero2027V2() {
 
         </div>
       </div>
+
+      {/* Scroll indicator — absolute, pointerEvents none para no interferir con el canvas */}
+      <div
+        style={{
+          position: 'absolute',
+          bottom: '32px',
+          left: 0,
+          right: 0,
+          display: 'flex',
+          justifyContent: 'center',
+          opacity: showScroll ? 1 : 0,
+          transition: 'opacity 0.5s ease',
+          zIndex: 20,
+          pointerEvents: 'none',
+        }}
+      >
+        <span style={{ fontFamily: 'Helvetica', fontSize: '11px', fontWeight: 700, letterSpacing: '4px', color: 'rgba(235,227,211,0.7)' }}>
+          SCROLL
+        </span>
+      </div>
+
     </section>
   )
 }

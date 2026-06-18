@@ -67,8 +67,8 @@ export function SessionVideos({ videos }: { videos: YTVideo[] }) {
       >
         <div className="max-w-[1580px] mx-auto">
           <motion.h2
-            className="font-helvetica text-[30px] leading-[36px] md:text-[36px] md:leading-normal inline-block"
-            style={{ backgroundColor: '#EBE3D3', padding: '10px 40px' }}
+            className="font-helvetica text-[30px] leading-[36px] md:text-[36px] md:leading-normal inline-block px-[25px] md:px-[40px] py-[10px]"
+            style={{ backgroundColor: '#EBE3D3' }}
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}

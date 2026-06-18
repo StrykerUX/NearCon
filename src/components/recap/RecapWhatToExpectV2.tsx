@@ -51,8 +51,8 @@ export function RecapWhatToExpectV2() {
       <div className="w-full bg-cover bg-center px-[25px] md:px-[50px]" style={{ backgroundImage: 'url(/img/Group-3-1.png)' }}>
         <div className="max-w-[1580px] mx-auto">
           <motion.h2
-            className="font-helvetica inline-block text-nearcon-cream in-photos-title"
-            style={{ backgroundColor: '#000000', padding: '10px 40px', fontSize: '36px', fontWeight: 700, lineHeight: '40px' }}
+            className="font-helvetica inline-block text-nearcon-cream in-photos-title px-[25px] md:px-[40px] py-[10px]"
+            style={{ backgroundColor: '#000000', fontSize: '36px', fontWeight: 700, lineHeight: '40px' }}
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}

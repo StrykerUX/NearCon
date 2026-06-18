@@ -48,7 +48,7 @@ export function CountdownRecapV2() {
           </div>
 
           <h2
-            className="font-helvetica text-center text-[48px] md:text-[115px]"
+            className="font-helvetica text-center text-[60px] md:text-[115px]"
             style={{ lineHeight: 1.05, color: '#000000' }}
           >
             <span className={styles.gradientHover}>NEARCON</span> 2027<br />

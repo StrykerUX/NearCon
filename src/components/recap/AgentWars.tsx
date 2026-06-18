@@ -65,17 +65,17 @@ export function AgentWars() {
             </div>
 
             {/* Stats */}
-            <div className="pt-[30px] flex gap-[50px]">
+            <div className="pt-[30px] flex gap-[20px] md:gap-[50px]">
               <div>
-                <p style={{ fontFamily: 'Helvetica', fontSize: '42px', fontWeight: 700, color: '#000000', lineHeight: 1 }}>4,000</p>
+                <p className="text-[36px] md:text-[42px]" style={{ fontFamily: 'Helvetica', fontWeight: 700, color: '#000000', lineHeight: 1 }}>4,000</p>
                 <p className="mt-1" style={{ fontFamily: 'Poppins', fontSize: '11px', fontWeight: 400, letterSpacing: '2px', color: '#000000', opacity: 0.5 }}>NEAR PRIZE POOL</p>
               </div>
               <div>
-                <p style={{ fontFamily: 'Helvetica', fontSize: '42px', fontWeight: 700, color: '#000000', lineHeight: 1 }}>4</p>
+                <p className="text-[36px] md:text-[42px]" style={{ fontFamily: 'Helvetica', fontWeight: 700, color: '#000000', lineHeight: 1 }}>4</p>
                 <p className="mt-1" style={{ fontFamily: 'Poppins', fontSize: '11px', fontWeight: 400, letterSpacing: '2px', color: '#000000', opacity: 0.5 }}>CHALLENGES</p>
               </div>
               <div>
-                <p style={{ fontFamily: 'Helvetica', fontSize: '42px', fontWeight: 700, color: '#000000', lineHeight: 1 }}>4h</p>
+                <p className="text-[36px] md:text-[42px]" style={{ fontFamily: 'Helvetica', fontWeight: 700, color: '#000000', lineHeight: 1 }}>4h</p>
                 <p className="mt-1" style={{ fontFamily: 'Poppins', fontSize: '11px', fontWeight: 400, letterSpacing: '2px', color: '#000000', opacity: 0.5 }}>DURATION</p>
               </div>
             </div>

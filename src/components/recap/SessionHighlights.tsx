@@ -283,8 +283,8 @@ export function SessionHighlights({ sessions }: { sessions: AirtableSession[] })
       <div className="w-full bg-cover bg-center px-[25px] md:px-[50px]" style={{ backgroundImage: 'url(/img/Group-43-3.png)' }}>
         <div className="max-w-[1580px] mx-auto">
           <motion.h2
-            className="font-helvetica text-[30px] leading-[36px] md:text-[36px] md:leading-normal inline-block"
-            style={{ backgroundColor: '#EBE3D3', padding: '10px 40px' }}
+            className="font-helvetica text-[30px] leading-[36px] md:text-[36px] md:leading-normal inline-block px-[25px] md:px-[40px] py-[10px]"
+            style={{ backgroundColor: '#EBE3D3' }}
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}

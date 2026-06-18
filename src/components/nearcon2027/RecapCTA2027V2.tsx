@@ -90,13 +90,13 @@ function PhotoCarousel() {
 
 export function RecapCTA2027V2() {
   return (
-    <section className="bg-black overflow-hidden pt-[80px] pb-[80px]">
+    <section className="bg-black overflow-hidden pt-[100px] pb-[100px] md:pt-[125px] md:pb-[125px]">
 
       {/* Top banner */}
       <div className="w-full bg-cover bg-center" style={{ backgroundImage: 'url(/img/Group-3-1.png)', height: '55px' }} />
 
       {/* Main content */}
-      <div className="px-[25px] md:px-[50px] py-[100px]">
+      <div className="px-[25px] md:px-[50px] py-[60px] md:py-[80px]">
       <div className="max-w-[1580px] mx-auto flex flex-col md:flex-row gap-[50px] md:gap-[80px] items-stretch">
 
         {/* Left — texto */}
@@ -122,23 +122,22 @@ export function RecapCTA2027V2() {
 
           <a
             href="/recap"
-            className="inline-block self-start px-[28px] py-[13px]"
+            className="inline-block self-start px-[18px] md:px-[28px] py-[13px] whitespace-nowrap text-[13px] md:text-[14px]"
             style={{
               fontFamily: 'Helvetica',
-              fontSize: '14px',
               fontWeight: 700,
               letterSpacing: '2px',
               color: '#000000',
               background: 'linear-gradient(90deg, #F98372, #F1B139)',
             }}
           >
-            [ VIEW THE NEARCON 2026 RECAP ]
+            VIEW THE NEARCON 2026 RECAP
           </a>
         </motion.div>
 
         {/* Right — carrusel horizontal de fotos cuadradas */}
         <motion.div
-          className="w-full md:w-[45%]"
+          className="w-full md:w-[45%] h-[280px] md:h-auto"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true, margin: '-60px' }}

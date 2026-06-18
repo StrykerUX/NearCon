@@ -60,45 +60,46 @@ export function Countdown2027V2() {
   return (
     <motion.section
       ref={sectionRef}
-      className="relative overflow-hidden py-[100px] px-[50px] flex flex-col justify-center items-center bg-nearcon-cream"
+      className="relative overflow-hidden py-[100px] px-[25px] md:py-[125px] md:px-[50px] flex flex-col justify-center items-center bg-nearcon-cream"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: '-100px' }}
       variants={containerVariants}
       id="countdown"
     >
-      <div className="relative z-10 w-full mx-auto flex flex-col md:flex-row items-center justify-center gap-[120px]">
+      <div className="relative z-10 w-full mx-auto flex justify-center">
 
-        {/* Columna izquierda — imagen top, título, imagen bottom, botones */}
-        <motion.div className="flex flex-col gap-[50px]" variants={itemVariants}>
+        {/* Contenido centrado con FrameCorners */}
+        <motion.div className="relative p-[25px] md:p-[50px]" variants={itemVariants}>
+          <FrameCorners color="border-black" size="w-[30px] h-[30px]" />
 
-          <div className="w-[50%]">
-            <Image src="/img/Group-3-1-1.png" alt="" width={800} height={600} sizes="30vw" className="w-full h-auto" />
+          <div className="flex flex-col gap-[50px]">
+
+            <div className="w-[50%] self-start">
+              <Image src="/img/Group-3-1-1.png" alt="" width={800} height={600} sizes="30vw" className="w-full h-auto" />
+            </div>
+
+            <h2
+              className="font-helvetica text-center text-[42px] md:text-[75px]"
+              style={{ lineHeight: 1.05, color: '#000000' }}
+            >
+              The next chapter<br />
+              <span className={styles.gradientDefault}>is almost here</span>
+            </h2>
+
+            <div className="w-[75%] self-end">
+              <Image src="/img/Group-23-scaled.png" alt="" width={1200} height={900} sizes="30vw" className="w-full h-auto" />
+            </div>
+
           </div>
-
-          <h2
-            className="font-helvetica"
-            style={{ fontSize: '65px', lineHeight: 1.05, color: '#000000' }}
-          >
-            The next chapter<br />
-            <span className={styles.gradientDefault}>is almost here</span>
-          </h2>
-
-          <div className="w-[75%] ml-auto">
-            <Image src="/img/Group-46.png" alt="" width={1200} height={900} sizes="30vw" className="w-full h-auto" />
-          </div>
-
         </motion.div>
 
-        {/* Columna derecha — número de días */}
-        <motion.div className="flex justify-center" variants={itemVariants}>
+        {/* Columna de días — oculta */}
+        <motion.div className="hidden" variants={itemVariants}>
           <div className="relative flex flex-col items-start py-[50px] px-[65px]">
             <FrameCorners size="w-10 h-10" />
             <div className="flex items-center justify-center bg-nearcon-cream">
-              <span
-                className="font-light text-black"
-                style={{ fontFamily: 'Roboto Mono', fontSize: '250px', lineHeight: 1 }}
-              >
+              <span className="font-light text-black" style={{ fontFamily: 'Roboto Mono', fontSize: '250px', lineHeight: 1 }}>
                 {display}
               </span>
             </div>
