@@ -80,7 +80,7 @@ export function SessionVideos({ videos }: { videos: YTVideo[] }) {
       </div>
 
       {/* Content */}
-      <div className="px-[25px] md:px-[50px] pt-[70px]">
+      <div className="px-[25px] md:px-[50px] pt-[125px]">
         <div className="max-w-[1580px] mx-auto">
 
           <div className="videos-grid">

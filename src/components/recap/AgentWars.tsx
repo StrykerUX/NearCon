@@ -25,7 +25,7 @@ export function AgentWars() {
       </div>
 
       {/* Content */}
-      <div className="px-[25px] md:px-[50px] pt-[70px] pb-0">
+      <div className="px-[25px] md:px-[50px] pt-[125px] pb-0">
         <div className="max-w-[1580px] mx-auto flex flex-col md:flex-row gap-[40px] md:gap-[80px] items-start">
 
           {/* Left column */}

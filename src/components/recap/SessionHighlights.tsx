@@ -296,7 +296,7 @@ export function SessionHighlights({ sessions }: { sessions: AirtableSession[] })
       </div>
 
       {/* Content section */}
-      <div className="px-[25px] md:px-[50px] pt-[70px] pb-[75px]">
+      <div className="px-[25px] md:px-[50px] pt-[125px] pb-[75px]">
         <div className="max-w-[1580px] mx-auto">
           {/* Days with sessions */}
           <div className="space-y-0">

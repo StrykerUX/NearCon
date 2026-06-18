@@ -25,7 +25,7 @@ export function CountdownRecapV2() {
   return (
     <motion.section
       ref={sectionRef}
-      className="relative overflow-hidden py-[60px] px-[25px] md:py-[100px] md:px-[50px] flex flex-col justify-center items-center bg-nearcon-cream max-w-full"
+      className="relative overflow-hidden py-0 px-[25px] md:px-[50px] flex flex-col justify-center items-center bg-nearcon-cream max-w-full"
       style={{ isolation: 'isolate' }}
       initial="hidden"
       whileInView="visible"

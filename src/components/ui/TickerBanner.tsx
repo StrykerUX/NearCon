@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 
-const ROWS = 4
+const ROWS = 3
 const FONT_SIZE = 18
 const LETTERS = ['A', 'B', 'C']
 

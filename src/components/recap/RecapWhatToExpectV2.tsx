@@ -64,7 +64,7 @@ export function RecapWhatToExpectV2() {
       </div>
 
       {/* Bento gallery */}
-      <div className="px-[25px] md:px-[50px] pt-[70px] pb-0">
+      <div className="px-[25px] md:px-[50px] pt-[125px] pb-0">
         <div className="max-w-[1580px] mx-auto">
           <div
             className="bento-grid"

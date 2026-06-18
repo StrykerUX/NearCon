@@ -106,7 +106,7 @@ export function ThankYouSponsors() {
   return (
     <section className="bg-nearcon-cream pt-[75px] pb-[125px]">
       {/* Title stripe */}
-      <div className="px-[25px] md:px-[50px] mb-[70px]">
+      <div className="px-[25px] md:px-[50px] mb-[125px]">
         <div className="max-w-[1580px] mx-auto">
           <div className="bg-black py-5 px-[25px] md:px-[40px]">
             <h2 className="text-nearcon-cream text-[30px] leading-[36px] md:text-[36px] md:leading-normal" style={{ fontFamily: 'Helvetica', fontWeight: 700 }}>
