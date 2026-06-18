@@ -25,7 +25,7 @@ export function CountdownRecapV2() {
   return (
     <motion.section
       ref={sectionRef}
-      className="relative overflow-hidden py-[100px] px-[50px] flex flex-col justify-center items-center bg-nearcon-cream"
+      className="relative overflow-hidden py-[60px] px-[25px] md:py-[100px] md:px-[50px] flex flex-col justify-center items-center bg-nearcon-cream max-w-full"
       style={{ isolation: 'isolate' }}
       initial="hidden"
       whileInView="visible"
@@ -33,14 +33,14 @@ export function CountdownRecapV2() {
       variants={containerVariants}
       id="countdown"
     >
-      {/* Imágenes decorativas laterales */}
-      <img src="/img/Group-41-7-left.png" alt="" aria-hidden="true" style={{ position: 'absolute', left: 0, top: '50%', transform: 'translateY(-50%)', height: '300px', width: 'auto', pointerEvents: 'none', zIndex: 0 }} />
-      <img src="/img/Group-42-1-right.png" alt="" aria-hidden="true" style={{ position: 'absolute', right: 0, top: '50%', transform: 'translateY(-50%)', height: '300px', width: 'auto', pointerEvents: 'none', zIndex: 0 }} />
+      {/* Imágenes decorativas laterales — solo desktop */}
+      <img src="/img/Group-41-7-left.png" alt="" aria-hidden="true" className="hidden md:block" style={{ position: 'absolute', left: 0, top: '50%', transform: 'translateY(-50%)', height: '300px', width: 'auto', pointerEvents: 'none', zIndex: 0 }} />
+      <img src="/img/Group-42-1-right.png" alt="" aria-hidden="true" className="hidden md:block" style={{ position: 'absolute', right: 0, top: '50%', transform: 'translateY(-50%)', height: '300px', width: 'auto', pointerEvents: 'none', zIndex: 0 }} />
 
       <div className="relative z-10 w-full mx-auto flex flex-col items-center justify-center">
 
         {/* Columna centrada — imagen top, título, imagen bottom */}
-        <motion.div className="relative flex flex-col items-center gap-[50px] p-[60px]" variants={itemVariants}>
+        <motion.div className="relative flex flex-col items-center gap-[30px] p-[30px] md:gap-[50px] md:p-[60px]" variants={itemVariants}>
           <FrameCorners color="border-black" size="w-[30px] h-[30px]" />
 
           <div className="w-[50%] self-start">
@@ -48,8 +48,8 @@ export function CountdownRecapV2() {
           </div>
 
           <h2
-            className="font-helvetica text-center"
-            style={{ fontSize: '115px', lineHeight: 1.05, color: '#000000' }}
+            className="font-helvetica text-center text-[48px] md:text-[115px]"
+            style={{ lineHeight: 1.05, color: '#000000' }}
           >
             <span className={styles.gradientHover}>NEARCON</span> 2027<br />
             <span className={styles.gradientDefault}>is coming</span>

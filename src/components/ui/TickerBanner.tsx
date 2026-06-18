@@ -66,7 +66,7 @@ export function TickerBanner() {
         backgroundColor: '#EBE3D3',
         width: '100%',
         overflow: 'hidden',
-        padding: '10px 14px 0',
+        padding: '10px 0 0',
         display: 'flex',
         flexDirection: 'column',
         gap: '6px',

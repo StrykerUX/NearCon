@@ -56,6 +56,8 @@ export function SessionVideos({ videos }: { videos: YTVideo[] }) {
         .video-list::-webkit-scrollbar-thumb { background: #1a1a1a; border-radius: 2px; }
         .video-list:hover::-webkit-scrollbar { width: 8px; }
         .video-list:hover::-webkit-scrollbar-thumb { background: #444; }
+        .videos-cta-btn { margin-top: 32px; }
+        @media (min-width: 768px) { .videos-cta-btn { margin-top: 60px; } }
       `}</style>
 
       {/* Title */}
@@ -151,8 +153,8 @@ export function SessionVideos({ videos }: { videos: YTVideo[] }) {
                 href="https://www.youtube.com/playlist?list=PL9tzQn_TEuFUvCYDl-fDmFTiOUEwZ6jj5"
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`${styles.largeButton} block`}
-                style={{ marginTop: '60px', flexShrink: 0 }}
+                className={`${styles.largeButton} block videos-cta-btn`}
+                style={{ flexShrink: 0 }}
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}

@@ -65,12 +65,12 @@ export function RecapV2HeroBlock() {
         style={{ position: 'sticky', top: 0, zIndex: 1, backgroundColor: '#EBE3D3', pointerEvents: 'none' }}
       >
         <CountdownRecapV2 />
-        <div style={{ position: 'relative', overflow: 'hidden' }}>
+        <div className="recap-title-bar" style={{ position: 'relative', overflow: 'hidden' }}>
           <div style={{ position: 'absolute', inset: 0 }}>
             <TickerBanner />
           </div>
-          <div style={{ position: 'relative', zIndex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <h1 style={{ fontFamily: 'Helvetica', fontSize: '75px', fontWeight: 700, lineHeight: 1, color: '#000000', backgroundColor: '#EBE3D3', padding: '6px 24px' }}>
+          <div style={{ position: 'relative', zIndex: 1, width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <h1 className="recap-2026-title" style={{ fontFamily: 'Helvetica', fontSize: '75px', fontWeight: 700, lineHeight: 1, color: '#000000', backgroundColor: '#EBE3D3', padding: '6px 24px' }}>
               NEARCON 2026 RECAP
             </h1>
           </div>
