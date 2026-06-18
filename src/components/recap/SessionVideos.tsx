@@ -10,7 +10,7 @@ export function SessionVideos({ videos }: { videos: YTVideo[] }) {
   const [selectedId, setSelectedId] = useState(videos[0]?.id ?? '')
 
   return (
-    <section className="bg-nearcon-cream pt-[100px] pb-[100px]">
+    <section className="bg-nearcon-cream pt-[75px] pb-[125px]">
       <style>{`
         .videos-grid {
           display: flex;
@@ -78,7 +78,7 @@ export function SessionVideos({ videos }: { videos: YTVideo[] }) {
       </div>
 
       {/* Content */}
-      <div className="px-[25px] md:px-[50px] pt-[40px]">
+      <div className="px-[25px] md:px-[50px] pt-[70px]">
         <div className="max-w-[1580px] mx-auto">
 
           <div className="videos-grid">
@@ -152,7 +152,7 @@ export function SessionVideos({ videos }: { videos: YTVideo[] }) {
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`${styles.largeButton} block`}
-                style={{ marginTop: '30px', flexShrink: 0 }}
+                style={{ marginTop: '60px', flexShrink: 0 }}
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}

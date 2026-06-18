@@ -46,7 +46,7 @@ export function RecapWhatToExpectV2() {
   }, [])
 
   return (
-    <section className="bg-black text-nearcon-cream pt-[100px] pb-[100px]">
+    <section className="bg-black text-nearcon-cream pt-[125px] pb-[125px]">
       {/* Title section */}
       <div className="w-full bg-cover bg-center px-[25px] md:px-[50px]" style={{ backgroundImage: 'url(/img/Group-3-1.png)' }}>
         <div className="max-w-[1580px] mx-auto">
@@ -64,7 +64,7 @@ export function RecapWhatToExpectV2() {
       </div>
 
       {/* Bento gallery */}
-      <div className="px-[25px] md:px-[50px] pt-[40px] pb-0">
+      <div className="px-[25px] md:px-[50px] pt-[70px] pb-0">
         <div className="max-w-[1580px] mx-auto">
           <div
             className="bento-grid"
@@ -117,7 +117,7 @@ export function RecapWhatToExpectV2() {
       </div>
 
       {/* Banner section */}
-      <div className="px-[25px] md:px-[50px]">
+      <div className="px-[25px] md:px-[50px] mt-[50px]">
         <div className="max-w-[1580px] mx-auto">
           <img src="/img/Group-35.png" alt="NearCon decoration" className="w-full h-auto border-b border-black md:hidden" />
           <img src="/img/Group-41.png" alt="NearCon decoration" className="w-full h-auto border-b border-black hidden md:block" />

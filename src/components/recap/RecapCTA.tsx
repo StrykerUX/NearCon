@@ -150,7 +150,7 @@ export function RecapCTA() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="bg-black relative overflow-hidden" style={{ minHeight: '640px' }}>
+    <section ref={sectionRef} className="bg-black relative overflow-hidden pt-[125px]" style={{ minHeight: '640px' }}>
 
       {/* ASCII background */}
       <div ref={containerRef} className={styles.asciiWrapper}>

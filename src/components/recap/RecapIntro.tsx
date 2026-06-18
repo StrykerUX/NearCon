@@ -105,18 +105,19 @@ export function RecapIntro() {
 
   return (
     <motion.section
-      className="px-[25px] md:px-[50px] pt-[100px] pb-[100px] flex flex-col md:flex-row items-stretch gap-[40px] md:gap-[80px]"
+      className="px-[25px] md:px-[50px] pt-[150px] pb-[75px]"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: '-80px' }}
       variants={containerVariants}
     >
+      <div className="max-w-[1580px] mx-auto flex flex-col md:flex-row items-stretch gap-[40px] md:gap-[80px]">
       {/* Left — title and text */}
       <motion.div className="w-full md:w-[55%] text-[#000000] flex flex-col justify-center" variants={itemVariants}>
-        <h2 className="font-helvetica text-[24px] md:text-[36px] font-bold mb-8 leading-tight">
+        <h2 className="font-helvetica text-[24px] md:text-[36px] font-bold mb-8 leading-tight text-balance">
           NEARCON 2026 proved that the future isn't coming — it's already building.
         </h2>
-        <p className="text-[16px] leading-[22px] md:text-[18px] md:leading-relaxed space-y-4" style={{ fontFamily: 'Poppins', fontWeight: 300 }}>
+        <p className="text-[16px] leading-[22px] md:text-[18px] md:leading-relaxed space-y-4 text-pretty" style={{ fontFamily: 'Poppins', fontWeight: 300 }}>
           For two days in San Francisco's Fort Mason Center, NEARCON 2026 gathered the minds that will define the next decade of AI, privacy, and open infrastructure. Under the theme Private. Intelligent. Yours., the conversation shifted from speculation to execution.
           <br />
           <br />
@@ -163,6 +164,7 @@ export function RecapIntro() {
           </motion.div>
         </div>
       </motion.div>
+      </div>
     </motion.section>
   )
 }

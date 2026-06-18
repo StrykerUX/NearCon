@@ -231,7 +231,7 @@ const DaySection = ({ dayGroup, photos }: { dayGroup: DayGroup; photos: string[]
   }, [isReverse])
 
   return (
-    <div className={dayGroup.day > 1 ? 'mt-[40px]' : ''}>
+    <div className={dayGroup.day > 1 ? 'mt-[20px]' : ''}>
       {/* Day header */}
       <motion.div
         className="bg-black text-nearcon-green px-[25px] md:px-8 py-3 w-full"
@@ -278,7 +278,7 @@ export function SessionHighlights({ sessions }: { sessions: AirtableSession[] })
   ].filter(d => d.sessions.length > 0)
 
   return (
-    <section className="bg-nearcon-cream">
+    <section className="bg-nearcon-cream pt-[75px]">
       {/* Title section */}
       <div className="w-full bg-cover bg-center px-[25px] md:px-[50px]" style={{ backgroundImage: 'url(/img/Group-43-3.png)' }}>
         <div className="max-w-[1580px] mx-auto">
@@ -296,7 +296,7 @@ export function SessionHighlights({ sessions }: { sessions: AirtableSession[] })
       </div>
 
       {/* Content section */}
-      <div className="px-[25px] md:px-[50px] pt-[50px] pb-[50px] md:pt-[100px] md:pb-[100px]">
+      <div className="px-[25px] md:px-[50px] pt-[70px] pb-[75px]">
         <div className="max-w-[1580px] mx-auto">
           {/* Days with sessions */}
           <div className="space-y-0">
@@ -305,16 +305,6 @@ export function SessionHighlights({ sessions }: { sessions: AirtableSession[] })
             ))}
           </div>
 
-          {/* Button */}
-          <motion.button
-            className={`${styles.largeButton} mt-[50px]`}
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4, delay: 0.2 }}
-          >
-            <span className={styles.largeButtonInner}>See All Sessions</span>
-          </motion.button>
         </div>
       </div>
     </section>

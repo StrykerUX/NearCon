@@ -14,7 +14,7 @@ const challenges: { icon: LucideIcon; name: string; description: string; entries
 
 export function AgentWars() {
   return (
-    <section className="bg-nearcon-cream pt-[100px] pb-[100px]">
+    <section className="bg-nearcon-cream pt-[125px] pb-[75px]">
       {/* Title stripe */}
       <div className="px-[25px] md:px-[50px]">
         <div className="max-w-[1580px] mx-auto">
@@ -25,7 +25,7 @@ export function AgentWars() {
       </div>
 
       {/* Content */}
-      <div className="px-[25px] md:px-[50px] pt-[40px] pb-0">
+      <div className="px-[25px] md:px-[50px] pt-[70px] pb-0">
         <div className="max-w-[1580px] mx-auto flex flex-col md:flex-row gap-[40px] md:gap-[80px] items-start">
 
           {/* Left column */}

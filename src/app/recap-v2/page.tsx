@@ -19,9 +19,7 @@ export default async function RecapV2Page() {
       <RecapV2HeroBlock />
 
       {/* Intro Section */}
-      <div className="max-w-[1580px] mx-auto">
-        <RecapIntro />
-      </div>
+      <RecapIntro />
 
       {/* Session Highlights */}
       <SessionHighlights sessions={sessions} />
