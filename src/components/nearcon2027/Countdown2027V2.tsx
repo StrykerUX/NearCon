@@ -83,8 +83,8 @@ export function Countdown2027V2() {
               className="font-helvetica text-center text-[42px] md:text-[75px]"
               style={{ lineHeight: 1.05, color: '#000000' }}
             >
-              The next chapter<br />
-              <span className={styles.gradientDefault}>is almost here</span>
+              The future is<br />
+              <span className={styles.gradientDefault}>being written</span>
             </h2>
 
             <div className="w-[75%] self-end">

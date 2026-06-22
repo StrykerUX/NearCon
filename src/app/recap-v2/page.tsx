@@ -1,3 +1,9 @@
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'NEARCON 2027',
+}
+
 import { RecapV2HeroBlock } from '@/components/recap/RecapV2HeroBlock'
 import { RecapIntro } from '@/components/recap/RecapIntro'
 import { SessionHighlights } from '@/components/recap/SessionHighlights'

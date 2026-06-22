@@ -1,3 +1,9 @@
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'NEARCON 2027',
+}
+
 import { Hero2027V2 } from '@/components/nearcon2027/Hero2027V2'
 import { ScrollerTextV2 } from '@/components/nearcon2027/ScrollerTextV2'
 import { Countdown2027V2 } from '@/components/nearcon2027/Countdown2027V2'
