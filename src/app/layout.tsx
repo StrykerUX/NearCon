@@ -5,10 +5,10 @@ import { GoogleAnalytics } from "@next/third-parties/google"
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://nearcon.app"
 
 export const metadata: Metadata = {
-  title: "NearCon 2026",
+  title: "NEARCON 2026",
   description: "An invite-only gathering shaping an AI economy built on trust, transparency, and user ownership.",
   openGraph: {
-    title: "NearCon 2026",
+    title: "NEARCON 2026",
     description: "Join founders, researchers, and builders redefining how intelligent systems run - private, open, and on your terms.",
     url: SITE_URL,
     type: "website",

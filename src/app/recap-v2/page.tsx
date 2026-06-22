@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'NEARCON 2027',
+  title: 'NEARCON 2026',
 }
 
 import { RecapV2HeroBlock } from '@/components/recap/RecapV2HeroBlock'
