@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { useLayoutEffect, useRef } from 'react'
+import { useLayoutEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import { gsap } from 'gsap'
 import { FrameCorners } from '../ui/FrameCorners'
@@ -82,6 +82,30 @@ const PhotoCard = ({ src }: { src: string }) => (
   </div>
 )
 
+const SpeakerAvatar = ({ speaker }: { speaker: Speaker }) => {
+  const [failed, setFailed] = useState(false)
+  if (speaker.image && !failed) {
+    return (
+      <Image
+        src={speaker.image}
+        alt={speaker.name}
+        fill
+        className="object-cover"
+        sizes="40px"
+        onError={() => setFailed(true)}
+      />
+    )
+  }
+  return (
+    <div
+      className="w-full h-full flex items-center justify-center"
+      style={{ backgroundColor: '#444', fontFamily: 'Helvetica', fontSize: '13px', fontWeight: 700, color: '#000' }}
+    >
+      {speaker.initials}
+    </div>
+  )
+}
+
 const SessionCard = ({ session }: { session: Session }) => (
   <div
     data-card-type="session"
@@ -117,16 +141,7 @@ const SessionCard = ({ session }: { session: Session }) => (
         {session.speakers.map((speaker, i) => (
           <div key={i} className="flex items-center gap-3">
             <div className="w-10 h-10 overflow-hidden shrink-0 relative">
-              {speaker.image ? (
-                <Image src={speaker.image} alt={speaker.name} fill className="object-cover" sizes="40px" />
-              ) : (
-                <div
-                  className="w-full h-full flex items-center justify-center"
-                  style={{ backgroundColor: '#444', fontFamily: 'Helvetica', fontSize: '13px', fontWeight: 700, color: '#000' }}
-                >
-                  {speaker.initials}
-                </div>
-              )}
+              <SpeakerAvatar speaker={speaker} />
             </div>
             <div>
               <p style={{ fontFamily: 'Poppins', fontSize: '14px', fontWeight: 400, color: '#EBE3D3' }}>
