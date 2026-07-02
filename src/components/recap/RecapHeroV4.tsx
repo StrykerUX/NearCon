@@ -83,7 +83,7 @@ export function RecapHeroV4({ className, style }: { className?: string; style?: 
           alt="NEARCON 2027"
           width={1198}
           height={1198}
-          className="h-full w-auto"
+          className="h-full w-auto -translate-x-[30px]"
           priority
         />
       </motion.div>
