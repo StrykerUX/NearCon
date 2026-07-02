@@ -1,0 +1,121 @@
+'use client'
+
+import { useRef } from 'react'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useGSAP } from '@gsap/react'
+import { RecapHeroV3 } from './RecapHeroV3'
+import { RecapHeroV4 } from './RecapHeroV4'
+import { FrameCorners } from '../ui/FrameCorners'
+import Link from 'next/link'
+
+gsap.registerPlugin(ScrollTrigger)
+
+export function RecapV3HeroBlock() {
+  const firstSectionRef = useRef<HTMLDivElement>(null)
+  const videoWrapperRef = useRef<HTMLDivElement>(null)
+  const widgetRef = useRef<HTMLDivElement>(null)
+  const stRef = useRef<ScrollTrigger | null>(null)
+  const widgetStRef = useRef<ScrollTrigger | null>(null)
+
+  useGSAP(() => {
+    if (!firstSectionRef.current || !videoWrapperRef.current || !widgetRef.current) return
+
+    if (stRef.current) { stRef.current.kill(); stRef.current = null }
+
+    gsap.set(firstSectionRef.current, { opacity: 1 })
+
+    const tl = gsap.timeline({ defaults: { ease: 'none' } })
+    tl.to(firstSectionRef.current, { opacity: 1, duration: 0.3 })
+    tl.to(firstSectionRef.current, { opacity: 0, duration: 0.2 })
+    tl.to(firstSectionRef.current, { opacity: 0, duration: 0.5 })
+
+    stRef.current = ScrollTrigger.create({
+      animation: tl,
+      trigger: videoWrapperRef.current,
+      start: 'top bottom',
+      end: 'bottom top',
+      scrub: 1,
+    })
+
+    if (widgetStRef.current) { widgetStRef.current.kill(); widgetStRef.current = null }
+
+    gsap.set(widgetRef.current, { opacity: 0, y: 16 })
+
+    widgetStRef.current = ScrollTrigger.create({
+      trigger: videoWrapperRef.current,
+      start: 'bottom 70%',
+      onEnter: () => gsap.to(widgetRef.current, { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' }),
+      onLeaveBack: () => gsap.to(widgetRef.current, { opacity: 0, y: 16, duration: 0.3, ease: 'power2.in' }),
+    })
+
+    return () => {
+      if (stRef.current) { stRef.current.kill(); stRef.current = null }
+      if (widgetStRef.current) { widgetStRef.current.kill(); widgetStRef.current = null }
+    }
+  })
+
+  return (
+    <>
+      {/* Sticky section: hero visual + título. 100svh para cubrir la expansión del video */}
+      <div
+        ref={firstSectionRef}
+        style={{
+          position: 'sticky', top: 0, zIndex: 1,
+          pointerEvents: 'none',
+          minHeight: '100svh',
+          display: 'flex', flexDirection: 'column',
+        }}
+      >
+        {/* RecapHeroV4 ocupa todo el espacio disponible */}
+        <RecapHeroV4 className="flex-1" style={{ minHeight: 0 }} />
+
+        {/* Título en la franja inferior */}
+        <div
+          style={{
+            backgroundColor: '#EBE3D3',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            padding: '25px',
+          }}
+        >
+          <h1
+            className="recap-2026-title"
+            style={{ fontFamily: 'Helvetica', fontSize: '75px', fontWeight: 700, lineHeight: 1, color: '#000000', textAlign: 'center' }}
+          >
+            NEARCON 2026 RECAP
+          </h1>
+        </div>
+      </div>
+
+      {/* Video */}
+      <div ref={videoWrapperRef} style={{ position: 'relative', zIndex: 2 }}>
+        <RecapHeroV3 mode="expand-shrink" />
+      </div>
+
+      {/* Widget flotante */}
+      <div
+        ref={widgetRef}
+        style={{ position: 'fixed', bottom: '30px', right: '30px', zIndex: 100, opacity: 0 }}
+      >
+        <Link href="/2027-v2" className="group block cursor-pointer">
+          <div
+            className="transition-transform duration-300 group-hover:scale-[0.92]"
+            style={{ position: 'relative', backgroundColor: '#000000', padding: '40px', minWidth: '180px' }}
+          >
+            <div style={{ position: 'absolute', inset: '20px' }}>
+              <FrameCorners color="border-white" size="w-[14px] h-[14px]" />
+            </div>
+            <div className="transition-transform duration-300 group-hover:scale-[1.08]" style={{ transformOrigin: 'center' }}>
+              <p style={{ fontFamily: 'Helvetica', fontSize: '18px', lineHeight: '22px', fontWeight: 700, background: 'linear-gradient(90deg, #65D56E, #59C2E8, #F98372, #F1B139)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>
+                NEARCON 2027
+              </p>
+              <p style={{ fontFamily: 'Helvetica', fontSize: '18px', lineHeight: '22px', fontWeight: 400, color: '#EBE3D3' }}>
+                is coming
+              </p>
+            </div>
+          </div>
+        </Link>
+      </div>
+    </>
+  )
+}
