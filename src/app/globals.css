@@ -63,7 +63,7 @@
   .bento-grid {
     grid-template-columns: repeat(2, 1fr) !important;
     grid-template-rows: repeat(3, 180px) !important;
-    gap: 12px !important;
+    gap: 20px !important;
   }
   .bento-cell {
     grid-column: auto !important;

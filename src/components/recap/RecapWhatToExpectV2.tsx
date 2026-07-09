@@ -89,7 +89,7 @@ export function RecapWhatToExpectV2() {
                 >
                   <div className="group w-full h-full">
                     <div
-                      className={`relative w-full h-full p-[25px] overflow-hidden transition-transform duration-300 ${isLarge ? 'group-hover:scale-[0.96]' : 'group-hover:scale-[0.92]'}`}
+                      className={`relative w-full h-full p-[15px] md:p-[25px] overflow-hidden transition-transform duration-300 ${isLarge ? 'group-hover:scale-[0.96]' : 'group-hover:scale-[0.92]'}`}
                       style={{ transformOrigin: 'center' }}
                     >
                       <div
@@ -105,7 +105,7 @@ export function RecapWhatToExpectV2() {
                         />
                       </div>
                       <div className="absolute inset-0 z-10 pointer-events-none">
-                        <FrameCorners color="border-[#EBE3D3]" size="w-[32px] h-[32px]" />
+                        <FrameCorners color="border-[#EBE3D3]" size="w-[25px] h-[25px] md:w-[32px] md:h-[32px]" />
                       </div>
                     </div>
                   </div>
