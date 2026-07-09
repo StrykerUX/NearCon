@@ -51,7 +51,7 @@ export function Sponsors() {
       <div className="px-[50px]">
         <div className="max-w-[1580px] mx-auto">
         <motion.div
-          className="grid grid-cols-2 md:grid-cols-4 gap-x-[40px] gap-y-[40px]"
+          className="grid grid-cols-2 md:grid-cols-4 gap-x-[20px] gap-y-[20px] md:gap-x-[40px] md:gap-y-[40px]"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-60px' }}
@@ -67,9 +67,9 @@ export function Sponsors() {
                 className="p-[20px] relative overflow-hidden transition-transform duration-200 ease-out group-hover:scale-[0.97]"
                 style={{ transformOrigin: 'center' }}
               >
-                <FrameCorners color="border-text-primary" size="w-[35px] h-[35px]" />
+                <FrameCorners color="border-text-primary" size="w-[25px] h-[25px] md:w-[35px] md:h-[35px]" />
                 <div
-                  className="relative h-[110px] transition-transform duration-200 ease-out group-hover:scale-[1.03]"
+                  className="relative h-[70px] md:h-[110px] transition-transform duration-200 ease-out group-hover:scale-[1.03]"
                   style={{ transformOrigin: 'center' }}
                 >
                   <Image

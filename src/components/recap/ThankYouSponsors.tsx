@@ -63,46 +63,52 @@ function SectionLabel({ label }: { label: string }) {
   )
 }
 
-function LogoGrid({ logos, cols, className, altPrefix }: {
+function LogoGrid({ logos, cols, className, altPrefix, centerLastOnMobile }: {
   logos: string[]
   cols: string
   className?: string
   altPrefix: string
+  centerLastOnMobile?: boolean
 }) {
   return (
     <motion.div
-      className={`grid ${cols} gap-x-[40px] gap-y-[40px] ${className ?? ''}`}
+      className={`grid ${cols} gap-x-[20px] gap-y-[20px] md:gap-x-[40px] md:gap-y-[40px] ${className ?? ''}`}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: '-60px' }}
       variants={containerVariants}
     >
-      {logos.map((src, idx) => (
-        <motion.div
-          key={idx}
-          className="relative group"
-          variants={cellVariants}
-        >
-          <div
-            className="p-[20px] relative overflow-hidden transition-transform duration-200 ease-out group-hover:scale-[0.97]"
-            style={{ transformOrigin: 'center' }}
+      {logos.map((src, idx) => {
+        const isCenteredLast = centerLastOnMobile && idx === logos.length - 1 && logos.length % 2 === 1
+        return (
+          <motion.div
+            key={idx}
+            className={`relative group ${isCenteredLast ? 'col-span-2 md:col-span-1 flex justify-center' : ''}`}
+            variants={cellVariants}
           >
-            <FrameCorners color="border-text-primary" size="w-[35px] h-[35px]" />
-            <div
-              className="relative h-[110px] transition-transform duration-200 ease-out group-hover:scale-[1.03]"
-              style={{ transformOrigin: 'center' }}
-            >
-              <Image
-                src={src}
-                alt={`${altPrefix} ${idx + 1}`}
-                fill
-                className="object-contain"
-                sizes="(max-width: 768px) 50vw, 25vw"
-              />
+            <div className={isCenteredLast ? 'w-1/2 md:w-full' : undefined}>
+              <div
+                className="p-[20px] relative overflow-hidden transition-transform duration-200 ease-out group-hover:scale-[0.97]"
+                style={{ transformOrigin: 'center' }}
+              >
+                <FrameCorners color="border-text-primary" size="w-[25px] h-[25px] md:w-[35px] md:h-[35px]" />
+                <div
+                  className="relative h-[70px] md:h-[110px] transition-transform duration-200 ease-out group-hover:scale-[1.03]"
+                  style={{ transformOrigin: 'center' }}
+                >
+                  <Image
+                    src={src}
+                    alt={`${altPrefix} ${idx + 1}`}
+                    fill
+                    className="object-contain"
+                    sizes="(max-width: 768px) 50vw, 25vw"
+                  />
+                </div>
+              </div>
             </div>
-          </div>
-        </motion.div>
-      ))}
+          </motion.div>
+        )
+      })}
     </motion.div>
   )
 }
@@ -137,7 +143,7 @@ export function ThankYouSponsors() {
           <div>
             <SectionLabel label="COMMUNITY PARTNERS" />
             <LogoGrid logos={communityFirst} cols="grid-cols-2 md:grid-cols-4" altPrefix="Community Partner" />
-            <LogoGrid logos={communitySecond} cols="grid-cols-3" className="w-3/4 mx-auto mt-[40px]" altPrefix="Community Partner" />
+            <LogoGrid logos={communitySecond} cols="grid-cols-2 md:grid-cols-3" className="md:w-3/4 md:mx-auto mt-[20px] md:mt-[40px]" altPrefix="Community Partner" centerLastOnMobile />
           </div>
 
           {/* Media Partners */}
