@@ -22,7 +22,7 @@ export function RecapHeroV4({ className, style }: { className?: string; style?: 
   const showSideImages = width >= 1650
   const showCircles = width >= 900
   const showMobileDecor = width > 0 && width < 768
-  const MOBILE_SIZE = Math.round(150 * 1.35 * 1.15 * 0.85)
+  const MOBILE_SIZE = Math.round(150 * 1.35 * 1.15 * 0.85 * 0.9)
   const MOBILE_OFFSET = Math.round(MOBILE_SIZE * (338 / 450)) // misma proporción de solape 1/4 que en desktop
 
   return (
