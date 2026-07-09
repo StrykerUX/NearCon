@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
+import { ChevronDown } from 'lucide-react'
 
 
 export function RecapHeroV4({ className, style }: { className?: string; style?: React.CSSProperties }) {
@@ -219,6 +220,16 @@ export function RecapHeroV4({ className, style }: { className?: string; style?: 
           priority
         />
       </motion.div>
+
+      {/* Scroll alert — flecha sutil, abajo al centro */}
+      <div className="absolute bottom-[24px] left-1/2 -translate-x-1/2 z-30 pointer-events-none">
+        <motion.div
+          animate={{ y: [0, 10, 0], opacity: [0.4, 1, 0.4] }}
+          transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
+        >
+          <ChevronDown size={28} strokeWidth={1.5} color="#EBE3D3" />
+        </motion.div>
+      </div>
     </div>
   )
 }
