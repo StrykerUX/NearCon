@@ -7,7 +7,6 @@ import { useGSAP } from '@gsap/react'
 import { RecapHeroV3 } from './RecapHeroV3'
 import { RecapHeroV4 } from './RecapHeroV4'
 import { FrameCorners } from '../ui/FrameCorners'
-import Link from 'next/link'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -81,7 +80,11 @@ export function RecapV3HeroBlock() {
         ref={widgetRef}
         style={{ position: 'fixed', bottom: '30px', right: '30px', zIndex: 100, opacity: 0 }}
       >
-        <Link href="/2027-v2" className="group block cursor-pointer">
+        <button
+          type="button"
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          className="group block cursor-pointer"
+        >
           <div
             className="transition-transform duration-300 group-hover:scale-[0.92]"
             style={{ position: 'relative', backgroundColor: '#000000', padding: '40px', minWidth: '180px' }}
@@ -98,7 +101,7 @@ export function RecapV3HeroBlock() {
               </p>
             </div>
           </div>
-        </Link>
+        </button>
       </div>
     </>
   )

@@ -71,7 +71,7 @@ function LogoGrid({ logos, cols, className, altPrefix }: {
 }) {
   return (
     <motion.div
-      className={`grid ${cols} gap-0 ${className ?? ''}`}
+      className={`grid ${cols} gap-x-[40px] gap-y-[40px] ${className ?? ''}`}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: '-60px' }}
@@ -80,18 +80,26 @@ function LogoGrid({ logos, cols, className, altPrefix }: {
       {logos.map((src, idx) => (
         <motion.div
           key={idx}
-          className="relative p-[20px] overflow-hidden group"
+          className="relative group"
           variants={cellVariants}
         >
-          <FrameCorners color="border-text-primary" size="w-[20px] h-[20px]" />
-          <div className="relative h-[70px] transition-transform duration-300 group-hover:scale-[1.04]">
-            <Image
-              src={src}
-              alt={`${altPrefix} ${idx + 1}`}
-              fill
-              className="object-contain"
-              sizes="(max-width: 768px) 50vw, 20vw"
-            />
+          <div
+            className="p-[20px] relative overflow-hidden transition-transform duration-200 ease-out group-hover:scale-[0.97]"
+            style={{ transformOrigin: 'center' }}
+          >
+            <FrameCorners color="border-text-primary" size="w-[35px] h-[35px]" />
+            <div
+              className="relative h-[110px] transition-transform duration-200 ease-out group-hover:scale-[1.03]"
+              style={{ transformOrigin: 'center' }}
+            >
+              <Image
+                src={src}
+                alt={`${altPrefix} ${idx + 1}`}
+                fill
+                className="object-contain"
+                sizes="(max-width: 768px) 50vw, 25vw"
+              />
+            </div>
           </div>
         </motion.div>
       ))}
@@ -100,8 +108,8 @@ function LogoGrid({ logos, cols, className, altPrefix }: {
 }
 
 export function ThankYouSponsors() {
-  const communityFirst = COMMUNITY_PARTNERS.slice(0, 5)
-  const communitySecond = COMMUNITY_PARTNERS.slice(5)
+  const communityFirst = COMMUNITY_PARTNERS.slice(0, 4)
+  const communitySecond = COMMUNITY_PARTNERS.slice(4)
 
   return (
     <section className="bg-nearcon-cream pt-[75px] pb-[125px]">
@@ -122,20 +130,20 @@ export function ThankYouSponsors() {
           {/* Sponsors */}
           <div>
             <SectionLabel label="SPONSORS" />
-            <LogoGrid logos={SPONSORS} cols="grid-cols-2 md:grid-cols-5" altPrefix="Sponsor" />
+            <LogoGrid logos={SPONSORS} cols="grid-cols-2 md:grid-cols-4" altPrefix="Sponsor" />
           </div>
 
           {/* Community Partners */}
           <div>
             <SectionLabel label="COMMUNITY PARTNERS" />
-            <LogoGrid logos={communityFirst} cols="grid-cols-2 md:grid-cols-5" altPrefix="Community Partner" />
-            <LogoGrid logos={communitySecond} cols="grid-cols-2" className="md:w-2/5 md:mx-auto" altPrefix="Community Partner" />
+            <LogoGrid logos={communityFirst} cols="grid-cols-2 md:grid-cols-4" altPrefix="Community Partner" />
+            <LogoGrid logos={communitySecond} cols="grid-cols-3" className="w-3/4 mx-auto mt-[40px]" altPrefix="Community Partner" />
           </div>
 
           {/* Media Partners */}
           <div>
             <SectionLabel label="MEDIA PARTNERS" />
-            <LogoGrid logos={MEDIA_PARTNERS} cols="grid-cols-2" altPrefix="Media Partner" />
+            <LogoGrid logos={MEDIA_PARTNERS} cols="grid-cols-2" className="md:w-1/2 md:mx-auto" altPrefix="Media Partner" />
           </div>
 
         </div>

@@ -32,18 +32,26 @@ const cellVariants = {
 function LogoCell({ src, alt }: { src: string; alt: string }) {
   return (
     <motion.div
-      className="relative p-[20px] overflow-hidden group"
+      className="relative group"
       variants={cellVariants}
     >
-      <FrameCorners color="border-text-primary" size="w-[20px] h-[20px]" />
-      <div className="relative h-[110px] transition-transform duration-300 group-hover:scale-[1.04]">
-        <Image
-          src={src}
-          alt={alt}
-          fill
-          className="object-contain"
-          sizes="(max-width: 768px) 50vw, 25vw"
-        />
+      <div
+        className="p-[20px] relative overflow-hidden transition-transform duration-200 ease-out group-hover:scale-[0.97]"
+        style={{ transformOrigin: 'center' }}
+      >
+        <FrameCorners color="border-text-primary" size="w-[35px] h-[35px]" />
+        <div
+          className="relative h-[110px] transition-transform duration-200 ease-out group-hover:scale-[1.03]"
+          style={{ transformOrigin: 'center' }}
+        >
+          <Image
+            src={src}
+            alt={alt}
+            fill
+            className="object-contain"
+            sizes="(max-width: 768px) 50vw, 25vw"
+          />
+        </div>
       </div>
     </motion.div>
   )
@@ -68,7 +76,7 @@ export function Partners() {
           <div className="max-w-[1580px] mx-auto">
           {/* First row: 4 logos */}
           <motion.div
-            className="grid grid-cols-2 md:grid-cols-4 gap-0"
+            className="grid grid-cols-2 md:grid-cols-4 gap-x-[40px] gap-y-[40px]"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-60px' }}
@@ -80,7 +88,7 @@ export function Partners() {
           </motion.div>
           {/* Second row: 3 logos centered (same cell width as 4-col grid) */}
           <motion.div
-            className="grid grid-cols-3 gap-0 w-3/4 mx-auto"
+            className="grid grid-cols-3 gap-x-[40px] gap-y-[40px] w-3/4 mx-auto mt-[40px]"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-60px' }}
@@ -104,29 +112,14 @@ export function Partners() {
         <div className="px-[50px] pb-[100px]">
           <div className="max-w-[1580px] mx-auto">
           <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 gap-0"
+            className="grid grid-cols-1 md:grid-cols-2 gap-x-[40px] gap-y-[40px] md:w-1/2 md:mx-auto"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={containerVariants}
           >
             {MEDIA_PARTNER_LOGOS.map((src, idx) => (
-              <motion.div
-                key={idx}
-                className="relative p-[20px] overflow-hidden group"
-                variants={cellVariants}
-              >
-                <FrameCorners color="border-text-primary" size="w-[20px] h-[20px]" />
-                <div className="relative h-[110px] transition-transform duration-300 group-hover:scale-[1.04]">
-                  <Image
-                    src={src}
-                    alt={`Media Partner ${idx + 1}`}
-                    fill
-                    className="object-contain"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                  />
-                </div>
-              </motion.div>
+              <LogoCell key={idx} src={src} alt={`Media Partner ${idx + 1}`} />
             ))}
           </motion.div>
           </div>

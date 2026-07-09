@@ -1,12 +1,4 @@
-import type { Metadata } from 'next'
-
-export const dynamic = 'force-dynamic'
-
-export const metadata: Metadata = {
-  title: 'NEARCON 2026',
-}
-
-import { RecapV3HeroBlock } from '@/components/recap/RecapV3HeroBlock'
+import { RecapHeroV3 } from '@/components/recap/RecapHeroV3'
 import { RecapIntro } from '@/components/recap/RecapIntro'
 import { SessionHighlights } from '@/components/recap/SessionHighlights'
 import { AgentWars } from '@/components/recap/AgentWars'
@@ -23,11 +15,13 @@ export default async function RecapV3Page() {
 
   return (
     <div className="min-h-screen bg-nearcon-cream text-text-primary selection:bg-nearcon-green selection:text-text-primary">
-      {/* Hero: RecapHeroV4 + título NEARCON 2026 RECAP + video + widget */}
-      <RecapV3HeroBlock />
+      {/* Hero Section */}
+      <RecapHeroV3 />
 
       {/* Intro Section */}
-      <RecapIntro />
+      <div className="max-w-[1580px] mx-auto">
+        <RecapIntro />
+      </div>
 
       {/* Session Highlights */}
       <SessionHighlights sessions={sessions} />
@@ -39,10 +33,14 @@ export default async function RecapV3Page() {
       <RecapWhatToExpectV2 />
 
       {/* Agent Wars */}
-      <AgentWars />
+      <div className="mt-[100px]">
+        <AgentWars />
+      </div>
 
       {/* Innovation Sandbox */}
-      <InnovationSandbox />
+      <div className="mt-[90px] mb-[20px]">
+        <InnovationSandbox />
+      </div>
 
       {/* Thank You to Our Sponsors */}
       <ThankYouSponsors />
