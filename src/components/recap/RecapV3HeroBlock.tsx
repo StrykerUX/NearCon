@@ -1,10 +1,9 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
-import { motion } from 'framer-motion'
 import { RecapHeroV3 } from './RecapHeroV3'
 import { RecapHeroV4 } from './RecapHeroV4'
 import { FrameCorners } from '../ui/FrameCorners'
@@ -18,14 +17,6 @@ export function RecapV3HeroBlock() {
   const widgetRef = useRef<HTMLDivElement>(null)
   const stRef = useRef<ScrollTrigger | null>(null)
   const widgetStRef = useRef<ScrollTrigger | null>(null)
-  const [isMobile, setIsMobile] = useState(false)
-
-  useEffect(() => {
-    const onResize = () => setIsMobile(window.innerWidth < 768)
-    onResize()
-    window.addEventListener('resize', onResize)
-    return () => window.removeEventListener('resize', onResize)
-  }, [])
 
   useGSAP(() => {
     if (!firstSectionRef.current || !videoWrapperRef.current || !widgetRef.current) return
@@ -73,42 +64,11 @@ export function RecapV3HeroBlock() {
           position: 'sticky', top: 0, zIndex: 1,
           pointerEvents: 'none',
           minHeight: '100svh',
-          ...(isMobile ? { height: '100svh' } : {}),
           display: 'flex', flexDirection: 'column',
         }}
       >
-        {/* RecapHeroV4: 90% del alto en mobile (10% restante es la franja del scroll alert), ocupa el espacio disponible en desktop */}
-        <RecapHeroV4
-          className={isMobile ? '' : 'flex-1'}
-          style={isMobile ? { flex: '0 0 90%', height: '90%' } : { minHeight: 0 }}
-        />
-
-        {/* Scroll alert en la franja inferior */}
-        <div
-          style={{
-            backgroundColor: '#EBE3D3',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            padding: isMobile ? '10px' : '25px',
-            ...(isMobile ? { flex: '0 0 10%', height: '10%' } : {}),
-          }}
-        >
-          <motion.div
-            className="relative"
-            style={{ padding: '14px 26px' }}
-            animate={{ scale: [1, 0.92, 1] }}
-            transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut', repeatDelay: 0.6 }}
-          >
-            <FrameCorners color="border-black" size="w-[10px] h-[10px]" />
-            <div
-              style={{
-                fontFamily: 'Helvetica', fontSize: '13px', fontWeight: 700,
-                letterSpacing: '0.2em', lineHeight: '16px', color: '#000000',
-              }}
-            >
-              SCROLL
-            </div>
-          </motion.div>
-        </div>
+        {/* RecapHeroV4 ocupa el 100% del alto, en desktop y mobile */}
+        <RecapHeroV4 className="flex-1" style={{ minHeight: 0 }} />
       </div>
 
       {/* Video */}
