@@ -4,6 +4,7 @@ import { useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
+import { motion } from 'framer-motion'
 import { RecapHeroV3 } from './RecapHeroV3'
 import { RecapHeroV4 } from './RecapHeroV4'
 import { FrameCorners } from '../ui/FrameCorners'
@@ -70,7 +71,7 @@ export function RecapV3HeroBlock() {
         {/* RecapHeroV4 ocupa todo el espacio disponible */}
         <RecapHeroV4 className="flex-1" style={{ minHeight: 0 }} />
 
-        {/* Título en la franja inferior */}
+        {/* Scroll alert en la franja inferior */}
         <div
           style={{
             backgroundColor: '#EBE3D3',
@@ -78,12 +79,22 @@ export function RecapV3HeroBlock() {
             padding: '25px',
           }}
         >
-          <h1
-            className="recap-2026-title"
-            style={{ fontFamily: 'Helvetica', fontSize: '75px', fontWeight: 700, lineHeight: 1, color: '#000000', textAlign: 'center' }}
+          <motion.div
+            className="relative"
+            style={{ padding: '14px 26px' }}
+            animate={{ scale: [1, 0.92, 1] }}
+            transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut', repeatDelay: 0.6 }}
           >
-            NEARCON 2026 RECAP
-          </h1>
+            <FrameCorners color="border-black" size="w-[10px] h-[10px]" />
+            <div
+              style={{
+                fontFamily: 'Helvetica', fontSize: '13px', fontWeight: 700,
+                letterSpacing: '0.2em', lineHeight: '16px', color: '#000000',
+              }}
+            >
+              SCROLL
+            </div>
+          </motion.div>
         </div>
       </div>
 
