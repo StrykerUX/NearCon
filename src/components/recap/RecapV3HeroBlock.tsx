@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
@@ -18,6 +18,14 @@ export function RecapV3HeroBlock() {
   const widgetRef = useRef<HTMLDivElement>(null)
   const stRef = useRef<ScrollTrigger | null>(null)
   const widgetStRef = useRef<ScrollTrigger | null>(null)
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const onResize = () => setIsMobile(window.innerWidth < 768)
+    onResize()
+    window.addEventListener('resize', onResize)
+    return () => window.removeEventListener('resize', onResize)
+  }, [])
 
   useGSAP(() => {
     if (!firstSectionRef.current || !videoWrapperRef.current || !widgetRef.current) return
@@ -65,18 +73,23 @@ export function RecapV3HeroBlock() {
           position: 'sticky', top: 0, zIndex: 1,
           pointerEvents: 'none',
           minHeight: '100svh',
+          ...(isMobile ? { height: '100svh' } : {}),
           display: 'flex', flexDirection: 'column',
         }}
       >
-        {/* RecapHeroV4 ocupa todo el espacio disponible */}
-        <RecapHeroV4 className="flex-1" style={{ minHeight: 0 }} />
+        {/* RecapHeroV4: 90% del alto en mobile (10% restante es la franja del scroll alert), ocupa el espacio disponible en desktop */}
+        <RecapHeroV4
+          className={isMobile ? '' : 'flex-1'}
+          style={isMobile ? { flex: '0 0 90%', height: '90%' } : { minHeight: 0 }}
+        />
 
         {/* Scroll alert en la franja inferior */}
         <div
           style={{
             backgroundColor: '#EBE3D3',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            padding: '25px',
+            padding: isMobile ? '10px' : '25px',
+            ...(isMobile ? { flex: '0 0 10%', height: '10%' } : {}),
           }}
         >
           <motion.div
