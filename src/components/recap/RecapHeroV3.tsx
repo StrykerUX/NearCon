@@ -54,11 +54,14 @@ export function RecapHeroV3({ mode = 'shrink' }: { mode?: 'shrink' | 'expand-shr
 
       if (mode === 'expand-shrink') {
         gsap.set(hero, { top: 0, right: hInset, bottom: 0, left: hInset })
+        gsap.set(trigger, { backgroundColor: '#EBE3D3' })
 
         const tl = gsap.timeline({ defaults: { ease: 'none' } })
-        tl.to(hero, { top: 0, right: 0, bottom: 0, left: 0, duration: 1 })           // expande hasta pantalla completa
-          .to(hero, { top: 0, right: 0, bottom: 0, left: 0, duration: 2 })           // hold en máximo
-          .to(hero, { top: 0, right: hInset, bottom: 0, left: hInset, duration: 1 }) // encoge
+        tl.to(hero, { top: 0, right: 0, bottom: 0, left: 0, duration: 1 }, 0)           // expande hasta pantalla completa
+          .to(trigger, { backgroundColor: '#000000', duration: 1 }, 0)                  // laterales a negro mientras crece
+          .to(hero, { top: 0, right: 0, bottom: 0, left: 0, duration: 2 }, 1)           // hold en máximo
+          .to(hero, { top: 0, right: hInset, bottom: 0, left: hInset, duration: 1 }, 3) // encoge
+          .set(trigger, { backgroundColor: '#EBE3D3' }, 3)                              // laterales a claro sólido, sin degradado
 
         stRef.current = ScrollTrigger.create({
           animation: tl,
@@ -160,6 +163,12 @@ export function RecapHeroV3({ mode = 'shrink' }: { mode?: 'shrink' | 'expand-shr
                   >
                     FORT MASON CENTER - SAN FRANCISCO - FEB 23-24, 2026
                   </p>
+                  <h1
+                    className="text-nearcon-cream text-[46px] md:text-[75px]"
+                    style={{ fontFamily: 'Helvetica', fontWeight: 700, lineHeight: '1.1' }}
+                  >
+                    NEARCON 2026
+                  </h1>
                 </div>
               </motion.div>
             )}
