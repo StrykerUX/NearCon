@@ -222,10 +222,13 @@ export function RecapHeroV4({ className, style }: { className?: string; style?: 
       </motion.div>
 
       {/* Scroll alert — flecha sutil, abajo al centro */}
-      <div className="absolute bottom-[24px] left-1/2 -translate-x-1/2 z-30 pointer-events-none">
+      <div className="absolute bottom-[74px] left-1/2 -translate-x-1/2 z-30 pointer-events-none">
         <motion.div
-          animate={{ y: [0, 10, 0], opacity: [0.4, 1, 0.4] }}
-          transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
+          animate={{ y: [0, 50], opacity: [0, 1, 1, 1, 0, 0] }}
+          transition={{
+            y: { duration: 1, repeat: Infinity, repeatType: 'reverse', ease: 'linear' },
+            opacity: { duration: 1, times: [0, 0.4, 0.5, 0.6, 0.99, 1], repeat: Infinity, repeatType: 'reverse', ease: 'linear' },
+          }}
         >
           <ChevronDown size={28} strokeWidth={1.5} color="#EBE3D3" />
         </motion.div>
