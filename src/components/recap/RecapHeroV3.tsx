@@ -58,7 +58,7 @@ export function RecapHeroV3({ mode = 'shrink' }: { mode?: 'shrink' | 'expand-shr
 
         const tl = gsap.timeline({ defaults: { ease: 'none' } })
         tl.to(hero, { top: 0, right: 0, bottom: 0, left: 0, duration: 1 }, 0)           // expande hasta pantalla completa
-          .to(trigger, { backgroundColor: '#000000', duration: 1 }, 0)                  // laterales a negro mientras crece
+          .set(trigger, { backgroundColor: '#000000' }, 0)                              // laterales a negro sólido, sin degradado
           .to(hero, { top: 0, right: 0, bottom: 0, left: 0, duration: 2 }, 1)           // hold en máximo
           .to(hero, { top: 0, right: hInset, bottom: 0, left: hInset, duration: 1 }, 3) // encoge
           .set(trigger, { backgroundColor: '#EBE3D3' }, 3)                              // laterales a claro sólido, sin degradado
