@@ -69,7 +69,7 @@ export function Sponsors() {
               >
                 <FrameCorners color="border-text-primary" size="w-[25px] h-[25px] md:w-[35px] md:h-[35px]" />
                 <div
-                  className="relative h-[70px] md:h-[110px] transition-transform duration-200 ease-out group-hover:scale-[1.03]"
+                  className="relative h-[60px] md:h-[93px] transition-transform duration-200 ease-out group-hover:scale-[1.03]"
                   style={{ transformOrigin: 'center' }}
                 >
                   <Image
