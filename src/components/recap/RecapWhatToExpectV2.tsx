@@ -19,9 +19,31 @@ const allPhotos = [
   '/img/NEARCON_C-123.jpg',
 ]
 
+const LAST_PHOTOS_KEY = 'nearcon-in-photos-last'
+
 const getRandomPhotos = () => {
-  const shuffled = [...allPhotos].sort(() => Math.random() - 0.5)
-  return shuffled.slice(0, 6)
+  let previous: string[] = []
+  try {
+    previous = JSON.parse(localStorage.getItem(LAST_PHOTOS_KEY) || '[]')
+  } catch {
+    previous = []
+  }
+
+  let next: string[] = []
+  for (let attempt = 0; attempt < 10; attempt++) {
+    const shuffled = [...allPhotos].sort(() => Math.random() - 0.5)
+    next = shuffled.slice(0, 6)
+    const sameAsLast = previous.length === next.length && next.every((p) => previous.includes(p))
+    if (!sameAsLast) break
+  }
+
+  try {
+    localStorage.setItem(LAST_PHOTOS_KEY, JSON.stringify(next))
+  } catch {
+    // localStorage no disponible (modo privado, etc.) — sin persistencia
+  }
+
+  return next
 }
 
 // Bento layout — 4 cols, 3 rows de 280px cada una
