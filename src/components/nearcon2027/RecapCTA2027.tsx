@@ -43,7 +43,7 @@ export function RecapCTA2027() {
           </div>
 
           <a
-            href="/recap"
+            href="/"
             className="inline-block self-start px-[28px] py-[13px]"
             style={{
               fontFamily: 'Helvetica',
@@ -86,7 +86,7 @@ export function RecapCTA2027() {
 
           {/* Green CTA row */}
           <a
-            href="/recap"
+            href="/"
             className="flex items-center justify-between px-[24px] py-[22px] transition-opacity hover:opacity-90"
             style={{ backgroundColor: '#65D56E' }}
           >

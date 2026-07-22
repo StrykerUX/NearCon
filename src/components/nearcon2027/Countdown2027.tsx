@@ -153,7 +153,7 @@ export function Countdown2027() {
             [ NOTIFY ME ]
           </a>
           <a
-            href="/recap"
+            href="/"
             className="inline-block px-[32px] py-[14px]"
             style={{
               fontFamily: 'Helvetica',

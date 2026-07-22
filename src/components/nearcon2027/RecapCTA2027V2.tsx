@@ -121,7 +121,7 @@ export function RecapCTA2027V2() {
           </div>
 
           <a
-            href="/recap"
+            href="/"
             className="inline-block self-start px-[18px] md:px-[28px] py-[13px] whitespace-nowrap text-[13px] md:text-[14px]"
             style={{
               fontFamily: 'Helvetica',
