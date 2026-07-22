@@ -1,56 +1,54 @@
-import { Navbar } from '@/components/layout/Navbar'
-import { Hero } from '@/components/nearcon/Hero'
-import { Countdown } from '@/components/nearcon/Countdown'
-import { IntroText } from '@/components/nearcon/IntroText'
-import { WhatToExpect } from '@/components/nearcon/WhatToExpect'
-import { Speakers } from '@/components/nearcon/Speakers'
-import { ScrollerBanner } from '@/components/nearcon/ScrollerBanner'
-import { Schedule } from '@/components/nearcon/Schedule'
-import { GetInvolved } from '@/components/nearcon/GetInvolved'
-import { Sponsors } from '@/components/nearcon/Sponsors'
-import { Partners } from '@/components/nearcon/Partners'
-import { PreviousNearcons } from '@/components/nearcon/PreviousNearcons'
-import { Footer } from '@/components/layout/Footer'
+import type { Metadata } from 'next'
 
-export default function Home() {
+export const dynamic = 'force-dynamic'
+
+export const metadata: Metadata = {
+  title: 'NEARCON 2026',
+}
+
+import { RecapV3HeroBlock } from '@/components/recap/RecapV3HeroBlock'
+import { RecapIntro } from '@/components/recap/RecapIntro'
+import { SessionHighlights } from '@/components/recap/SessionHighlights'
+import { AgentWars } from '@/components/recap/AgentWars'
+import { InnovationSandbox } from '@/components/recap/InnovationSandbox'
+import { RecapWhatToExpectV2 } from '@/components/recap/RecapWhatToExpectV2'
+import { ThankYouSponsors } from '@/components/recap/ThankYouSponsors'
+import { RecapCTA } from '@/components/recap/RecapCTA'
+import { getSessions } from '@/lib/airtable'
+import { getVideos } from '@/lib/youtube'
+import { SessionVideos } from '@/components/recap/SessionVideos'
+
+export default async function RecapV3Page() {
+  const [sessions, videos] = await Promise.all([getSessions(), getVideos()])
+
   return (
     <div className="min-h-screen bg-nearcon-cream text-text-primary selection:bg-nearcon-green selection:text-text-primary">
-      {/* Full-width sticky navbar */}
-      <Navbar />
+      {/* Hero: RecapHeroV4 + título NEARCON 2026 RECAP + video + widget */}
+      <RecapV3HeroBlock />
 
-      {/* Hero section */}
-      <Hero />
+      {/* Intro Section */}
+      <RecapIntro />
 
-      {/* IntroText section */}
-      <div className="max-w-[1400px] mx-auto">
-        <IntroText />
-      </div>
+      {/* Session Highlights */}
+      <SessionHighlights sessions={sessions} />
 
-      {/* Countdown section */}
-      <Countdown />
+      {/* Session Videos */}
+      <SessionVideos videos={videos} />
 
-      {/* Full-width black section */}
-      <WhatToExpect />
+      {/* What to Expect */}
+      <RecapWhatToExpectV2 />
 
-      {/* Speakers section — full width */}
-      <Speakers />
+      {/* Agent Wars */}
+      <AgentWars />
 
-      {/* Scroller banner — full width */}
-      <ScrollerBanner />
+      {/* Innovation Sandbox */}
+      <InnovationSandbox />
 
-      {/* Live Schedule section — full width */}
-      <Schedule />
+      {/* Thank You to Our Sponsors */}
+      <ThankYouSponsors />
 
-      {/* Sections between black sections */}
-      <GetInvolved />
-      <Sponsors />
-      <Partners />
-
-      {/* Full-width black section */}
-      <PreviousNearcons />
-
-      {/* Footer */}
-      <Footer />
+      {/* See you at NEARCON 2027 */}
+      <RecapCTA />
     </div>
   )
 }
